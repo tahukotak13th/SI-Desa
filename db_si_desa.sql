@@ -19,11 +19,14 @@ CREATE TABLE users (
 CREATE TABLE pejabat_desa (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     user_id INT(11),
+    nama_lengkap VARCHAR(100) NOT NULL, -- Kolom baru
     jabatan VARCHAR(100) NOT NULL,
     periode_mulai DATE NOT NULL,
     periode_selesai DATE,
     keterangan TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Tabel Penduduk
