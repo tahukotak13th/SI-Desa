@@ -10,7 +10,7 @@ use App\Filters\SekretarisFilter;
 
 // Route utama
 $routes->get('/', 'Auth::login'); // Arahkan root ke login
-$routes->get('home', 'Home::index', ['filter' => 'auth']); // Proteksi home
+$routes->get('home', 'Home::index', ['filter' => 'auth']);
 
 // Login route
 $routes->group('', ['filter' => 'guest'], function ($routes) {
@@ -41,51 +41,50 @@ $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
    $routes->get('pejabat/delete/(:num)', 'Admin\PejabatController::delete/$1');
 });
 
-// Sekretaris Route
 $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes) {
    // Dashboard
-   // $routes->get('dashboard', 'Sekretaris\Dashboard::index');
    $routes->get('dashboard', 'Sekretaris\Dashboard::index', ['as' => 'sekretaris.dashboard']);
 
    // Data Penduduk
-   $routes->get('penduduk', 'Sekretaris::penduduk');
-   $routes->get('penduduk/create', 'Sekretaris::tambahPenduduk');
-   $routes->post('penduduk/store', 'Sekretaris::simpanPenduduk');
-   $routes->get('penduduk/edit/(:num)', 'Sekretaris::editPenduduk/$1');
-   $routes->post('penduduk/update/(:num)', 'Sekretaris::updatePenduduk/$1');
-   $routes->get('penduduk/delete/(:num)', 'Sekretaris::hapusPenduduk/$1');
+   $routes->get('penduduk', 'Sekretaris\Penduduk::index', ['as' => 'sekretaris.penduduk']);
+   $routes->get('penduduk/tambah', 'Sekretaris\Penduduk::tambah', ['as' => 'sekretaris.penduduk.tambah']);
+   $routes->get('penduduk/edit/(:num)', 'Sekretaris\Penduduk::edit/$1', ['as' => 'sekretaris.penduduk.edit']);
+   $routes->post('penduduk/simpan', 'Sekretaris\Penduduk::simpan', ['as' => 'sekretaris.penduduk.simpan']);
+   $routes->post('penduduk/update/(:num)', 'Sekretaris\Penduduk::update/$1', ['as' => 'sekretaris.penduduk.update']);
+   $routes->get('penduduk/hapus/(:num)', 'Sekretaris\Penduduk::hapus/$1', ['as' => 'sekretaris.penduduk.hapus']);
 
    // Pendidikan
-   $routes->get('pendidikan/(:num)', 'Sekretaris::pendidikan/$1');
-   $routes->get('pendidikan/(:num)/create', 'Sekretaris::tambahPendidikan/$1');
-   $routes->post('pendidikan/(:num)/store', 'Sekretaris::simpanPendidikan/$1');
-   $routes->get('pendidikan/(:num)/delete/(:num)', 'Sekretaris::hapusPendidikan/$1/$2');
+   $routes->get('pendidikan/(:num)', 'Sekretaris\Pendidikan::index/$1', ['as' => 'sekretaris.pendidikan']);
+   $routes->get('pendidikan/(:num)/tambah', 'Sekretaris\Pendidikan::tambah/$1', ['as' => 'sekretaris.pendidikan.tambah']);
+   $routes->post('pendidikan/(:num)/simpan', 'Sekretaris\Pendidikan::simpan/$1', ['as' => 'sekretaris.pendidikan.simpan']);
+   $routes->get('pendidikan/(:num)/hapus/(:num)', 'Sekretaris\Pendidikan::hapus/$1/$2', ['as' => 'sekretaris.pendidikan.hapus']);
 
    // Kelahiran
-   $routes->get('kelahiran', 'Sekretaris::kelahiran');
-   $routes->get('kelahiran/create', 'Sekretaris::tambahKelahiran');
-   $routes->post('kelahiran/store', 'Sekretaris::simpanKelahiran');
-   $routes->get('kelahiran/delete/(:num)', 'Sekretaris::hapusKelahiran/$1');
+   $routes->get('kelahiran', 'Sekretaris\Kelahiran::index', ['as' => 'sekretaris.kelahiran']);
+   $routes->get('kelahiran/tambah', 'Sekretaris\Kelahiran::tambah', ['as' => 'sekretaris.kelahiran.tambah']);
+   $routes->post('kelahiran/simpan', 'Sekretaris\Kelahiran::simpan', ['as' => 'sekretaris.kelahiran.simpan']);
+   $routes->get('kelahiran/hapus/(:num)', 'Sekretaris\Kelahiran::hapus/$1', ['as' => 'sekretaris.kelahiran.hapus']);
 
    // Kematian
-   $routes->get('kematian', 'Sekretaris::kematian');
-   $routes->get('kematian/create', 'Sekretaris::tambahKematian');
-   $routes->post('kematian/store', 'Sekretaris::simpanKematian');
-   $routes->get('kematian/delete/(:num)', 'Sekretaris::hapusKematian/$1');
+   $routes->get('kematian', 'Sekretaris\Kematian::index', ['as' => 'sekretaris.kematian']);
+   $routes->get('kematian/tambah', 'Sekretaris\Kematian::tambah', ['as' => 'sekretaris.kematian.tambah']);
+   $routes->post('kematian/simpan', 'Sekretaris\Kematian::simpan', ['as' => 'sekretaris.kematian.simpan']);
+   $routes->get('kematian/hapus/(:num)', 'Sekretaris\Kematian::hapus/$1', ['as' => 'sekretaris.kematian.hapus']);
 
    // Perkawinan
-   $routes->get('perkawinan', 'Sekretaris::perkawinan');
-   $routes->get('perkawinan/create', 'Sekretaris::tambahPerkawinan');
-   $routes->post('perkawinan/store', 'Sekretaris::simpanPerkawinan');
-   $routes->get('perkawinan/delete/(:num)', 'Sekretaris::hapusPerkawinan/$1');
+   $routes->get('perkawinan', 'Sekretaris\Perkawinan::index', ['as' => 'sekretaris.perkawinan']);
+   $routes->get('perkawinan/tambah', 'Sekretaris\Perkawinan::tambah', ['as' => 'sekretaris.perkawinan.tambah']);
+   $routes->post('perkawinan/simpan', 'Sekretaris\Perkawinan::simpan', ['as' => 'sekretaris.perkawinan.simpan']);
+   $routes->get('perkawinan/hapus/(:num)', 'Sekretaris\Perkawinan::hapus/$1', ['as' => 'sekretaris.perkawinan.hapus']);
 
    // Surat Keterangan
-   $routes->get('surat', 'Sekretaris::surat');
-   $routes->get('surat/(:any)', 'Sekretaris::surat/$1');
-   $routes->get('surat/(:any)/create', 'Sekretaris::buatSurat/$1');
-   $routes->post('surat/store', 'Sekretaris::simpanSurat');
-   $routes->get('surat/cetak/(:num)', 'Sekretaris::cetakSurat/$1');
+   $routes->get('surat', 'Sekretaris\Surat::index', ['as' => 'sekretaris.surat']);
+   $routes->get('surat/(:any)', 'Sekretaris\Surat::jenis/$1', ['as' => 'sekretaris.surat.jenis']);
+   $routes->get('surat/(:any)/buat', 'Sekretaris\Surat::buat/$1', ['as' => 'sekretaris.surat.buat']);
+   $routes->post('surat/simpan', 'Sekretaris\Surat::simpan', ['as' => 'sekretaris.surat.simpan']);
+   $routes->get('surat/cetak/(:num)', 'Sekretaris\Surat::cetak/$1', ['as' => 'sekretaris.surat.cetak']);
+   $routes->get('surat/detail/(:num)', 'Sekretaris\Surat::detail/$1', ['as' => 'sekretaris.surat.detail']);
 
    // Logout
-   $routes->get('logout', 'Auth::logout');
+   $routes->get('logout', 'Auth::logout', ['as' => 'sekretaris.logout']);
 });
