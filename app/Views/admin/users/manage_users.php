@@ -27,7 +27,7 @@
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li class="active"><a href="<?= base_url('admin/manage_users') ?>"><i class="fas fa-users"></i> <span class="menu-text">Manajemen User</span></a></li>
-            <li><a href="<?= base_url('admin/manage_pejabat') ?>"><i class="fas fa-user-tie"></i> <span class="menu-text">Pejabat Desa</span></a></li>
+            <li><a href="<?= base_url('admin/manage_pejabat') ?>"><i class="fas fa-user-tie"></i> <span class="menu-text">Pejabat & Staf Desa</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
       </div>
