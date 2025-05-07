@@ -25,19 +25,48 @@ class PendudukModel extends Model
       'status_hidup'
    ];
    protected $useTimestamps = true;
+   protected $dateFormat = 'datetime';
+   protected $createdField = 'created_at';
+   protected $updatedField = 'updated_at';
 
-   public function getPendudukByStatus($status = 1)
-   {
-      return $this->where('status_hidup', $status)->findAll();
-   }
+   // Validasi untuk create dan update
+   protected $validationRules = [
+      'nik' => 'required|numeric|exact_length[16]|is_unique[penduduk.nik,id,{id}]',
+      'nama_lengkap' => 'required|min_length[3]|max_length[100]',
+      'tempat_lahir' => 'required|max_length[50]',
+      'tanggal_lahir' => 'required|valid_date',
+      'jenis_kelamin' => 'required|in_list[L,P]',
+      'agama' => 'required|max_length[20]',
+      'status_perkawinan' => 'required|in_list[belum_kawin,kawin,cerai_hidup,cerai_mati]',
+      'pekerjaan' => 'required|max_length[50]',
+      'penghasilan' => 'permit_empty|numeric',
+      'alamat' => 'required',
+      'rt' => 'required|max_length[3]',
+      'rw' => 'required|max_length[3]',
+      'dusun' => 'required|max_length[50]',
+      'status_hidup' => 'required|in_list[0,1]'
+   ];
 
-   public function getPendudukByNik($nik)
-   {
-      return $this->where('nik', $nik)->first();
-   }
+   protected $validationMessages = [
+      'nik' => [
+         'is_unique' => 'NIK sudah terdaftar',
+         'exact_length' => 'NIK harus 16 digit'
+      ]
+   ];
 
-   public function getPendudukByStatusPerkawinan($status)
+   // In PendudukModel
+   public function getValidationRules(array $options = []): array
    {
-      return $this->where('status_perkawinan', $status)->findAll();
+      $id = $options['id'] ?? null;
+      $rules = $this->validationRules;
+
+      if ($id) {
+         $rules['nik'] = str_replace('{id}', $id, $rules['nik']);
+      } else {
+         // Remove the placeholder for create operation
+         $rules['nik'] = 'required|numeric|exact_length[16]|is_unique[penduduk.nik]';
+      }
+
+      return $rules;
    }
 }

@@ -25,7 +25,7 @@
             <li class="menu-dropdown">
                <a href="#"><i class="fas fa-users"></i> <span class="menu-text">Data Kependudukan</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
                <ul class="submenu">
-                  <li><a href="<?= base_url('sekretaris/penduduk') ?>"><i class="fas fa-user"></i> Data Penduduk</a></li>
+                  <li><a href="<?= base_url('sekretaris/penduduk/') ?>"><i class="fas fa-user"></i> Data Penduduk</a></li>
                   <li><a href="<?= base_url('sekretaris/pendidikan') ?>"><i class="fas fa-graduation-cap"></i> Pendidikan Penduduk</a></li>
                   <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> Kelahiran</a></li>
                   <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> Kematian</a></li>
@@ -193,7 +193,7 @@
                      </div>
                      <div class="card-body">
                         <div class="d-flex flex-wrap gap-2">
-                           <a href="<?= base_url('sekretaris/penduduk/create') ?>" class="btn btn-primary">
+                           <a href="<?= base_url('sekretaris/penduduk/tambah') ?>" class="btn btn-primary">
                               <i class="fas fa-user-plus"></i> Tambah Penduduk
                            </a>
                            <a href="<?= base_url('sekretaris/surat/domisili/create') ?>" class="btn btn-success">

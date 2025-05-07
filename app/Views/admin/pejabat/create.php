@@ -72,19 +72,6 @@
                         <input type="text" class="form-control" id="jabatan" name="jabatan" required>
                      </div>
 
-                     <!-- Input User ID (Opsional) -->
-                     <!-- <div class="mb-3">
-                        <label for="user_id" class="form-label">Hubungkan dengan User (Opsional)</label>
-                        <select class="form-select" id="user_id" name="user_id">
-                           <option value="">Pilih User (Jika Ada)</option>
-                           <?php foreach ($users as $user) : ?>
-                              <option value="<?= $user['id'] ?>">
-                                 <?= esc($user['nama_lengkap']) ?> (<?= esc($user['username']) ?>)
-                              </option>
-                           <?php endforeach; ?>
-                        </select>
-                     </div> -->
-
                      <!-- Periode -->
                      <div class="row mb-3">
                         <div class="col-md-6">
