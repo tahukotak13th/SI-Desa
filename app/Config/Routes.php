@@ -68,7 +68,9 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
    // Perkawinan
    $routes->get('perkawinan', 'Sekretaris\Perkawinan::index', ['as' => 'sekretaris.perkawinan']);
    $routes->get('perkawinan/tambah', 'Sekretaris\Perkawinan::tambah', ['as' => 'sekretaris.perkawinan.tambah']);
+   $routes->get('perkawinan/edit/(:num)', 'Sekretaris\Perkawinan::edit/$1', ['as' => 'sekretaris.perkawinan.edit']);
    $routes->post('perkawinan/simpan', 'Sekretaris\Perkawinan::simpan', ['as' => 'sekretaris.perkawinan.simpan']);
+   $routes->post('perkawinan/update/(:num)', 'Sekretaris\Perkawinan::update/$1', ['as' => 'sekretaris.perkawinan.update']);
    $routes->get('perkawinan/hapus/(:num)', 'Sekretaris\Perkawinan::hapus/$1', ['as' => 'sekretaris.perkawinan.hapus']);
 
    // Surat Keterangan

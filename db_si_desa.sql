@@ -82,7 +82,7 @@ CREATE TABLE perkawinan (
     istri_id INT(11) NOT NULL,
     tanggal_perkawinan DATE NOT NULL,
     tempat_perkawinan VARCHAR(100) NOT NULL,
-    status ENUM('aktif', 'cerai', 'meninggal') DEFAULT 'aktif',
+    status VARCHAR(20) DEFAULT 'kawin',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (suami_id) REFERENCES penduduk(id),
     FOREIGN KEY (istri_id) REFERENCES penduduk(id)
@@ -147,3 +147,7 @@ ALTER TABLE penduduk
 ADD COLUMN pendidikan_terakhir ENUM('Tidak Bersekolah','SD/Sederajat', 'SMP/Sederajat', 'SMA/Sederajat', 'S1', 'S2', 'S3') AFTER agama;
 
 DROP TABLE pendidikan;
+
+-- Alter table perkawinan
+ALTER TABLE perkawinan 
+ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
