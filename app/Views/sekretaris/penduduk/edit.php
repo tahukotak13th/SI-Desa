@@ -65,42 +65,62 @@
 
                      <div class="row">
                         <div class="col-md-6">
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>NIK</label>
                               <input type="text" name="nik" class="form-control" value="<?= $penduduk['nik'] ?>" required>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Nama Lengkap</label>
                               <input type="text" name="nama_lengkap" class="form-control" value="<?= $penduduk['nama_lengkap'] ?>" required>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Tempat Lahir</label>
                               <input type="text" name="tempat_lahir" class="form-control" value="<?= $penduduk['tempat_lahir'] ?>" required>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Tanggal Lahir</label>
                               <input type="date" name="tanggal_lahir" class="form-control" value="<?= $penduduk['tanggal_lahir'] ?>" required>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Jenis Kelamin</label>
                               <select name="jenis_kelamin" class="form-control" required>
                                  <option value="L" <?= $penduduk['jenis_kelamin'] == 'L' ? 'selected' : '' ?>>Laki-laki</option>
                                  <option value="P" <?= $penduduk['jenis_kelamin'] == 'P' ? 'selected' : '' ?>>Perempuan</option>
                               </select>
                            </div>
+
+                           <div class="form-group mt-2">
+                              <label>Alamat</label>
+                              <input name="alamat" class="form-control" value="<?= $penduduk['alamat'] ?>" rows="1" required></i>
+                              <!-- <input type="text" name="alamat" class="form-control" required> </input> -->
+                           </div>
                         </div>
 
                         <div class="col-md-6">
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Agama</label>
                               <input type="text" name="agama" class="form-control" value="<?= $penduduk['agama'] ?>" required>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
+                              <label>Pendidikan Terakhir</label>
+                              <select name="pendidikan_terakhir" class="form-control" required>
+                                 <option value="">- Pilih -</option>
+                                 <option value="Tidak Bersekolah" <?= $penduduk['pendidikan_terakhir'] == 'Tidak Bersekolah' ? 'selected' : '' ?>>Tidak Bersekolah</option>
+                                 <option value="SD/Sederajat" <?= $penduduk['pendidikan_terakhir'] == 'SD/Sederajat' ? 'selected' : '' ?>>SD/Sederajat</option>
+                                 <option value="SMP/Sederajat" <?= $penduduk['pendidikan_terakhir'] == 'SMP/Sederajat' ? 'selected' : '' ?>>SMP/Sederajat</option>
+                                 <option value="SMA/Sederajat" <?= $penduduk['pendidikan_terakhir'] == 'SMA/Sederajat' ? 'selected' : '' ?>>SMA/Sederajat</option>
+                                 <option value="S1" <?= $penduduk['pendidikan_terakhir'] == 'S1' ? 'selected' : '' ?>>S1</option>
+                                 <option value="S2" <?= $penduduk['pendidikan_terakhir'] == 'S2' ? 'selected' : '' ?>>S2</option>
+                                 <option value="S3" <?= $penduduk['pendidikan_terakhir'] == 'S3' ? 'selected' : '' ?>>S3</option>
+                              </select>
+                           </div>
+
+                           <div class="form-group mt-2">
                               <label>Status Perkawinan</label>
                               <select name="status_perkawinan" class="form-control" required>
                                  <option value="belum_kawin" <?= $penduduk['status_perkawinan'] == 'belum_kawin' ? 'selected' : '' ?>>Belum Kawin</option>
@@ -110,17 +130,17 @@
                               </select>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Pekerjaan</label>
                               <input type="text" name="pekerjaan" class="form-control" value="<?= $penduduk['pekerjaan'] ?>" required>
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Penghasilan</label>
                               <input type="number" name="penghasilan" class="form-control" value="<?= $penduduk['penghasilan'] ?>">
                            </div>
 
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Status Hidup</label>
                               <select name="status_hidup" class="form-control" required>
                                  <option value="1" <?= $penduduk['status_hidup'] == 1 ? 'selected' : '' ?>>Hidup</option>
@@ -130,26 +150,23 @@
                         </div>
                      </div>
 
-                     <div class="form-group">
-                        <label>Alamat</label>
-                        <input type="text" name="alamat" class="form-control" rows="1" value="<?= $penduduk['alamat'] ?>" required> </input>
-
+                     <div class="form-group mt-2">
 
                         <div class="row">
                            <div class="col-md-4">
-                              <div class="form-group">
+                              <div class="form-group mt-2">
                                  <label>RT</label>
                                  <input type="text" name="rt" class="form-control" value="<?= $penduduk['rt'] ?>" required>
                               </div>
                            </div>
                            <div class="col-md-4">
-                              <div class="form-group">
+                              <div class="form-group mt-2">
                                  <label>RW</label>
                                  <input type="text" name="rw" class="form-control" value="<?= $penduduk['rw'] ?>" required>
                               </div>
                            </div>
                            <div class="col-md-4">
-                              <div class="form-group">
+                              <div class="form-group mt-2">
                                  <label>Dusun</label>
                                  <input type="text" name="dusun" class="form-control" value="<?= $penduduk['dusun'] ?>" required>
                               </div>

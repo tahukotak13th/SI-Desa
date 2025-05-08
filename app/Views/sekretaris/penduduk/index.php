@@ -22,7 +22,7 @@
             <li><a href="<?= base_url('sekretaris/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li class="active"><a href="<?= base_url('sekretaris/penduduk/') ?>"><i class="fas fa-users"></i> <span class="menu-text">Data Penduduk</span></a></li>
             <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
-            <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> <span class="menu-text">Kematian</span></a></li>
+            <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-skull"></i> <span class="menu-text">Kematian</span></a></li>
             <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> <span class="menu-text">Perkawinan</span></a></li>
             <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file-alt"></i> <span class="menu-text">Surat Keterangan</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
@@ -66,6 +66,7 @@
                               <th>No</th>
                               <th>NIK</th>
                               <th>Nama Lengkap</th>
+                              <th>Pendidikan</th>
                               <th>TTL</th>
                               <th>Usia</th>
                               <th>Jenis Kelamin</th>
@@ -82,6 +83,7 @@
                                  <td><?= $no++ ?></td>
                                  <td><?= $p['nik'] ?></td>
                                  <td><?= $p['nama_lengkap'] ?></td>
+                                 <td><?= $p['pendidikan_terakhir'] ?></td>
                                  <td>
                                     <?= $p['tempat_lahir'] ?>, <?= date('d-m-Y', strtotime($p['tanggal_lahir'])) ?>
                                  </td>
@@ -118,12 +120,7 @@
                                  </td>
                                  <td>
                                     <div class="btn-group" role="group">
-                                       <a href="<?= base_url('sekretaris/pendidikan/' . $p['id']) ?>"
-                                          class="btn btn-sm btn-info"
-                                          title="Pendidikan"
-                                          data-toggle="tooltip">
-                                          <i class="fas fa-graduation-cap"></i>
-                                       </a>
+
                                        <a href="<?= base_url('sekretaris/penduduk/edit/' . $p['id']) ?>"
                                           class="btn btn-sm btn-warning"
                                           data-toggle="tooltip"

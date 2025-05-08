@@ -50,6 +50,7 @@ class Penduduk extends BaseController
          'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
          'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
          'agama' => $this->request->getPost('agama'),
+         'pendidikan_terakhir' => $this->request->getPost('pendidikan_terakhir'),
          'status_perkawinan' => $this->request->getPost('status_perkawinan'),
          'pekerjaan' => $this->request->getPost('pekerjaan'),
          'penghasilan' => $this->request->getPost('penghasilan') ?? 0,
@@ -78,23 +79,34 @@ class Penduduk extends BaseController
    // Proses update data
    public function update($id)
    {
+      $currentData = $this->pendudukModel->find($id);
+      $newNik = $this->request->getPost('nik');
 
-      // Validasi input
+      // Get base validation rules
       $rules = $this->pendudukModel->getValidationRules();
-      $rules['nik'] = str_replace('{id}', $id, $rules['nik']); // Handle unique validation for update
 
+      // Only add NIK validation if NIK is being changed
+      if ($newNik !== $currentData['nik']) {
+         $rules['nik'] = 'required|numeric|exact_length[16]|is_unique[penduduk.nik,id,' . $id . ']';
+      } else {
+         // Remove NIK validation if not changed
+         unset($rules['nik']);
+      }
+
+      // Validate all fields
       if (!$this->validate($rules)) {
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
 
       $data = [
          'id' => $id,
-         'nik' => $this->request->getPost('nik'),
+         'nik' => $newNik,
          'nama_lengkap' => $this->request->getPost('nama_lengkap'),
          'tempat_lahir' => $this->request->getPost('tempat_lahir'),
          'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
          'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
          'agama' => $this->request->getPost('agama'),
+         'pendidikan_terakhir' => $this->request->getPost('pendidikan_terakhir'),
          'status_perkawinan' => $this->request->getPost('status_perkawinan'),
          'pekerjaan' => $this->request->getPost('pekerjaan'),
          'penghasilan' => $this->request->getPost('penghasilan') ?? 0,

@@ -15,6 +15,7 @@ class PendudukModel extends Model
       'tanggal_lahir',
       'jenis_kelamin',
       'agama',
+      'pendidikan_terakhir',
       'status_perkawinan',
       'pekerjaan',
       'penghasilan',
@@ -29,14 +30,13 @@ class PendudukModel extends Model
    protected $createdField = 'created_at';
    protected $updatedField = 'updated_at';
 
-   // Validasi untuk create dan update
    protected $validationRules = [
-      'nik' => 'required|numeric|exact_length[16]|is_unique[penduduk.nik,id,{id}]',
       'nama_lengkap' => 'required|min_length[3]|max_length[100]',
       'tempat_lahir' => 'required|max_length[50]',
       'tanggal_lahir' => 'required|valid_date',
       'jenis_kelamin' => 'required|in_list[L,P]',
       'agama' => 'required|max_length[20]',
+      'pendidikan_terakhir' => 'required|in_list[Tidak Bersekolah,SD/Sederajat,SMP/Sederajat,SMA/Sederajat,S1,S2,S3]',
       'status_perkawinan' => 'required|in_list[belum_kawin,kawin,cerai_hidup,cerai_mati]',
       'pekerjaan' => 'required|max_length[50]',
       'penghasilan' => 'permit_empty|numeric',
@@ -54,19 +54,19 @@ class PendudukModel extends Model
       ]
    ];
 
-   // In PendudukModel
-   public function getValidationRules(array $options = []): array
+   public function skipNikValidation(bool $skip = true)
    {
-      $id = $options['id'] ?? null;
-      $rules = $this->validationRules;
-
-      if ($id) {
-         $rules['nik'] = str_replace('{id}', $id, $rules['nik']);
+      if ($skip) {
+         unset($this->validationRules['nik']);
       } else {
-         // Remove the placeholder for create operation
-         $rules['nik'] = 'required|numeric|exact_length[16]|is_unique[penduduk.nik]';
+         $this->validationRules['nik'] = 'required|numeric|exact_length[16]|is_unique[penduduk.nik,id,{id}]';
       }
+      return $this;
+   }
 
-      return $rules;
+   public function shouldValidateNik(string $newNik, int $id): bool
+   {
+      $existing = $this->find($id);
+      return $existing && $existing->nik !== $newNik;
    }
 }

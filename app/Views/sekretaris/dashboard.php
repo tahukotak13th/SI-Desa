@@ -8,6 +8,7 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="stylesheet" href="<?= base_url('assets/css/sekreDashboard.css') ?>">
+
 </head>
 
 <body>
@@ -24,11 +25,10 @@
             <!-- Data Kependudukan Menu -->
             <li class="menu-dropdown">
                <a href="#"><i class="fas fa-users"></i> <span class="menu-text">Data Kependudukan</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
-               <ul class="submenu">
+               <ul class="submenu" style="list-style: none;">
                   <li><a href="<?= base_url('sekretaris/penduduk/') ?>"><i class="fas fa-user"></i> Data Penduduk</a></li>
-                  <li><a href="<?= base_url('sekretaris/pendidikan') ?>"><i class="fas fa-graduation-cap"></i> Pendidikan Penduduk</a></li>
                   <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> Kelahiran</a></li>
-                  <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> Kematian</a></li>
+                  <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-skull"></i> Kematian</a></li>
                   <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> Perkawinan</a></li>
                </ul>
             </li>
@@ -36,7 +36,7 @@
             <!-- Layanan Administrasi Menu -->
             <li class="menu-dropdown">
                <a href="#"><i class="fas fa-file-alt"></i> <span class="menu-text">Layanan Administrasi</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
-               <ul class="submenu">
+               <ul class="submenu" style="list-style: none;">
                   <li><a href="<?= base_url('sekretaris/surat/domisili') ?>"><i class="fas fa-file"></i> SK Domisili</a></li>
                   <li><a href="<?= base_url('sekretaris/surat/tidak_mampu') ?>"><i class="fas fa-file"></i> SK Tidak Mampu</a></li>
                   <li><a href="<?= base_url('sekretaris/surat/penghasilan') ?>"><i class="fas fa-file"></i> SK Penghasilan</a></li>
@@ -206,7 +206,7 @@
                               <i class="fas fa-baby"></i> Catat Kelahiran
                            </a>
                            <a href="<?= base_url('sekretaris/kematian/tambah') ?>" class="btn btn-dark">
-                              <i class="fas fa-cross"></i> Catat Kematian
+                              <i class="fas fa-skull"></i> Catat Kematian
                            </a>
                         </div>
                      </div>
@@ -240,7 +240,6 @@
                const submenu = this.nextElementSibling;
                const dropdownIcon = this.querySelector('.dropdown-icon');
 
-               this.parentElement.classList.toggle('active');
                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
                dropdownIcon.classList.toggle('fa-chevron-down');
                dropdownIcon.classList.toggle('fa-chevron-up');

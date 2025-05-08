@@ -29,7 +29,7 @@ CREATE TABLE pejabat_desa (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Tabel Penduduk
+-- Updated Penduduk table with education columns
 CREATE TABLE penduduk (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     nik VARCHAR(16) NOT NULL UNIQUE,
@@ -48,16 +48,6 @@ CREATE TABLE penduduk (
     status_hidup TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
--- Tabel Pendidikan Penduduk
-CREATE TABLE pendidikan (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    penduduk_id INT(11) NOT NULL,
-    tingkat_pendidikan VARCHAR(50) NOT NULL,
-    nama_instansi VARCHAR(100),
-    tahun_lulus YEAR,
-    FOREIGN KEY (penduduk_id) REFERENCES penduduk(id) ON DELETE CASCADE
 );
 
 -- Tabel Kelahiran
@@ -151,3 +141,9 @@ INSERT INTO jenis_surat (kode_surat, nama_surat) VALUES
 -- Data awal untuk admin
 INSERT INTO users (username, password, nama_lengkap, email, level) VALUES 
 ('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Administrator Sistem', 'admin@desa.id', 'admin');
+
+-- Alter table penduduk
+ALTER TABLE penduduk 
+ADD COLUMN pendidikan_terakhir ENUM('Tidak Bersekolah','SD/Sederajat', 'SMP/Sederajat', 'SMA/Sederajat', 'S1', 'S2', 'S3') AFTER agama;
+
+DROP TABLE pendidikan;

@@ -53,12 +53,6 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
    $routes->post('penduduk/update/(:num)', 'Sekretaris\Penduduk::update/$1', ['as' => 'sekretaris.penduduk.update']);
    $routes->get('penduduk/hapus/(:num)', 'Sekretaris\Penduduk::hapus/$1', ['as' => 'sekretaris.penduduk.hapus']);
 
-   // Pendidikan
-   $routes->get('pendidikan/(:num)', 'Sekretaris\Pendidikan::index/$1', ['as' => 'sekretaris.pendidikan']);
-   $routes->get('pendidikan/(:num)/tambah', 'Sekretaris\Pendidikan::tambah/$1', ['as' => 'sekretaris.pendidikan.tambah']);
-   $routes->post('pendidikan/(:num)/simpan', 'Sekretaris\Pendidikan::simpan/$1', ['as' => 'sekretaris.pendidikan.simpan']);
-   $routes->get('pendidikan/(:num)/hapus/(:num)', 'Sekretaris\Pendidikan::hapus/$1/$2', ['as' => 'sekretaris.pendidikan.hapus']);
-
    // Kelahiran
    $routes->get('kelahiran', 'Sekretaris\Kelahiran::index', ['as' => 'sekretaris.kelahiran']);
    $routes->get('kelahiran/tambah', 'Sekretaris\Kelahiran::tambah', ['as' => 'sekretaris.kelahiran.tambah']);
