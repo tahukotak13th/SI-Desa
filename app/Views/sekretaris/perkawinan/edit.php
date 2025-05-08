@@ -97,14 +97,14 @@
 
                      <div class="row">
                         <div class="col-md-6">
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Tanggal Perkawinan</label>
                               <input type="date" name="tanggal_perkawinan" class="form-control"
                                  value="<?= $perkawinan['tanggal_perkawinan'] ?>" required>
                            </div>
                         </div>
                         <div class="col-md-6">
-                           <div class="form-group">
+                           <div class="form-group mt-2">
                               <label>Tempat Perkawinan</label>
                               <input type="text" name="tempat_perkawinan" class="form-control"
                                  value="<?= $perkawinan['tempat_perkawinan'] ?>" required>
@@ -112,7 +112,7 @@
                         </div>
                      </div>
 
-                     <div class="form-group">
+                     <div class="form-group mt-2">
                         <label>Status Perkawinan</label>
                         <select name="status" class="form-control" required>
                            <option value="Kawin" <?= ($perkawinan['status'] == 'Kawin') ? 'selected' : '' ?>>Kawin</option>
@@ -121,8 +121,10 @@
                         </select>
                      </div>
 
-                     <button type="submit" class="btn btn-primary">Update</button>
-                     <a href="<?= base_url('sekretaris/perkawinan') ?>" class="btn btn-secondary">Kembali</a>
+                     <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="<?= base_url('sekretaris/perkawinan') ?>" class="btn btn-secondary">Kembali</a>
+                     </div>
                   </form>
                </div>
             </div>

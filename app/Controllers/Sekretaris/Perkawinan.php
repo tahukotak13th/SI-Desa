@@ -42,8 +42,9 @@ class Perkawinan extends BaseController
    {
       $suami_id = $this->request->getPost('suami_id');
       $istri_id = $this->request->getPost('istri_id');
+      $status = $this->request->getPost('status');
 
-      // Validasi pasangan harus laki-laki dan perempuan
+      // Validasi pasangan
       if (!$this->perkawinanModel->validateGenderPair($suami_id, $istri_id)) {
          return redirect()->back()->withInput()
             ->with('error', 'Perkawinan hanya boleh antara laki-laki dan perempuan');
@@ -60,14 +61,13 @@ class Perkawinan extends BaseController
          'istri_id' => $istri_id,
          'tanggal_perkawinan' => $this->request->getPost('tanggal_perkawinan'),
          'tempat_perkawinan' => $this->request->getPost('tempat_perkawinan'),
-         'status' => 'Kawin' // Default di-set ke 'Kawin'
+         'status' => $status
       ];
 
       $this->perkawinanModel->save($data);
 
-      // Update status perkawinan penduduk
-      $this->pendudukModel->update($suami_id, ['status_perkawinan' => 'kawin']);
-      $this->pendudukModel->update($istri_id, ['status_perkawinan' => 'kawin']);
+      // Update status penduduk
+      $this->perkawinanModel->updateStatusPenduduk($suami_id, $istri_id, $status);
 
       return redirect()->to('/sekretaris/perkawinan')
          ->with('success', 'Data perkawinan berhasil ditambahkan');
@@ -78,7 +78,7 @@ class Perkawinan extends BaseController
       $perkawinan = $this->perkawinanModel->find($id);
 
       if ($perkawinan) {
-         // Kembalikan status perkawinan penduduk
+         // Kembalikan status perkawinan penduduk ke belum kawin
          $this->pendudukModel->update($perkawinan['suami_id'], ['status_perkawinan' => 'belum_kawin']);
          $this->pendudukModel->update($perkawinan['istri_id'], ['status_perkawinan' => 'belum_kawin']);
 
@@ -119,8 +119,9 @@ class Perkawinan extends BaseController
 
       $suami_id = $this->request->getPost('suami_id');
       $istri_id = $this->request->getPost('istri_id');
+      $status = $this->request->getPost('status');
 
-      // Validasi pasangan harus laki-laki dan perempuan
+      // Validasi pasangan
       if (!$this->perkawinanModel->validateGenderPair($suami_id, $istri_id)) {
          return redirect()->back()->withInput()
             ->with('error', 'Perkawinan hanya boleh antara laki-laki dan perempuan');
@@ -132,7 +133,7 @@ class Perkawinan extends BaseController
             ->with('errors', $this->validator->getErrors());
       }
 
-      // Update status perkawinan penduduk lama
+      // Update status perkawinan penduduk lama ke belum kawin
       $this->pendudukModel->update($perkawinan['suami_id'], ['status_perkawinan' => 'belum_kawin']);
       $this->pendudukModel->update($perkawinan['istri_id'], ['status_perkawinan' => 'belum_kawin']);
 
@@ -142,14 +143,13 @@ class Perkawinan extends BaseController
          'istri_id' => $istri_id,
          'tanggal_perkawinan' => $this->request->getPost('tanggal_perkawinan'),
          'tempat_perkawinan' => $this->request->getPost('tempat_perkawinan'),
-         'status' => $this->request->getPost('status') ?? 'Kawin' // Default ke 'Kawin'
+         'status' => $status ?? 'Kawin'
       ];
 
       $this->perkawinanModel->save($data);
 
-      // Update status perkawinan penduduk baru
-      $this->pendudukModel->update($suami_id, ['status_perkawinan' => 'kawin']);
-      $this->pendudukModel->update($istri_id, ['status_perkawinan' => 'kawin']);
+      // Update status penduduk baru
+      $this->perkawinanModel->updateStatusPenduduk($suami_id, $istri_id, $status);
 
       return redirect()->to('/sekretaris/perkawinan')
          ->with('success', 'Data perkawinan berhasil diperbarui');

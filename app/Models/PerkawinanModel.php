@@ -70,4 +70,22 @@ class PerkawinanModel extends Model
          ->where('perkawinan.id', $id)
          ->first();
    }
+
+   public function updateStatusPenduduk($suami_id, $istri_id, $status_perkawinan)
+   {
+      $pendudukModel = new \App\Models\PendudukModel();
+
+      // Mapping status dari perkawinan ke penduduk
+      $status_mapping = [
+         'Kawin' => 'kawin',
+         'Cerai' => 'cerai_hidup',
+         'Meninggal' => 'cerai_mati'
+      ];
+
+      $status = $status_mapping[$status_perkawinan] ?? 'belum_kawin';
+
+      // Update status untuk suami dan istri
+      $pendudukModel->update($suami_id, ['status_perkawinan' => $status]);
+      $pendudukModel->update($istri_id, ['status_perkawinan' => $status]);
+   }
 }
