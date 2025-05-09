@@ -63,7 +63,10 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
    $routes->get('kematian', 'Sekretaris\Kematian::index', ['as' => 'sekretaris.kematian']);
    $routes->get('kematian/tambah', 'Sekretaris\Kematian::tambah', ['as' => 'sekretaris.kematian.tambah']);
    $routes->post('kematian/simpan', 'Sekretaris\Kematian::simpan', ['as' => 'sekretaris.kematian.simpan']);
+   $routes->get('kematian/edit/(:num)', 'Sekretaris\Kematian::edit/$1', ['as' => 'sekretaris.kematian.edit']);
+   $routes->post('kematian/update/(:num)', 'Sekretaris\Kematian::update/$1', ['as' => 'sekretaris.kematian.update']);
    $routes->get('kematian/hapus/(:num)', 'Sekretaris\Kematian::hapus/$1', ['as' => 'sekretaris.kematian.hapus']);
+
 
    // Perkawinan
    $routes->get('perkawinan', 'Sekretaris\Perkawinan::index', ['as' => 'sekretaris.perkawinan']);

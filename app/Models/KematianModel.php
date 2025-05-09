@@ -8,27 +8,69 @@ class KematianModel extends Model
 {
    protected $table = 'kematian';
    protected $primaryKey = 'id';
-   protected $allowedFields = ['penduduk_id', 'tanggal_meninggal', 'penyebab', 'tempat_meninggal'];
+   protected $allowedFields = [
+      'penduduk_id',
+      'tanggal_meninggal',
+      'penyebab',
+      'tempat_meninggal',
+      'created_at'
+   ];
    protected $useTimestamps = true;
+   protected $createdField = 'created_at';
+   protected $updatedField = 'updated_at';
+
+   protected $validationRules = [
+      'penduduk_id' => 'required|numeric|is_not_unique[penduduk.id]',
+      'tanggal_meninggal' => 'required|valid_date',
+      'penyebab' => 'required|min_length[3]|max_length[100]',
+      'tempat_meninggal' => 'required|min_length[3]|max_length[100]'
+   ];
 
    public function getKematianWithPenduduk()
    {
-      return $this->select('kematian.*, penduduk.nama_lengkap as nama_penduduk')
+      return $this->select('kematian.*, penduduk.nik, penduduk.nama_lengkap, penduduk.tanggal_lahir')
          ->join('penduduk', 'penduduk.id = kematian.penduduk_id')
          ->orderBy('tanggal_meninggal', 'DESC')
          ->findAll();
    }
 
-   public function getKematianByYear($year)
+   public function updateStatusPenduduk($penduduk_id)
    {
-      return $this->where('YEAR(tanggal_meninggal)', $year)
-         ->countAllResults();
+      $pendudukModel = new \App\Models\PendudukModel();
+      $perkawinanModel = new \App\Models\PerkawinanModel();
+
+      // Cari data penduduk yang meninggal
+      $penduduk = $pendudukModel->find($penduduk_id);
+
+      // Cek apakah penduduk memiliki status perkawinan 'kawin'
+      if ($penduduk['status_perkawinan'] === 'kawin') {
+         // Cari data perkawinan aktif
+         $perkawinan = $perkawinanModel->where('status', 'Kawin')
+            ->groupStart()
+            ->where('suami_id', $penduduk_id)
+            ->orWhere('istri_id', $penduduk_id)
+            ->groupEnd()
+            ->first();
+
+         if ($perkawinan) {
+            // Update status perkawinan menjadi 'Meninggal'
+            $perkawinanModel->update($perkawinan['id'], ['status' => 'Meninggal']);
+
+            // Update status kedua pasangan
+            $pendudukModel->update($perkawinan['suami_id'], ['status_perkawinan' => 'cerai_mati']);
+            $pendudukModel->update($perkawinan['istri_id'], ['status_perkawinan' => 'cerai_mati']);
+         }
+      }
+
+      // Update status hidup penduduk
+      $pendudukModel->update($penduduk_id, ['status_hidup' => 0]);
    }
 
-   public function getKematianByMonth($month, $year)
+   public function getKematianWithPendudukById($id)
    {
-      return $this->where('MONTH(tanggal_meninggal)', $month)
-         ->where('YEAR(tanggal_meninggal)', $year)
-         ->countAllResults();
+      return $this->select('kematian.*, penduduk.nik, penduduk.nama_lengkap, penduduk.tanggal_lahir')
+         ->join('penduduk', 'penduduk.id = kematian.penduduk_id')
+         ->where('kematian.id', $id)
+         ->first();
    }
 }
