@@ -60,16 +60,16 @@ class PerkawinanModel extends Model
       return ($suami['jenis_kelamin'] === 'L' && $istri['jenis_kelamin'] === 'P');
    }
 
-   public function getPerkawinanWithDetail($id)
-   {
-      return $this->select('perkawinan.*, 
-        suami.nik as nik_suami, suami.nama_lengkap as nama_suami, suami.jenis_kelamin as jk_suami,
-        istri.nik as nik_istri, istri.nama_lengkap as nama_istri, istri.jenis_kelamin as jk_istri')
-         ->join('penduduk suami', 'suami.id = perkawinan.suami_id')
-         ->join('penduduk istri', 'istri.id = perkawinan.istri_id')
-         ->where('perkawinan.id', $id)
-         ->first();
-   }
+   // public function getPerkawinanWithDetail($id)
+   // {
+   //    return $this->select('perkawinan.*, 
+   //      suami.nik as nik_suami, suami.nama_lengkap as nama_suami, suami.jenis_kelamin as jk_suami,
+   //      istri.nik as nik_istri, istri.nama_lengkap as nama_istri, istri.jenis_kelamin as jk_istri')
+   //       ->join('penduduk suami', 'suami.id = perkawinan.suami_id')
+   //       ->join('penduduk istri', 'istri.id = perkawinan.istri_id')
+   //       ->where('perkawinan.id', $id)
+   //       ->first();
+   // }
 
    public function updateStatusPenduduk($suami_id, $istri_id, $status_perkawinan)
    {
@@ -87,5 +87,32 @@ class PerkawinanModel extends Model
       // Update status untuk suami dan istri
       $pendudukModel->update($suami_id, ['status_perkawinan' => $status]);
       $pendudukModel->update($istri_id, ['status_perkawinan' => $status]);
+   }
+
+   // Tambahkan method ini ke dalam PerkawinanModel
+   public function getPasanganAktif()
+   {
+      return $this->select('perkawinan.id, 
+                        suami.nik as nik_suami, suami.nama_lengkap as nama_suami,
+                        istri.nik as nik_istri, istri.nama_lengkap as nama_istri')
+         ->join('penduduk suami', 'suami.id = perkawinan.suami_id')
+         ->join('penduduk istri', 'istri.id = perkawinan.istri_id')
+         ->where('perkawinan.status', 'Kawin')
+         ->findAll();
+   }
+
+   public function getPerkawinanWithDetail($id)
+   {
+      return $this->select('perkawinan.*, 
+                        suami.nik as nik_suami, suami.nama_lengkap as nama_suami,
+                        suami.alamat as alamat_suami, suami.rt as rt_suami, 
+                        suami.rw as rw_suami, suami.dusun as dusun_suami,
+                        istri.nik as nik_istri, istri.nama_lengkap as nama_istri,
+                        istri.alamat as alamat_istri, istri.rt as rt_istri,
+                        istri.rw as rw_istri, istri.dusun as dusun_istri')
+         ->join('penduduk suami', 'suami.id = perkawinan.suami_id')
+         ->join('penduduk istri', 'istri.id = perkawinan.istri_id')
+         ->where('perkawinan.id', $id)
+         ->first();
    }
 }

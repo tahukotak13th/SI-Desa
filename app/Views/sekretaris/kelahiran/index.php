@@ -65,7 +65,6 @@
                               <th>NIK Bayi</th>
                               <th>Nama Bayi</th>
                               <th>Tanggal Lahir</th>
-                              <th>Tempat Lahir</th>
                               <th>Nama Ayah</th>
                               <th>Nama Ibu</th>
                               <th>Aksi</th>
@@ -79,9 +78,8 @@
                                  <td><?= $k['nik'] ?? '-' ?></td>
                                  <td><?= $k['nama_lengkap'] ?? '-' ?></td>
                                  <td><?= date('d-m-Y', strtotime($k['tanggal_lahir'])) ?></td>
-                                 <td><?= $k['tempat_lahir'] ?></td>
-                                 <td><?= $k['nama_ayah'] ?></td>
-                                 <td><?= $k['nama_ibu'] ?></td>
+                                 <td><?= $k['nama_ayah'] ?? '-' ?></td>
+                                 <td><?= $k['nama_ibu'] ?? '-' ?></td>
                                  <td>
                                     <a href="<?= base_url('sekretaris/kelahiran/hapus/' . $k['id']) ?>"
                                        class="btn btn-sm btn-danger"

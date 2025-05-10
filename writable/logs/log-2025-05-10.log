@@ -4,3 +4,453 @@ DEBUG - 2025-05-10 00:01:08 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2025-05-10 00:01:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-05-10 00:01:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-05-10 00:01:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:10:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:10:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:11:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:11:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:11:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:13:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:14:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-10 00:14:18 --> ErrorException: Undefined array key "alamat"
+[Method: POST, Route: sekretaris/kelahiran/simpan]
+in APPPATH\Controllers\Sekretaris\Kelahiran.php on line 64.
+ 1 APPPATH\Controllers\Sekretaris\Kelahiran.php(64): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "alamat"', 'C:\\xampp\\htdocs\\tesdesa\\app\\Controllers\\Sekretaris\\Kelahiran.php', 64)
+ 2 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+ 3 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-10 00:15:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-10 00:15:32 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE) in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ke...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ke...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ke...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ke...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\tesdesa\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\tesdesa\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(86): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#11 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-10 00:15:33 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+[Method: POST, Route: sekretaris/kelahiran/simpan]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Sekretaris\Kelahiran.php(86): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:15:33 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-26\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:15:32\', \'2025-05-10 00:15:32\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-26\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:15:32\', \'2025-05-10 00:15:32\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(86): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:15:33 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-26\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:15:32\', \'2025-05-10 00:15:32\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-26\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:15:32\', \'2025-05-10 00:15:32\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-26\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:15:32\', \'2025-05-10 00:15:32\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Sekretaris\Kelahiran.php(86): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-10 00:16:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:16:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:16:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:21:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-10 00:21:49 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE) in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ke...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ke...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ke...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ke...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\tesdesa\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\tesdesa\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(82): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#11 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-10 00:21:49 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+[Method: POST, Route: sekretaris/kelahiran/simpan]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Sekretaris\Kelahiran.php(82): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:21:49 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:21:49\', \'2025-05-10 00:21:49\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:21:49\', \'2025-05-10 00:21:49\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(82): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:21:49 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:21:49\', \'2025-05-10 00:21:49\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:21:49\', \'2025-05-10 00:21:49\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:21:49\', \'2025-05-10 00:21:49\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Sekretaris\Kelahiran.php(82): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-10 00:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:24:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-10 00:24:20 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE) in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ke...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ke...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ke...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ke...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\tesdesa\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\tesdesa\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#11 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-10 00:24:20 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+[Method: POST, Route: sekretaris/kelahiran/simpan]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:24:20 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:20\', \'2025-05-10 00:24:20\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:20\', \'2025-05-10 00:24:20\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:24:20 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:20\', \'2025-05-10 00:24:20\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:20\', \'2025-05-10 00:24:20\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2013-02-27\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:20\', \'2025-05-10 00:24:20\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-10 00:24:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:24:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-10 00:24:39 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE) in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ke...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ke...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ke...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ke...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\tesdesa\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\tesdesa\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#11 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-10 00:24:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+[Method: POST, Route: sekretaris/kelahiran/simpan]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:24:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:39\', \'2025-05-10 00:24:39\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:39\', \'2025-05-10 00:24:39\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:24:39 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:39\', \'2025-05-10 00:24:39\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:39\', \'2025-05-10 00:24:39\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:24:39\', \'2025-05-10 00:24:39\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-10 00:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-10 00:25:50 --> mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE) in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `ke...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ke...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ke...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ke...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\tesdesa\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\tesdesa\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#11 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-10 00:25:50 --> CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+[Method: POST, Route: sekretaris/kelahiran/simpan]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:25:50 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:25:50\', \'2025-05-10 00:25:50\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:25:50\', \'2025-05-10 00:25:50\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-10 00:25:50 --> [Caused by] mysqli_sql_exception: Cannot add or update a child row: a foreign key constraint fails (`db_si_desa`.`kelahiran`, CONSTRAINT `kelahiran_ibfk_1` FOREIGN KEY (`penduduk_id`) REFERENCES `penduduk` (`id`) ON DELETE CASCADE)
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:25:50\', \'2025-05-10 00:25:50\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:25:50\', \'2025-05-10 00:25:50\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (0, \'1\', \'2014-02-24\', \'Mataram\', \'3\', \'44\', \'Rodri\', \'Mayang\', \'2025-05-10 00:25:50\', \'2025-05-10 00:25:50\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `kelahiran` (`penduduk_id`, `perkawinan_id`, `tanggal_lahir`, `tempat_lahir`, `berat_badan`, `panjang_badan`, `nama_ayah`, `nama_ibu`, `created_at`, `updated_at`) VALUES (:penduduk_id:, :perkawinan_id:, :tanggal_lahir:, :tempat_lahir:, :berat_badan:, :panjang_badan:, :nama_ayah:, :nama_ibu:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Sekretaris\Kelahiran.php(85): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->simpan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-10 00:31:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:31:48 --> Data penduduk yang akan disimpan: Array
+(
+    [nik] => 0000000000000003
+    [nama_lengkap] => Vinicius Junior
+    [tempat_lahir] => Mataram
+    [tanggal_lahir] => 2014-02-24
+    [jenis_kelamin] => L
+    [agama] => Islam
+    [pendidikan_terakhir] => Tidak Bersekolah
+    [status_perkawinan] => belum_kawin
+    [pekerjaan] => Belum Bekerja
+    [penghasilan] => 
+    [alamat] => Jalan Mawar 1
+    [rt] => 1
+    [rw] => 1
+    [dusun] => Konoha
+    [status_hidup] => 1
+)
+
+DEBUG - 2025-05-10 00:31:48 --> Data kelahiran yang akan disimpan: Array
+(
+    [penduduk_id] => 3
+    [perkawinan_id] => 1
+    [tanggal_lahir] => 2014-02-24
+    [tempat_lahir] => Mataram
+    [berat_badan] => 3
+    [panjang_badan] => 44
+    [nama_ayah] => Rodri
+    [nama_ibu] => Mayang
+)
+
+DEBUG - 2025-05-10 00:31:48 --> ID Penduduk yang baru dibuat: 3
+DEBUG - 2025-05-10 00:31:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:31:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:33:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:33:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:33:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:33:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:38 --> Data penduduk yang akan disimpan: Array
+(
+    [nik] => 0000000000000003
+    [nama_lengkap] => Vinicius Junior
+    [tempat_lahir] => Mataram
+    [tanggal_lahir] => 2012-04-21
+    [jenis_kelamin] => L
+    [agama] => Islam
+    [pendidikan_terakhir] => Tidak Bersekolah
+    [status_perkawinan] => belum_kawin
+    [pekerjaan] => Belum Bekerja
+    [penghasilan] => 
+    [alamat] => Jalan Mawar 1
+    [rt] => 1
+    [rw] => 1
+    [dusun] => Konoha
+    [status_hidup] => 1
+)
+
+DEBUG - 2025-05-10 00:35:38 --> Data kelahiran yang akan disimpan: Array
+(
+    [penduduk_id] => 4
+    [perkawinan_id] => 1
+    [tanggal_lahir] => 2012-04-21
+    [tempat_lahir] => Mataram
+    [berat_badan] => 3
+    [panjang_badan] => 45
+    [nama_ayah] => Rodri
+    [nama_ibu] => Mayang
+)
+
+DEBUG - 2025-05-10 00:35:38 --> ID Penduduk yang baru dibuat: 4
+DEBUG - 2025-05-10 00:35:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:35:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:36:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:36:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:36:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-10 00:36:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

@@ -117,48 +117,20 @@
                      </div>
 
                      <h5 class="mb-3 mt-4">Data Orang Tua</h5>
-                     <div class="row">
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label>Nama Ayah</label>
-                              <input type="text" name="nama_ayah" class="form-control" required>
-                           </div>
-                        </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                              <label>Nama Ibu</label>
-                              <input type="text" name="nama_ibu" class="form-control" required>
-                           </div>
-                        </div>
+                     <div class="form-group">
+                        <label>Pasangan Orang Tua</label>
+                        <select name="perkawinan_id" class="form-control" required>
+                           <option value="">- Pilih Pasangan Orang Tua -</option>
+                           <?php foreach ($pasangan as $p) : ?>
+                              <option value="<?= $p['id'] ?>">
+                                 <?= $p['nama_suami'] ?> (NIK: <?= $p['nik_suami'] ?>) &
+                                 <?= $p['nama_istri'] ?> (NIK: <?= $p['nik_istri'] ?>)
+                              </option>
+                           <?php endforeach; ?>
+                        </select>
                      </div>
 
                      <h5 class="mb-3 mt-4">Alamat</h5>
-                     <div class="row">
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label>RT</label>
-                              <input type="text" name="rt" class="form-control" required>
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label>RW</label>
-                              <input type="text" name="rw" class="form-control" required>
-                           </div>
-                        </div>
-                        <div class="col-md-4">
-                           <div class="form-group">
-                              <label>Dusun</label>
-                              <input type="text" name="dusun" class="form-control" required>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label>Alamat Lengkap</label>
-                        <textarea name="alamat_orangtua" class="form-control" required></textarea>
-                     </div>
-
                      <div class="form-group">
                         <label>Agama</label>
                         <select name="agama" class="form-control" required>
@@ -170,6 +142,13 @@
                            <option value="Konghucu">Konghucu</option>
                         </select>
                      </div>
+
+
+                     <!-- Tambahkan field hidden untuk data default -->
+                     <input type="hidden" name="pendidikan_terakhir" value="Tidak Bersekolah">
+                     <input type="hidden" name="pekerjaan" value="Belum Bekerja">
+                     <input type="hidden" name="status_perkawinan" value="belum_kawin">
+                     <input type="hidden" name="status_hidup" value="1">
 
                      <button type="submit" class="btn btn-primary">Simpan</button>
                      <a href="<?= base_url('sekretaris/kelahiran') ?>" class="btn btn-secondary">Kembali</a>

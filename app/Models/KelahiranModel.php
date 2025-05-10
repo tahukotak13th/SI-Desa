@@ -10,13 +10,15 @@ class KelahiranModel extends Model
    protected $primaryKey = 'id';
    protected $allowedFields = [
       'penduduk_id',
+      'perkawinan_id',
       'tanggal_lahir',
       'tempat_lahir',
       'berat_badan',
       'panjang_badan',
       'nama_ayah',
       'nama_ibu',
-      'created_at'
+      'created_at',
+      'updated_at'
    ];
    protected $useTimestamps = true;
    protected $createdField = 'created_at';
@@ -24,18 +26,22 @@ class KelahiranModel extends Model
 
    protected $validationRules = [
       'penduduk_id' => 'permit_empty|numeric|is_not_unique[penduduk.id]',
+      'perkawinan_id' => 'required|numeric|is_not_unique[perkawinan.id]',
       'tanggal_lahir' => 'required|valid_date',
       'tempat_lahir' => 'required|min_length[3]|max_length[100]',
       'berat_badan' => 'permit_empty|decimal',
       'panjang_badan' => 'permit_empty|decimal',
-      'nama_ayah' => 'required|min_length[3]|max_length[100]',
-      'nama_ibu' => 'required|min_length[3]|max_length[100]'
+      // nama_ayah dan nama_ibu tidak divalidasi karena akan diisi otomatis
    ];
 
    public function getKelahiranWithPenduduk()
    {
-      return $this->select('kelahiran.*, penduduk.nik, penduduk.nama_lengkap')
+      return $this->select('kelahiran.*, penduduk.nik, penduduk.nama_lengkap, 
+                            suami.nama_lengkap as nama_ayah, istri.nama_lengkap as nama_ibu')
          ->join('penduduk', 'penduduk.id = kelahiran.penduduk_id', 'left')
+         ->join('perkawinan', 'perkawinan.id = kelahiran.perkawinan_id', 'left')
+         ->join('penduduk suami', 'suami.id = perkawinan.suami_id', 'left')
+         ->join('penduduk istri', 'istri.id = perkawinan.istri_id', 'left')
          ->orderBy('tanggal_lahir', 'DESC')
          ->findAll();
    }
