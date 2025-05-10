@@ -146,8 +146,6 @@ INSERT INTO users (username, password, nama_lengkap, email, level) VALUES
 ALTER TABLE penduduk 
 ADD COLUMN pendidikan_terakhir ENUM('Tidak Bersekolah','SD/Sederajat', 'SMP/Sederajat', 'SMA/Sederajat', 'S1', 'S2', 'S3') AFTER agama;
 
-DROP TABLE pendidikan;
-
 -- Alter table perkawinan
 ALTER TABLE perkawinan 
 ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;

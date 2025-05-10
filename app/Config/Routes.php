@@ -80,11 +80,10 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
 
    // Surat Keterangan
    $routes->get('surat', 'Sekretaris\Surat::index', ['as' => 'sekretaris.surat']);
-   $routes->get('surat/(:any)', 'Sekretaris\Surat::jenis/$1', ['as' => 'sekretaris.surat.jenis']);
-   $routes->get('surat/(:any)/buat', 'Sekretaris\Surat::buat/$1', ['as' => 'sekretaris.surat.buat']);
+   $routes->get('surat/penduduk', 'Sekretaris\Surat::pilihPenduduk', ['as' => 'sekretaris.surat.penduduk']);
+   $routes->get('surat/buat', 'Sekretaris\Surat::buat', ['as' => 'sekretaris.surat.buat']);
    $routes->post('surat/simpan', 'Sekretaris\Surat::simpan', ['as' => 'sekretaris.surat.simpan']);
    $routes->get('surat/cetak/(:num)', 'Sekretaris\Surat::cetak/$1', ['as' => 'sekretaris.surat.cetak']);
-   $routes->get('surat/detail/(:num)', 'Sekretaris\Surat::detail/$1', ['as' => 'sekretaris.surat.detail']);
 
    // Logout
    $routes->get('logout', 'Auth::logout', ['as' => 'sekretaris.logout']);
