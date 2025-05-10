@@ -22,8 +22,8 @@
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('sekretaris/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li><a href="<?= base_url('sekretaris/penduduk') ?>"><i class="fas fa-users"></i> <span class="menu-text">Data Penduduk</span></a></li>
-            <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
-            <li class="active"><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> <span class="menu-text">Kematian</span></a></li>
+            <li class="active"><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
+            <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> <span class="menu-text">Kematian</span></a></li>
             <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> <span class="menu-text">Perkawinan</span></a></li>
             <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file-alt"></i> <span class="menu-text">Surat Keterangan</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
@@ -38,7 +38,7 @@
             <div class="toggle-sidebar" id="toggle-sidebar">
                <i class="fas fa-bars"></i>
             </div>
-            <h5 class="mb-0">Edit Data Penduduk</h5>
+            <h5 class="mb-0">Edit Data Kelahiran</h5>
             <div class="user-info">
                <span><?= session('nama_lengkap') ?></span>
                <i class="fas fa-user-circle"></i>
@@ -60,42 +60,109 @@
                      </div>
                   <?php endif; ?>
 
-                  <form action="<?= base_url('sekretaris/kematian/update/' . $kematian['id']) ?>" method="post">
+                  <form action="<?= base_url('sekretaris/kelahiran/update/' . $kelahiran['id']) ?>" method="post">
                      <?= csrf_field() ?>
                      <!-- <input type="hidden" name="_method" value="PUT"> -->
 
+                     <h5 class="mb-3">Data Bayi</h5>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label>NIK Bayi</label>
+                              <input type="text" name="nik" class="form-control"
+                                 value="<?= old('nik', $kelahiran['nik']) ?>" required>
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label>Nama Lengkap Bayi</label>
+                              <input type="text" name="nama_bayi" class="form-control"
+                                 value="<?= old('nama_bayi', $kelahiran['nama_lengkap']) ?>" required>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label>Jenis Kelamin</label>
+                              <select name="jenis_kelamin" class="form-control" required>
+                                 <option value="L" <?= $kelahiran['jenis_kelamin'] == 'L' ? 'selected' : '' ?>>Laki-laki</option>
+                                 <option value="P" <?= $kelahiran['jenis_kelamin'] == 'P' ? 'selected' : '' ?>>Perempuan</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label>Tanggal Lahir</label>
+                              <input type="date" name="tanggal_lahir" class="form-control"
+                                 value="<?= old('tanggal_lahir', $kelahiran['tanggal_lahir']) ?>" required>
+                           </div>
+                        </div>
+                        <div class="col-md-4">
+                           <div class="form-group">
+                              <label>Tempat Lahir</label>
+                              <input type="text" name="tempat_lahir" class="form-control"
+                                 value="<?= old('tempat_lahir', $kelahiran['tempat_lahir']) ?>" required>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label>Berat Badan (kg)</label>
+                              <input type="number" step="0.01" name="berat_badan" class="form-control"
+                                 value="<?= old('berat_badan', $kelahiran['berat_badan']) ?>">
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label>Panjang Badan (cm)</label>
+                              <input type="number" step="0.1" name="panjang_badan" class="form-control"
+                                 value="<?= old('panjang_badan', $kelahiran['panjang_badan']) ?>">
+                           </div>
+                        </div>
+                     </div>
+
                      <div class="form-group">
-                        <label>Penduduk</label>
-                        <select name="penduduk_id" class="form-control" required>
-                           <option value="">- Pilih Penduduk -</option>
-                           <?php foreach ($penduduk as $p) : ?>
-                              <option value="<?= $p['id'] ?>" <?= ($p['id'] == $kematian['penduduk_id']) ? 'selected' : '' ?>>
-                                 <?= $p['nama_lengkap'] ?> (NIK: <?= $p['nik'] ?>)
+                        <label>Agama</label>
+                        <select name="agama" class="form-control" required>
+                           <option value="Islam" <?= $kelahiran['agama'] == 'Islam' ? 'selected' : '' ?>>Islam</option>
+                           <option value="Kristen" <?= $kelahiran['agama'] == 'Kristen' ? 'selected' : '' ?>>Kristen</option>
+                           <option value="Katolik" <?= $kelahiran['agama'] == 'Katolik' ? 'selected' : '' ?>>Katolik</option>
+                           <option value="Hindu" <?= $kelahiran['agama'] == 'Hindu' ? 'selected' : '' ?>>Hindu</option>
+                           <option value="Buddha" <?= $kelahiran['agama'] == 'Buddha' ? 'selected' : '' ?>>Buddha</option>
+                           <option value="Konghucu" <?= $kelahiran['agama'] == 'Konghucu' ? 'selected' : '' ?>>Konghucu</option>
+                        </select>
+                     </div>
+
+                     <h5 class="mb-3 mt-4">Data Orang Tua</h5>
+                     <div class="form-group">
+                        <label>Pasangan Orang Tua</label>
+                        <select name="perkawinan_id" class="form-control" required>
+                           <option value="">- Pilih Pasangan Orang Tua -</option>
+                           <?php foreach ($pasangan as $p) : ?>
+                              <option value="<?= $p['id'] ?>"
+                                 <?= $p['id'] == $kelahiran['perkawinan_id'] ? 'selected' : '' ?>>
+                                 <?= $p['nama_suami'] ?> (NIK: <?= $p['nik_suami'] ?>) &
+                                 <?= $p['nama_istri'] ?> (NIK: <?= $p['nik_istri'] ?>)
                               </option>
                            <?php endforeach; ?>
                         </select>
                      </div>
 
-                     <div class="form-group">
-                        <label>Tanggal Meninggal</label>
-                        <input type="date" name="tanggal_meninggal" class="form-control"
-                           value="<?= $kematian['tanggal_meninggal'] ?>" required>
-                     </div>
+                     <!-- <h5 class="mb-3 mt-4">Alamat</h5> -->
 
-                     <div class="form-group">
-                        <label>Penyebab Kematian</label>
-                        <input type="text" name="penyebab" class="form-control"
-                           value="<?= $kematian['penyebab'] ?>" required>
-                     </div>
 
-                     <div class="form-group">
-                        <label>Tempat Meninggal</label>
-                        <input type="text" name="tempat_meninggal" class="form-control"
-                           value="<?= $kematian['tempat_meninggal'] ?>" required>
-                     </div>
+                     <!-- Data default untuk penduduk -->
+                     <input type="hidden" name="pendidikan_terakhir" value="Tidak Bersekolah">
+                     <input type="hidden" name="pekerjaan" value="Belum Bekerja">
+                     <input type="hidden" name="status_perkawinan" value="belum_kawin">
+                     <input type="hidden" name="status_hidup" value="1">
 
                      <button type="submit" class="btn btn-primary">Update</button>
-                     <a href="<?= base_url('sekretaris/kematian') ?>" class="btn btn-secondary">Kembali</a>
+                     <a href="<?= base_url('sekretaris/kelahiran') ?>" class="btn btn-secondary">Kembali</a>
                   </form>
                </div>
             </div>

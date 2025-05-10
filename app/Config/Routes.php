@@ -56,7 +56,9 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
    // Kelahiran
    $routes->get('kelahiran', 'Sekretaris\Kelahiran::index', ['as' => 'sekretaris.kelahiran']);
    $routes->get('kelahiran/tambah', 'Sekretaris\Kelahiran::tambah', ['as' => 'sekretaris.kelahiran.tambah']);
+   $routes->get('kelahiran/edit/(:num)', 'Sekretaris\Kelahiran::edit/$1', ['as' => 'sekretaris.kelahiran.edit']);
    $routes->post('kelahiran/simpan', 'Sekretaris\Kelahiran::simpan', ['as' => 'sekretaris.kelahiran.simpan']);
+   $routes->post('kelahiran/update/(:num)', 'Sekretaris\Kelahiran::update/$1', ['as' => 'sekretaris.kelahiran.update']);
    $routes->get('kelahiran/hapus/(:num)', 'Sekretaris\Kelahiran::hapus/$1', ['as' => 'sekretaris.kelahiran.hapus']);
 
    // Kematian

@@ -21,8 +21,8 @@
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('sekretaris/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li><a href="<?= base_url('sekretaris/penduduk') ?>"><i class="fas fa-users"></i> <span class="menu-text">Data Penduduk</span></a></li>
-            <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
-            <li class="active"><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> <span class="menu-text">Kematian</span></a></li>
+            <li class="active"><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
+            <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-cross"></i> <span class="menu-text">Kematian</span></a></li>
             <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> <span class="menu-text">Perkawinan</span></a></li>
             <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file-alt"></i> <span class="menu-text">Surat Keterangan</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
@@ -36,7 +36,7 @@
             <div class="toggle-sidebar" id="toggle-sidebar">
                <i class="fas fa-bars"></i>
             </div>
-            <h5 class="mb-0">Tambah Data Penduduk</h5>
+            <h5 class="mb-0">Tambah Data Kelahiran</h5>
             <div class="user-info">
                <span><?= session('nama_lengkap') ?></span>
                <i class="fas fa-user-circle"></i>
@@ -116,6 +116,18 @@
                         </div>
                      </div>
 
+                     <div class="form-group">
+                        <label>Agama</label>
+                        <select name="agama" class="form-control" required>
+                           <option value="Islam">Islam</option>
+                           <option value="Kristen">Kristen</option>
+                           <option value="Katolik">Katolik</option>
+                           <option value="Hindu">Hindu</option>
+                           <option value="Buddha">Buddha</option>
+                           <option value="Konghucu">Konghucu</option>
+                        </select>
+                     </div>
+
                      <h5 class="mb-3 mt-4">Data Orang Tua</h5>
                      <div class="form-group">
                         <label>Pasangan Orang Tua</label>
@@ -130,18 +142,8 @@
                         </select>
                      </div>
 
-                     <h5 class="mb-3 mt-4">Alamat</h5>
-                     <div class="form-group">
-                        <label>Agama</label>
-                        <select name="agama" class="form-control" required>
-                           <option value="Islam">Islam</option>
-                           <option value="Kristen">Kristen</option>
-                           <option value="Katolik">Katolik</option>
-                           <option value="Hindu">Hindu</option>
-                           <option value="Buddha">Buddha</option>
-                           <option value="Konghucu">Konghucu</option>
-                        </select>
-                     </div>
+                     <!-- <h5 class="mb-3 mt-4">Alamat</h5> -->
+
 
 
                      <!-- Tambahkan field hidden untuk data default -->

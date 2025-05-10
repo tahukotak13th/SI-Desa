@@ -21,8 +21,8 @@
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('sekretaris/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li><a href="<?= base_url('sekretaris/penduduk/') ?>"><i class="fas fa-users"></i> <span class="menu-text">Data Penduduk</span></a></li>
-            <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
-            <li class="active"><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-skull"></i> <span class="menu-text">Kematian</span></a></li>
+            <li class="active"><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
+            <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-skull"></i> <span class="menu-text">Kematian</span></a></li>
             <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> <span class="menu-text">Perkawinan</span></a></li>
             <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file-alt"></i> <span class="menu-text">Surat Keterangan</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
@@ -36,7 +36,7 @@
             <div class="toggle-sidebar" id="toggle-sidebar">
                <i class="fas fa-bars"></i>
             </div>
-            <h5 class="mb-0">Data Penduduk</h5>
+            <h5 class="mb-0">Data Kelahiran</h5>
             <div class="user-info">
                <span><?= session('nama_lengkap') ?></span>
                <i class="fas fa-user-circle"></i>
@@ -81,11 +81,19 @@
                                  <td><?= $k['nama_ayah'] ?? '-' ?></td>
                                  <td><?= $k['nama_ibu'] ?? '-' ?></td>
                                  <td>
-                                    <a href="<?= base_url('sekretaris/kelahiran/hapus/' . $k['id']) ?>"
-                                       class="btn btn-sm btn-danger"
-                                       onclick="return confirm('Yakin ingin menghapus? Data penduduk terkait juga akan dihapus.')">
-                                       <i class="fas fa-trash"></i>
-                                    </a>
+                                    <div class="btn-group" role="group">
+                                       <a href="<?= base_url('sekretaris/kelahiran/edit/' . $k['id']) ?>"
+                                          class="btn btn-sm btn-warning"
+                                          data-toggle="tooltip"
+                                          title="Edit">
+                                          <i class="fas fa-edit"></i>
+                                       </a>
+                                       <a href="<?= base_url('sekretaris/kelahiran/hapus/' . $k['id']) ?>"
+                                          class="btn btn-sm btn-danger"
+                                          onclick="return confirm('Yakin ingin menghapus?')">
+                                          <i class="fas fa-trash"></i>
+                                       </a>
+                                    </div>
                                  </td>
                               </tr>
                            <?php endforeach; ?>

@@ -45,6 +45,20 @@ class KelahiranModel extends Model
          ->orderBy('tanggal_lahir', 'DESC')
          ->findAll();
    }
+   public function getKelahiranWithDetail($id)
+   {
+      return $this->select('kelahiran.*, 
+                        penduduk.nik, penduduk.nama_lengkap, penduduk.jenis_kelamin,
+                        penduduk.agama, penduduk.alamat, penduduk.rt, penduduk.rw, penduduk.dusun,
+                        suami.nik as nik_ayah, suami.nama_lengkap as nama_ayah,
+                        istri.nik as nik_ibu, istri.nama_lengkap as nama_ibu')
+         ->join('penduduk', 'penduduk.id = kelahiran.penduduk_id')
+         ->join('perkawinan', 'perkawinan.id = kelahiran.perkawinan_id')
+         ->join('penduduk suami', 'suami.id = perkawinan.suami_id')
+         ->join('penduduk istri', 'istri.id = perkawinan.istri_id')
+         ->where('kelahiran.id', $id)
+         ->first();
+   }
 
    public function createPenduduk($data)
    {
