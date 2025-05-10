@@ -61,6 +61,9 @@
                               <th>NIK</th>
                               <th>Nama</th>
                               <th>Alamat</th>
+                              <?php if ($is_surat_kematian): ?>
+                                 <th>Tanggal Meninggal</th>
+                              <?php endif; ?>
                               <th>Aksi</th>
                            </tr>
                         </thead>
@@ -70,6 +73,9 @@
                                  <td><?= $p['nik'] ?></td>
                                  <td><?= $p['nama_lengkap'] ?></td>
                                  <td><?= $p['alamat'] ?></td>
+                                 <?php if ($is_surat_kematian): ?>
+                                    <td><?= date('d-m-Y', strtotime($p['tanggal_meninggal'])) ?></td>
+                                 <?php endif; ?>
                                  <td>
                                     <a href="<?= base_url('sekretaris/surat/buat?jenis=' . $jenis_surat['kode_surat'] . '&penduduk_id=' . $p['id']) ?>"
                                        class="btn btn-sm btn-primary">
@@ -81,6 +87,12 @@
                         </tbody>
                      </table>
                   </div>
+
+                  <?php if ($is_surat_kematian && empty($penduduk)): ?>
+                     <div class="alert alert-warning">
+                        Tidak ada data penduduk yang meninggal. Silakan input data kematian terlebih dahulu.
+                     </div>
+                  <?php endif; ?>
                </div>
             </div>
          </div>

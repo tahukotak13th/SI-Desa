@@ -32,4 +32,32 @@ class SuratKeteranganModel extends Model
          ->where('surat_keterangan.id', $id)
          ->first();
    }
+
+   public function validateSurat($data)
+   {
+      $jenisSurat = $this->db->table('jenis_surat')
+         ->where('id', $data['jenis_surat_id'])
+         ->get()
+         ->getRowArray();
+
+      if (!$jenisSurat) {
+         return false;
+      }
+
+      $templateData = (new JenisSuratModel())->getTemplateByKode($jenisSurat['kode_surat']);
+      $requiredFields = $templateData['kebutuhan_data'] ?? [];
+
+      $penduduk = $this->db->table('penduduk')
+         ->where('id', $data['penduduk_id'])
+         ->get()
+         ->getRowArray();
+
+      foreach ($requiredFields as $field) {
+         if (!isset($penduduk[$field]) || empty($penduduk[$field])) {
+            return false;
+         }
+      }
+
+      return true;
+   }
 }

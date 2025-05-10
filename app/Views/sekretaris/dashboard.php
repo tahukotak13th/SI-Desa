@@ -38,11 +38,11 @@
                <a href="#"><i class="fas fa-file-alt"></i> <span class="menu-text">Layanan Administrasi</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
                <ul class="submenu" style="list-style: none;">
                   <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> Surat-surat Keterangan</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat/domisili') ?>"><i class="fas fa-file"></i> SK Domisili</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat/tidak_mampu') ?>"><i class="fas fa-file"></i> SK Tidak Mampu</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat/penghasilan') ?>"><i class="fas fa-file"></i> SK Penghasilan</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat/kematian') ?>"><i class="fas fa-file"></i> SK Kematian</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat/status_pekerjaan') ?>"><i class="fas fa-file"></i> SK Status Pekerjaan</a></li>
+                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Domisili</a></li>
+                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Tidak Mampu</a></li>
+                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Penghasilan</a></li>
+                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Kematian</a></li>
+                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Status Pekerjaan</a></li>
                </ul>
             </li>
 
