@@ -273,3 +273,341 @@ DEBUG - 2025-05-09 00:40:34 --> Session: Class initialized using 'CodeIgniter\Se
 DEBUG - 2025-05-09 00:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-05-09 00:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 DEBUG - 2025-05-09 00:40:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:48:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:49:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-05-09 23:49:25 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "sekretaris/kelahiran/index.php"
+[Method: GET, Route: sekretaris/kelahiran]
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(212): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('sekretaris/kelahiran/index.php')
+ 2 SYSTEMPATH\Common.php(1173): CodeIgniter\View\View->render('sekretaris/kelahiran/index', [], true)
+ 3 APPPATH\Controllers\Sekretaris\Kelahiran.php(27): view('sekretaris/kelahiran/index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-09 23:52:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:52:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-09 23:52:58 --> mysqli_sql_exception: Unknown column 'kelahiran.perkawinan_id' in 'on clause' in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `kelahir...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelahir...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelahir...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahir...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\tesdesa\app\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+#8 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-09 23:52:58 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelahiran.perkawinan_id' in 'on clause'
+[Method: GET, Route: sekretaris/kelahiran]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-09 23:52:58 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelahiran.perkawinan_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-09 23:52:58 --> [Caused by] mysqli_sql_exception: Unknown column 'kelahiran.perkawinan_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-09 23:53:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:53:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:54:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-09 23:54:01 --> mysqli_sql_exception: Unknown column 'kelahiran.perkawinan_id' in 'on clause' in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `kelahir...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelahir...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelahir...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahir...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\tesdesa\app\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+#8 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#13 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#14 {main}
+CRITICAL - 2025-05-09 23:54:01 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelahiran.perkawinan_id' in 'on clause'
+[Method: GET, Route: sekretaris/kelahiran]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-09 23:54:01 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'kelahiran.perkawinan_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', [], false)
+ 4 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 6 APPPATH\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+ 7 APPPATH\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-09 23:54:01 --> [Caused by] mysqli_sql_exception: Unknown column 'kelahiran.perkawinan_id' in 'on clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `kelahiran`.*, `penduduk`.`nik`, `penduduk`.`nama_lengkap`, `suami`.`nama_lengkap` as `nama_ayah`, `istri`.`nama_lengkap` as `nama_ibu`
+FROM `kelahiran`
+LEFT JOIN `penduduk` ON `penduduk`.`id` = `kelahiran`.`penduduk_id`
+JOIN `perkawinan` ON `perkawinan`.`id` = `kelahiran`.`perkawinan_id`
+JOIN `penduduk` `suami` ON `suami`.`id` = `perkawinan`.`suami_id`
+JOIN `penduduk` `istri` ON `istri`.`id` = `perkawinan`.`istri_id`
+ORDER BY `kelahiran`.`tanggal_lahir` DESC', [], false)
+ 5 SYSTEMPATH\Model.php(286): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(675): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Models\KelahiranModel.php(39): CodeIgniter\BaseModel->findAll()
+ 8 APPPATH\Controllers\Sekretaris\Kelahiran.php(28): App\Models\KelahiranModel->getKelahiranWithDetails()
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Kelahiran->index()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Kelahiran))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+DEBUG - 2025-05-09 23:56:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:56:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:56:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:56:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:56:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:57:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:58:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:58:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:58:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:59:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:59:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-05-09 23:59:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2025-05-09 23:59:39 --> mysqli_sql_exception: Unknown column 'updated_at' in 'field list' in C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 C:\xampp\htdocs\tesdesa\system\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `pe...', 0)
+#1 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `pe...')
+#2 C:\xampp\htdocs\tesdesa\system\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `pe...')
+#3 C:\xampp\htdocs\tesdesa\system\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `pe...', Array, false)
+#4 C:\xampp\htdocs\tesdesa\system\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\tesdesa\system\BaseModel.php(839): CodeIgniter\Model->doInsert(Array)
+#6 C:\xampp\htdocs\tesdesa\system\Model.php(800): CodeIgniter\BaseModel->insert(Array, false)
+#7 C:\xampp\htdocs\tesdesa\system\BaseModel.php(750): CodeIgniter\Model->insert(Array, false)
+#8 C:\xampp\htdocs\tesdesa\app\Controllers\Sekretaris\Perkawinan.php(67): CodeIgniter\BaseModel->save(Array)
+#9 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(933): App\Controllers\Sekretaris\Perkawinan->simpan()
+#10 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Perkawinan))
+#11 C:\xampp\htdocs\tesdesa\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\tesdesa\system\Boot.php(334): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\tesdesa\system\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#14 C:\xampp\htdocs\tesdesa\public\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#15 {main}
+CRITICAL - 2025-05-09 23:59:39 --> CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+[Method: POST, Route: sekretaris/perkawinan/simpan]
+in SYSTEMPATH\Database\BaseConnection.php on line 692.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (:suami_id:, :istri_id:, :tanggal_perkawinan:, :tempat_perkawinan:, :status:, :created_at:, :updated_at:)', [...], false)
+ 2 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH\Controllers\Sekretaris\Perkawinan.php(67): CodeIgniter\BaseModel->save([...])
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Perkawinan->simpan()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Perkawinan))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-09 23:59:39 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (\'1\', \'2\', \'2010-03-17\', \'Santiago Bernabeu\', \'Kawin\', \'2025-05-09 23:59:39\', \'2025-05-09 23:59:39\')')
+ 2 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (\'1\', \'2\', \'2010-03-17\', \'Santiago Bernabeu\', \'Kawin\', \'2025-05-09 23:59:39\', \'2025-05-09 23:59:39\')')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (:suami_id:, :istri_id:, :tanggal_perkawinan:, :tempat_perkawinan:, :status:, :created_at:, :updated_at:)', [...], false)
+ 4 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 5 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 6 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 7 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 8 APPPATH\Controllers\Sekretaris\Perkawinan.php(67): CodeIgniter\BaseModel->save([...])
+ 9 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Perkawinan->simpan()
+10 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Perkawinan))
+11 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+14 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+CRITICAL - 2025-05-09 23:59:39 --> [Caused by] mysqli_sql_exception: Unknown column 'updated_at' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (\'1\', \'2\', \'2010-03-17\', \'Santiago Bernabeu\', \'Kawin\', \'2025-05-09 23:59:39\', \'2025-05-09 23:59:39\')', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (\'1\', \'2\', \'2010-03-17\', \'Santiago Bernabeu\', \'Kawin\', \'2025-05-09 23:59:39\', \'2025-05-09 23:59:39\')')
+ 3 SYSTEMPATH\Database\BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (\'1\', \'2\', \'2010-03-17\', \'Santiago Bernabeu\', \'Kawin\', \'2025-05-09 23:59:39\', \'2025-05-09 23:59:39\')')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query('INSERT INTO `perkawinan` (`suami_id`, `istri_id`, `tanggal_perkawinan`, `tempat_perkawinan`, `status`, `created_at`, `updated_at`) VALUES (:suami_id:, :istri_id:, :tanggal_perkawinan:, :tempat_perkawinan:, :status:, :created_at:, :updated_at:)', [...], false)
+ 5 SYSTEMPATH\Model.php(394): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(839): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(800): CodeIgniter\BaseModel->insert([...], false)
+ 8 SYSTEMPATH\BaseModel.php(750): CodeIgniter\Model->insert([...], false)
+ 9 APPPATH\Controllers\Sekretaris\Perkawinan.php(67): CodeIgniter\BaseModel->save([...])
+10 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\Sekretaris\Perkawinan->simpan()
+11 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Sekretaris\Perkawinan))
+12 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 SYSTEMPATH\Boot.php(334): CodeIgniter\CodeIgniter->run()
+14 SYSTEMPATH\Boot.php(67): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+15 FCPATH\index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
