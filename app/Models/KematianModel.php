@@ -73,4 +73,63 @@ class KematianModel extends Model
          ->where('kematian.id', $id)
          ->first();
    }
+
+   public function getStatistikTahunan($year)
+   {
+      $bulanan = $this->db->query("
+        SELECT 
+            MONTH(tanggal_meninggal) as bulan,
+            COUNT(*) as jumlah
+        FROM kematian
+        WHERE YEAR(tanggal_meninggal) = ?
+        GROUP BY bulan
+        ORDER BY bulan
+    ", [$year])->getResultArray();
+
+      $penyebab = $this->db->query("
+        SELECT 
+            penyebab,
+            COUNT(*) as jumlah
+        FROM kematian
+        WHERE YEAR(tanggal_meninggal) = ?
+        GROUP BY penyebab
+        ORDER BY jumlah DESC
+        LIMIT 5
+    ", [$year])->getResultArray();
+
+      return [
+         'bulanan' => $bulanan,
+         'penyebab' => $penyebab,
+         'total' => array_sum(array_column($bulanan, 'jumlah'))
+      ];
+   }
+
+   public function getStatistikBulanan($year)
+   {
+      return $this->db->query("
+        SELECT 
+            MONTH(tanggal_meninggal) as bulan,
+            COUNT(*) as jumlah
+        FROM kematian
+        WHERE YEAR(tanggal_meninggal) = ?
+        GROUP BY bulan
+        ORDER BY bulan
+    ", [$year])->getResultArray();
+   }
+
+   public function getStatistikPenyebab($year)
+   {
+      $result = $this->db->query("
+        SELECT 
+            COALESCE(penyebab, 'Tidak diketahui') as penyebab,
+            COUNT(*) as jumlah
+        FROM kematian
+        WHERE YEAR(tanggal_meninggal) = ?
+        GROUP BY penyebab
+        ORDER BY jumlah DESC
+        LIMIT 5
+    ", [$year])->getResultArray();
+
+      return empty($result) ? [['penyebab' => 'Tidak ada data', 'jumlah' => 0]] : $result;
+   }
 }

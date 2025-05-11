@@ -88,3 +88,17 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
    // Logout
    $routes->get('logout', 'Auth::logout', ['as' => 'sekretaris.logout']);
 });
+
+// Kades
+$routes->group('kepala-desa', ['filter' => 'auth:kepala_desa'], function ($routes) {
+   // Dashboard
+   $routes->get('dashboard', 'KepalaDesa\Dashboard::index', ['as' => 'kepala_desa.dashboard']);
+
+   // Approval Surat
+   $routes->get('surat', 'KepalaDesa\Surat::index', ['as' => 'kepala_desa.surat']);
+   $routes->post('surat/approve/(:num)', 'KepalaDesa\Surat::approve/$1', ['as' => 'kepala_desa.surat.approve']);
+   $routes->post('surat/reject/(:num)', 'KepalaDesa\Surat::reject/$1', ['as' => 'kepala_desa.surat.reject']);
+
+   // Statistik
+   $routes->get('statistik', 'KepalaDesa\Statistik::index', ['as' => 'kepala_desa.statistik']);
+});

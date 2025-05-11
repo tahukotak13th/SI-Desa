@@ -256,7 +256,7 @@ class Surat extends BaseController
          'penduduk_id' => $this->request->getPost('penduduk_id'),
          'sekretaris_id' => session('id'),
          'isi_surat' => $this->request->getPost('isi_surat'),
-         'status' => 'disetujui',
+         'status' => 'diajukan',
          'tanggal_pengajuan' => date('Y-m-d')
       ];
 

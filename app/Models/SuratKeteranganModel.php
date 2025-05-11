@@ -60,4 +60,51 @@ class SuratKeteranganModel extends Model
 
       return true;
    }
+
+
+   public function getSuratTerbaru($limit = 5)
+   {
+      return $this->select('surat_keterangan.*, jenis_surat.nama_surat, penduduk.nama_lengkap as nama_penduduk')
+         ->join('jenis_surat', 'jenis_surat.id = surat_keterangan.jenis_surat_id')
+         ->join('penduduk', 'penduduk.id = surat_keterangan.penduduk_id')
+         ->where('surat_keterangan.status', 'diajukan')
+         ->orderBy('surat_keterangan.tanggal_pengajuan', 'DESC')
+         ->limit($limit)
+         ->find();
+   }
+
+   public function approveSurat($id, $kepalaDesaId)
+   {
+      return $this->update($id, [
+         'status' => 'disetujui',
+         'kepala_desa_id' => $kepalaDesaId,
+         'tanggal_approval' => date('Y-m-d H:i:s')
+      ]);
+   }
+
+   public function rejectSurat($id, $kepalaDesaId, $catatan)
+   {
+      return $this->update($id, [
+         'status' => 'ditolak',
+         'kepala_desa_id' => $kepalaDesaId,
+         'tanggal_approval' => date('Y-m-d H:i:s'),
+         'catatan' => $catatan
+      ]);
+   }
+
+   // Tambahkan method ini di SuratKeteranganModel
+   public function getSuratByStatus($status, $limit = null)
+   {
+      $builder = $this->select('surat_keterangan.*, jenis_surat.nama_surat, penduduk.nama_lengkap as nama_penduduk')
+         ->join('jenis_surat', 'jenis_surat.id = surat_keterangan.jenis_surat_id')
+         ->join('penduduk', 'penduduk.id = surat_keterangan.penduduk_id')
+         ->where('surat_keterangan.status', $status)
+         ->orderBy('surat_keterangan.tanggal_pengajuan', 'DESC');
+
+      if ($limit) {
+         $builder->limit($limit);
+      }
+
+      return $builder->findAll();
+   }
 }

@@ -65,4 +65,33 @@ class KelahiranModel extends Model
       $pendudukModel = new \App\Models\PendudukModel();
       return $pendudukModel->insert($data);
    }
+
+   public function getStatistikTahunan($year)
+   {
+      $bulanan = $this->db->query("
+        SELECT 
+            MONTH(tanggal_lahir) as bulan,
+            COUNT(*) as jumlah
+        FROM kelahiran
+        WHERE YEAR(tanggal_lahir) = ?
+        GROUP BY bulan
+        ORDER BY bulan
+    ", [$year])->getResultArray();
+
+      $jenisKelamin = $this->db->query("
+        SELECT 
+            p.jenis_kelamin,
+            COUNT(*) as jumlah
+        FROM kelahiran k
+        JOIN penduduk p ON k.penduduk_id = p.id
+        WHERE YEAR(k.tanggal_lahir) = ?
+        GROUP BY p.jenis_kelamin
+    ", [$year])->getResultArray();
+
+      return [
+         'bulanan' => $bulanan,
+         'jenis_kelamin' => $jenisKelamin,
+         'total' => array_sum(array_column($bulanan, 'jumlah'))
+      ];
+   }
 }

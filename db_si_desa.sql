@@ -159,5 +159,11 @@ ADD COLUMN perkawinan_id INT(11) NOT NULL,
 ADD CONSTRAINT fk_kelahiran_perkawinan
 FOREIGN KEY (perkawinan_id) REFERENCES perkawinan(id);
 
+-- Alter table kelahiran
 ALTER TABLE kelahiran
 ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+-- Alter table surat_keterangan
+ALTER TABLE surat_keterangan DROP COLUMN file_path;
+ALTER TABLE surat_keterangan DROP COLUMN catatan;
+

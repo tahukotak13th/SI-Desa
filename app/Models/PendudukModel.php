@@ -69,4 +69,132 @@ class PendudukModel extends Model
       $existing = $this->find($id);
       return $existing && $existing->nik !== $newNik;
    }
+
+   public function getStatistikPendidikan()
+   {
+      return $this->db->query("
+        SELECT pendidikan_terakhir as pendidikan, COUNT(*) as jumlah
+        FROM penduduk
+        WHERE status_hidup = 1
+        GROUP BY pendidikan_terakhir
+        ORDER BY jumlah DESC
+    ")->getResultArray();
+   }
+
+   public function getStatistikPekerjaan()
+   {
+      return $this->db->query("
+        SELECT pekerjaan, COUNT(*) as jumlah
+        FROM penduduk
+        WHERE status_hidup = 1
+        GROUP BY pekerjaan
+        ORDER BY jumlah DESC
+        LIMIT 5
+    ")->getResultArray();
+   }
+
+   // app/Models/PendudukModel.php
+   public function getStatistikJenisKelamin()
+   {
+      $total = $this->where('status_hidup', 1)->countAllResults();
+      $laki = $this->where('status_hidup', 1)
+         ->where('jenis_kelamin', 'L')
+         ->countAllResults();
+      $perempuan = $total - $laki;
+
+      return [
+         'total' => $total,
+         'laki' => $laki,
+         'perempuan' => $perempuan,
+         'persen_laki' => $total > 0 ? round(($laki / $total) * 100) : 0,
+         'persen_perempuan' => $total > 0 ? round(($perempuan / $total) * 100) : 0
+      ];
+   }
+
+   public function getStatistikJenisKelaminArr()
+   {
+      return $this->db->query("
+        SELECT 
+            jenis_kelamin,
+            COUNT(*) as jumlah
+        FROM penduduk
+        WHERE status_hidup = 1
+        GROUP BY jenis_kelamin
+    ")->getResultArray();
+   }
+
+   public function getStatistikUsiaProduktif()
+   {
+      $total = $this->where('status_hidup', 1)->countAllResults();
+
+      if ($total == 0) {
+         return [
+            'produktif' => 0,
+            'total' => 0,
+            'persentase' => 0
+         ];
+      }
+
+      $produktif = $this->where('status_hidup', 1)
+         ->where("FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir)/365) BETWEEN 17 AND 60")
+         ->countAllResults();
+
+      return [
+         'produktif' => $produktif,
+         'total' => $total,
+         'persentase' => round(($produktif / $total) * 100, 2)
+      ];
+   }
+
+   public function getRasioJenisKelamin()
+   {
+      $result = $this->db->query("
+        SELECT 
+            jenis_kelamin,
+            COUNT(*) as jumlah,
+            ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM penduduk WHERE status_hidup = 1), 2) as persentase
+        FROM penduduk
+        WHERE status_hidup = 1
+        GROUP BY jenis_kelamin
+    ")->getResultArray();
+
+      $rasio = [
+         'L' => ['jumlah' => 0, 'persentase' => 0],
+         'P' => ['jumlah' => 0, 'persentase' => 0]
+      ];
+
+      foreach ($result as $row) {
+         $rasio[$row['jenis_kelamin']] = [
+            'jumlah' => $row['jumlah'],
+            'persentase' => $row['persentase']
+         ];
+      }
+
+      return $rasio;
+   }
+
+   public function getStatistikUsia()
+   {
+      return $this->db->query("
+        SELECT 
+            FLOOR(DATEDIFF(CURRENT_DATE, tanggal_lahir)/365) DIV 10 * 10 as range_usia,
+            COUNT(*) as jumlah
+        FROM penduduk
+        WHERE status_hidup = 1
+        GROUP BY range_usia
+        ORDER BY range_usia
+    ")->getResultArray();
+   }
+
+   public function getStatistikStatusPerkawinan()
+   {
+      return $this->db->query("
+        SELECT 
+            status_perkawinan,
+            COUNT(*) as jumlah
+        FROM penduduk
+        WHERE status_hidup = 1
+        GROUP BY status_perkawinan
+    ")->getResultArray();
+   }
 }
