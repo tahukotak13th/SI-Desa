@@ -96,6 +96,8 @@ $routes->group('kepala-desa', ['filter' => 'auth:kepala_desa'], function ($route
 
    // Approval Surat
    $routes->get('surat', 'KepalaDesa\Surat::index', ['as' => 'kepala_desa.surat']);
+
+   // Approval Surat
    $routes->post('surat/approve/(:num)', 'KepalaDesa\Surat::approve/$1', ['as' => 'kepala_desa.surat.approve']);
    $routes->post('surat/reject/(:num)', 'KepalaDesa\Surat::reject/$1', ['as' => 'kepala_desa.surat.reject']);
 

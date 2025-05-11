@@ -85,8 +85,18 @@
                                  <td><?= $surat['nama_penduduk'] ?></td>
                                  <td><?= date('d/m/Y', strtotime($surat['tanggal_pengajuan'])) ?></td>
                                  <td>
-                                    <a href="<?= base_url('/kepala-desa/surat/approve/' . $surat['id']) ?>" class="btn btn-sm btn-success">Setujui</a>
-                                    <button class="btn btn-sm btn-danger btn-reject" data-id="<?= $surat['id'] ?>">Tolak</button>
+                                    <!-- Ganti link approve dengan form -->
+                                    <form action="<?= base_url('kepala-desa/surat/approve/' . $surat['id']) ?>" method="post" class="d-inline">
+                                       <?= csrf_field() ?>
+                                       <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Setujui surat ini?')">
+                                          <i class="fas fa-check"></i> Setujui
+                                       </button>
+                                    </form>
+
+                                    <!-- Ganti button reject dengan trigger modal -->
+                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal<?= $surat['id'] ?>">
+                                       <i class="fas fa-times"></i> Tolak
+                                    </button>
                                  </td>
                               </tr>
                            <?php endforeach; ?>
@@ -96,44 +106,37 @@
                </div>
             </div>
 
-            <!-- Modal Reject -->
-            <div class="modal fade" id="rejectModal" tabindex="-1" aria-hidden="true">
-               <div class="modal-dialog">
-                  <div class="modal-content">
-                     <form id="rejectForm" method="post">
-                        <div class="modal-header">
-                           <h5 class="modal-title">Alasan Penolakan</h5>
-                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                           <div class="mb-3">
-                              <label for="catatan" class="form-label">Catatan</label>
-                              <textarea class="form-control" id="catatan" name="catatan" rows="3" required></textarea>
+            <!-- Modal Reject untuk setiap surat -->
+            <?php foreach ($surat_menunggu as $surat): ?>
+               <div class="modal fade" id="rejectModal<?= $surat['id'] ?>" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog">
+                     <div class="modal-content">
+                        <form action="<?= base_url('kepala-desa/surat/reject/' . $surat['id']) ?>" method="post">
+                           <?= csrf_field() ?>
+                           <div class="modal-header">
+                              <h5 class="modal-title">Alasan Penolakan</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                            </div>
-                        </div>
-                        <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                           <button type="submit" class="btn btn-danger">Submit Penolakan</button>
-                        </div>
-                     </form>
+                           <div class="modal-body">
+                              <div class="mb-3">
+                                 <label for="catatan<?= $surat['id'] ?>" class="form-label">Catatan</label>
+                                 <textarea class="form-control" id="catatan<?= $surat['id'] ?>" name="catatan" rows="3" required></textarea>
+                              </div>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                              <button type="submit" class="btn btn-danger">Submit Penolakan</button>
+                           </div>
+                        </form>
+                     </div>
                   </div>
                </div>
-            </div>
+            <?php endforeach; ?>
          </div>
       </div>
    </div>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-   <script>
-      $(document).ready(function() {
-         $('.btn-reject').click(function() {
-            const id = $(this).data('id');
-            $('#rejectForm').attr('action', '/kepala-desa/surat/reject/' + id);
-            $('#rejectModal').modal('show');
-         });
-      });
-   </script>
    <script>
       // Toggle Sidebar
       const toggleSidebar = () => {

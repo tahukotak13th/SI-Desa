@@ -206,7 +206,7 @@
                                  </div>
                               </div>
                               <span class="badge bg-primary rounded-pill">
-                                 L:<?= $statistik_jk['persen_laki'] ?>% --- P:<?= $statistik_jk['persen_perempuan'] ?>%
+                                 L :<?= $statistik_jk['persen_laki'] ?>% --- P :<?= $statistik_jk['persen_perempuan'] ?>%
                               </span>
                            </li>
                         </ul>

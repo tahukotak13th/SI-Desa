@@ -29,25 +29,50 @@ class Surat extends BaseController
 
    public function approve($id)
    {
-      // Tambahkan validasi
+      // Validasi CSRF
+      if (!$this->request->is('post')) {
+         return redirect()->back()->with('error', 'Invalid request method');
+      }
+
+      // Validasi surat
       $surat = $this->suratModel->find($id);
       if (!$surat) {
          return redirect()->back()->with('error', 'Surat tidak ditemukan');
       }
 
-      if ($surat['status'] != 'diajukan') {
-         return redirect()->back()->with('error', 'Surat sudah diproses sebelumnya');
-      }
+      // Update status surat
+      $this->suratModel->update($id, [
+         'status' => 'disetujui',
+         'kepala_desa_id' => session('id'),
+         'tanggal_approval' => date('Y-m-d H:i:s')
+      ]);
 
-      $this->suratModel->approveSurat($id, session()->get('id'));
       return redirect()->to('/kepala-desa/surat')->with('success', 'Surat berhasil disetujui');
    }
 
    public function reject($id)
    {
+      // Validasi CSRF
+      if (!$this->request->is('post')) {
+         return redirect()->back()->with('error', 'Invalid request method');
+      }
+
       $catatan = $this->request->getPost('catatan');
-      $this->suratModel->rejectSurat($id, session()->get('id'), $catatan);
-      session()->setFlashdata('success', 'Surat berhasil ditolak');
-      return redirect()->to('/kepala-desa/surat');
+
+      // Validasi surat
+      $surat = $this->suratModel->find($id);
+      if (!$surat) {
+         return redirect()->back()->with('error', 'Surat tidak ditemukan');
+      }
+
+      // Update status surat
+      $this->suratModel->update($id, [
+         'status' => 'ditolak',
+         'kepala_desa_id' => session('id'),
+         'tanggal_approval' => date('Y-m-d H:i:s'),
+         'catatan' => $catatan
+      ]);
+
+      return redirect()->to('/kepala-desa/surat')->with('success', 'Surat berhasil ditolak');
    }
 }
