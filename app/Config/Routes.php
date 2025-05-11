@@ -84,6 +84,7 @@ $routes->group('sekretaris', ['filter' => 'auth:sekretaris'], function ($routes)
    $routes->get('surat/buat', 'Sekretaris\Surat::buat', ['as' => 'sekretaris.surat.buat']);
    $routes->post('surat/simpan', 'Sekretaris\Surat::simpan', ['as' => 'sekretaris.surat.simpan']);
    $routes->get('surat/cetak/(:num)', 'Sekretaris\Surat::cetak/$1', ['as' => 'sekretaris.surat.cetak']);
+   $routes->get('surat/list', 'Sekretaris\Surat::listSurat', ['as' => 'sekretaris.surat.list']);
 
    // Logout
    $routes->get('logout', 'Auth::logout', ['as' => 'sekretaris.logout']);

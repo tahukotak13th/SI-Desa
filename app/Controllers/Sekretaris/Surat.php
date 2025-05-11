@@ -26,9 +26,17 @@ class Surat extends BaseController
    public function index()
    {
       $data = [
-         'title' => 'Buat Surat Keterangan',
-         'jenis_surat' => $this->jenisSuratModel->findAll()
+         'title' => 'Surat Keterangan',
+         'jenis_surat' => $this->jenisSuratModel->findAll(),
+         'surat_list' => $this->suratModel
+            ->select('surat_keterangan.*, jenis_surat.nama_surat, penduduk.nama_lengkap as nama_penduduk')
+            ->join('jenis_surat', 'jenis_surat.id = surat_keterangan.jenis_surat_id')
+            ->join('penduduk', 'penduduk.id = surat_keterangan.penduduk_id')
+            ->where('sekretaris_id', session('id'))
+            ->orderBy('tanggal_pengajuan', 'DESC')
+            ->findAll()
       ];
+
       return view('sekretaris/surat/index', $data);
    }
 
@@ -256,14 +264,30 @@ class Surat extends BaseController
          'penduduk_id' => $this->request->getPost('penduduk_id'),
          'sekretaris_id' => session('id'),
          'isi_surat' => $this->request->getPost('isi_surat'),
-         'status' => 'diajukan',
-         'tanggal_pengajuan' => date('Y-m-d')
+         'status' => 'diajukan', // Status awal ketika dibuat
+         'tanggal_pengajuan' => date('Y-m-d H:i:s')
       ];
 
       $this->suratModel->save($data);
 
-      return redirect()->to('/sekretaris/surat/cetak/' . $this->suratModel->getInsertID())
-         ->with('success', 'Surat berhasil dibuat');
+      return redirect()->to('/sekretaris/surat')
+         ->with('success', 'Surat berhasil dibuat dan menunggu persetujuan Kepala Desa');
+   }
+
+   public function listSurat()
+   {
+      $data = [
+         'title' => 'Daftar Surat Keterangan',
+         'surat_list' => $this->suratModel
+            ->select('surat_keterangan.*, jenis_surat.nama_surat, penduduk.nama_lengkap as nama_penduduk')
+            ->join('jenis_surat', 'jenis_surat.id = surat_keterangan.jenis_surat_id')
+            ->join('penduduk', 'penduduk.id = surat_keterangan.penduduk_id')
+            ->where('sekretaris_id', session('id'))
+            ->orderBy('tanggal_pengajuan', 'DESC')
+            ->findAll()
+      ];
+
+      return view('sekretaris/surat/list', $data);
    }
 
    public function cetak($id)
@@ -272,6 +296,15 @@ class Surat extends BaseController
 
       if (!$surat) {
          return redirect()->back()->with('error', 'Surat tidak ditemukan');
+      }
+
+      // Cek status surat
+      if ($surat['status'] !== 'disetujui') {
+         $message = $surat['status'] === 'ditolak'
+            ? 'Surat ini telah ditolak oleh Kepala Desa'
+            : 'Surat menunggu persetujuan Kepala Desa';
+
+         return redirect()->to('/sekretaris/surat')->with('error', $message);
       }
 
       $data = [

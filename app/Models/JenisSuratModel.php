@@ -14,14 +14,15 @@ class JenisSuratModel extends Model
    // Template default untuk semua jenis surat
    private $defaultTemplates = [
       'SK-DOM' => [
-         'template' => "SURAT KETERANGAN DOMISILI\n\n"
-            . "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, menerangkan bahwa:\n\n"
+         'template' => "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, dengan ini menerangkan bahwa:\n"
             . "Nama\t\t: {{nama}}\n"
             . "NIK\t\t\t: {{nik}}\n"
             . "TTL\t\t\t: {{tempat_lahir}}, {{tanggal_lahir}}\n"
             . "Alamat\t\t: {{alamat}}, RT {{rt}} RW {{rw}}, Dusun {{dusun}}\n\n"
-            . "Benar adalah penduduk yang berdomisili di wilayah Desa Konoha.\n\n"
-            . "Surat keterangan ini diberikan untuk keperluan ..........",
+            . "\tAdalah benar merupakan warga yang berdomisili secara tetap di wilayah administratif Desa Konoha, "
+            . "dan hingga surat ini dibuat, yang bersangkutan tercatat sebagai penduduk aktif yang telah memenuhi kewajiban administrasi kependudukan.\n\n"
+            . "\tDemikian surat keterangan ini dibuat untuk digunakan sebagai kelengkapan administrasi sesuai dengan kebutuhan yang bersangkutan. "
+            . "Segala bentuk penyalahgunaan surat ini menjadi tanggung jawab pemegang surat.\n\n",
          'kebutuhan_data' => ['nik', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'rt', 'rw', 'dusun'],
          'additional_fields' => [
             'keperluan' => ['type' => 'text', 'required' => true]
@@ -29,8 +30,7 @@ class JenisSuratModel extends Model
       ],
 
       'SK-TM' => [
-         'template' => "SURAT KETERANGAN TIDAK MAMPU\n\n"
-            . "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, menerangkan bahwa:\n\n"
+         'template' => "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, dengan ini menerangkan bahwa:\n"
             . "Nama\t\t: {{nama}}\n"
             . "NIK\t\t\t: {{nik}}\n"
             . "Alamat\t\t: {{alamat}}, RT {{rt}} RW {{rw}}, Dusun {{dusun}}\n\n"
@@ -42,8 +42,7 @@ class JenisSuratModel extends Model
       ],
 
       'SK-PGH' => [
-         'template' => "SURAT KETERANGAN PENGHASILAN\n\n"
-            . "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, menerangkan bahwa:\n\n"
+         'template' => "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, dengan ini menerangkan bahwa:\n"
             . "Nama\t\t\t\t: {{nama}}\n"
             . "NIK\t\t\t\t\t: {{nik}}\n"
             . "Alamat\t\t\t\t: {{alamat}}, RT {{rt}} RW {{rw}}, Dusun {{dusun}}\n"
@@ -58,8 +57,7 @@ class JenisSuratModel extends Model
       ],
 
       'SK-MATI' => [
-         'template' => "SURAT KETERANGAN KEMATIAN\n\n"
-            . "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, menerangkan bahwa:\n\n"
+         'template' => "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, dengan ini menerangkan bahwa:\n"
             . "Nama Alm.\t\t\t: {{nama}}\n"
             . "NIK\t\t\t\t\t: {{nik}}\n"
             . "TTL\t\t\t\t\t: {{tempat_lahir}}, {{tanggal_lahir}}\n"
@@ -77,13 +75,12 @@ class JenisSuratModel extends Model
       ],
 
       'SK-PKRJ' => [
-         'template' => "SURAT KETERANGAN TIDAK BEKERJA\n\n"
-            . "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, menerangkan bahwa:\n\n"
+         'template' => "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, dengan ini menerangkan bahwa:\n"
             . "Nama\t\t: {{nama}}\n"
             . "NIK\t\t\t: {{nik}}\n"
             . "TTL\t\t\t: {{tempat_lahir}}, {{tanggal_lahir}}\n"
             . "Alamat\t\t: {{alamat}}, RT {{rt}} RW {{rw}}, Dusun {{dusun}}\n\n"
-            . "Adalah benar-benar warga kami yang saat ini tidak memiliki pekerjaan tetap.\n\n"
+            . "Adalah benar-benar warga kami yang saat ini tidak memiliki pekerjaan tetap.\n"
             . "Surat ini diberikan untuk keperluan ..........",
          'kebutuhan_data' => ['nik', 'nama_lengkap', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'rt', 'rw', 'dusun'],
          'additional_fields' => [

@@ -25,10 +25,12 @@ class SuratKeteranganModel extends Model
    public function getSuratWithDetail($id)
    {
       return $this->select('surat_keterangan.*, jenis_surat.kode_surat, jenis_surat.nama_surat, 
-            penduduk.nik, penduduk.nama_lengkap, penduduk.tempat_lahir, penduduk.tanggal_lahir,
-            penduduk.alamat, penduduk.rt, penduduk.rw, penduduk.dusun')
+          penduduk.nik, penduduk.nama_lengkap, penduduk.tempat_lahir, penduduk.tanggal_lahir,
+          penduduk.alamat, penduduk.rt, penduduk.rw, penduduk.dusun,
+          kepala.nama_lengkap as nama_kepala_desa')
          ->join('jenis_surat', 'jenis_surat.id = surat_keterangan.jenis_surat_id')
          ->join('penduduk', 'penduduk.id = surat_keterangan.penduduk_id')
+         ->join('users as kepala', 'kepala.id = surat_keterangan.kepala_desa_id', 'left')
          ->where('surat_keterangan.id', $id)
          ->first();
    }

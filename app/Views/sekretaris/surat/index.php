@@ -53,22 +53,100 @@
                <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
                </div>
+               <!-- Di dalam card-body, ganti isinya dengan ini: -->
                <div class="card-body">
-                  <div class="row">
-                     <?php foreach ($jenis_surat as $js): ?>
-                        <div class="col-md-4 mb-4">
-                           <div class="card h-100">
-                              <div class="card-body text-center">
-                                 <h5 class="card-title"><?= $js['nama_surat'] ?></h5>
-                                 <p class="card-text"><?= $js['kode_surat'] ?></p>
-                                 <a href="<?= base_url('sekretaris/surat/penduduk?jenis=' . $js['kode_surat']) ?>"
-                                    class="btn btn-primary">
-                                    Buat Surat
-                                 </a>
+                  <!-- Tab Navigation -->
+                  <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                     <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="create-tab" data-bs-toggle="tab" data-bs-target="#create" type="button">
+                           <i class="fas fa-plus-circle"></i> Buat Surat Baru
+                        </button>
+                     </li>
+                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list" type="button">
+                           <i class="fas fa-list"></i> Daftar Surat Saya
+                        </button>
+                     </li>
+                  </ul>
+
+                  <div class="tab-content" id="myTabContent">
+                     <!-- Tab Buat Surat Baru -->
+                     <div class="tab-pane fade show active" id="create" role="tabpanel">
+                        <div class="row">
+                           <?php foreach ($jenis_surat as $js): ?>
+                              <div class="col-md-4 mb-4">
+                                 <div class="card h-100">
+                                    <div class="card-body text-center">
+                                       <h5 class="card-title"><?= $js['nama_surat'] ?></h5>
+                                       <p class="card-text">Kode: <?= $js['kode_surat'] ?></p>
+                                       <a href="<?= base_url('sekretaris/surat/penduduk?jenis=' . $js['kode_surat']) ?>"
+                                          class="btn btn-primary">
+                                          <i class="fas fa-file-alt"></i> Buat Surat
+                                       </a>
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
+                           <?php endforeach; ?>
                         </div>
-                     <?php endforeach; ?>
+                     </div>
+
+                     <!-- Tab Daftar Surat -->
+                     <div class="tab-pane fade" id="list" role="tabpanel">
+                        <div class="table-responsive">
+                           <table class="table table-bordered table-hover">
+                              <thead class="table-light">
+                                 <tr>
+                                    <th>No</th>
+                                    <th>Jenis Surat</th>
+                                    <th>No. Surat</th>
+                                    <th>Pemohon</th>
+                                    <th>Status</th>
+                                    <th>Tanggal</th>
+                                    <th>Aksi</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <?php if (!empty($surat_list)): ?>
+                                    <?php foreach ($surat_list as $index => $surat): ?>
+                                       <tr>
+                                          <td><?= $index + 1 ?></td>
+                                          <td><?= esc($surat['nama_surat']) ?></td>
+                                          <td><?= esc($surat['no_surat']) ?></td>
+                                          <td><?= esc($surat['nama_penduduk']) ?></td>
+                                          <td>
+                                             <span class="badge bg-<?=
+                                                                     $surat['status'] == 'disetujui' ? 'success' : ($surat['status'] == 'ditolak' ? 'danger' : 'warning')
+                                                                     ?>">
+                                                <?= ucfirst(esc($surat['status'])) ?>
+                                             </span>
+                                          </td>
+                                          <td><?= date('d/m/Y', strtotime($surat['tanggal_pengajuan'])) ?></td>
+                                          <td>
+                                             <?php if ($surat['status'] == 'disetujui'): ?>
+                                                <a href="<?= base_url('sekretaris/surat/cetak/' . $surat['id']) ?>"
+                                                   class="btn btn-sm btn-success" title="Cetak Surat">
+                                                   <i class="fas fa-print"></i>
+                                                </a>
+                                             <?php elseif ($surat['status'] == 'ditolak'): ?>
+                                                <button class="btn btn-sm btn-danger"
+                                                   title="<?= esc($surat['catatan'] ?? 'Alasan penolakan') ?>">
+                                                   <i class="fas fa-info-circle"></i>
+                                                </button>
+                                             <?php else: ?>
+                                                <span class="text-muted">Menunggu approval</span>
+                                             <?php endif; ?>
+                                          </td>
+                                       </tr>
+                                    <?php endforeach; ?>
+                                 <?php else: ?>
+                                    <tr>
+                                       <td colspan="7" class="text-center text-muted">Belum ada surat yang dibuat</td>
+                                    </tr>
+                                 <?php endif; ?>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
@@ -104,6 +182,26 @@
          }
 
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
+      });
+   </script>
+
+   <script>
+      // Aktifkan tab dan simpan state
+      document.addEventListener('DOMContentLoaded', function() {
+         // Aktifkan tab bootstrap
+         var tabElms = [].slice.call(document.querySelectorAll('button[data-bs-toggle="tab"]'));
+         tabElms.forEach(function(tabEl) {
+            tabEl.addEventListener('click', function() {
+               localStorage.setItem('activeSuratTab', this.getAttribute('data-bs-target'));
+            });
+         });
+
+         // Set tab aktif saat load
+         var activeTab = localStorage.getItem('activeSuratTab');
+         if (activeTab) {
+            var tab = new bootstrap.Tab(document.querySelector('[data-bs-target="' + activeTab + '"]'));
+            tab.show();
+         }
       });
    </script>
 </body>
