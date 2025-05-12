@@ -118,17 +118,17 @@ CREATE TABLE surat_keterangan (
     FOREIGN KEY (kepala_desa_id) REFERENCES users(id)
 );
 
--- Tabel Log Aktivitas
-CREATE TABLE log_aktivitas (
-    id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    user_id INT(11) NOT NULL,
-    aktivitas VARCHAR(100) NOT NULL,
-    tabel_terkait VARCHAR(50),
-    id_entitas INT(11),
-    keterangan TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
+-- -- Tabel Log Aktivitas
+-- CREATE TABLE log_aktivitas (
+--     id INT(11) AUTO_INCREMENT PRIMARY KEY,
+--     user_id INT(11) NOT NULL,
+--     aktivitas VARCHAR(100) NOT NULL,
+--     tabel_terkait VARCHAR(50),
+--     id_entitas INT(11),
+--     keterangan TEXT,
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     FOREIGN KEY (user_id) REFERENCES users(id)
+-- );
 
 -- Data awal untuk jenis surat
 INSERT INTO jenis_surat (kode_surat, nama_surat) VALUES 

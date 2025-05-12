@@ -93,10 +93,12 @@
                                        </button>
                                     </form>
 
-                                    <!-- Ganti button reject dengan trigger modal -->
-                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal<?= $surat['id'] ?>">
+                                    <!-- Ganti tombol reject dengan link langsung -->
+                                    <a href="<?= base_url(route_to('kepala_desa.surat.reject', $surat['id'])) ?>"
+                                       class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Tolak surat ini?')">
                                        <i class="fas fa-times"></i> Tolak
-                                    </button>
+                                    </a>
                                  </td>
                               </tr>
                            <?php endforeach; ?>
@@ -106,37 +108,23 @@
                </div>
             </div>
 
-            <!-- Modal Reject untuk setiap surat -->
-            <?php foreach ($surat_menunggu as $surat): ?>
-               <div class="modal fade" id="rejectModal<?= $surat['id'] ?>" tabindex="-1" aria-hidden="true">
-                  <div class="modal-dialog">
-                     <div class="modal-content">
-                        <form action="<?= base_url('kepala-desa/surat/reject/' . $surat['id']) ?>" method="post">
-                           <?= csrf_field() ?>
-                           <div class="modal-header">
-                              <h5 class="modal-title">Alasan Penolakan</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                           </div>
-                           <div class="modal-body">
-                              <div class="mb-3">
-                                 <label for="catatan<?= $surat['id'] ?>" class="form-label">Catatan</label>
-                                 <textarea class="form-control" id="catatan<?= $surat['id'] ?>" name="catatan" rows="3" required></textarea>
-                              </div>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                              <button type="submit" class="btn btn-danger">Submit Penolakan</button>
-                           </div>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-            <?php endforeach; ?>
+
          </div>
       </div>
    </div>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   <script>
+      // Confirm sebelum reject
+      document.querySelectorAll('.btn-reject').forEach(btn => {
+         btn.addEventListener('click', function(e) {
+            if (!confirm('Anda yakin ingin menolak surat ini?')) {
+               e.preventDefault();
+            }
+         });
+      });
+   </script>
    <script>
       // Toggle Sidebar
       const toggleSidebar = () => {

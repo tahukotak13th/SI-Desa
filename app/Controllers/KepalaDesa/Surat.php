@@ -52,13 +52,6 @@ class Surat extends BaseController
 
    public function reject($id)
    {
-      // Validasi CSRF
-      if (!$this->request->is('post')) {
-         return redirect()->back()->with('error', 'Invalid request method');
-      }
-
-      $catatan = $this->request->getPost('catatan');
-
       // Validasi surat
       $surat = $this->suratModel->find($id);
       if (!$surat) {
@@ -70,8 +63,17 @@ class Surat extends BaseController
          'status' => 'ditolak',
          'kepala_desa_id' => session('id'),
          'tanggal_approval' => date('Y-m-d H:i:s'),
-         'catatan' => $catatan
+         // 'catatan' => 'Ditolak tanpa catatan' // Default note
       ]);
+
+      // Tambahkan log aktivitas
+      $logData = [
+         'user_id' => session('id'),
+         'aktivitas' => 'Menolak surat',
+         'tabel_terkait' => 'surat_keterangan',
+         'id_entitas' => $id,
+         // 'keterangan' => 'Surat No. ' . $surat['no_surat'] . ' ditolak tanpa catatan'
+      ];
 
       return redirect()->to('/kepala-desa/surat')->with('success', 'Surat berhasil ditolak');
    }

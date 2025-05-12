@@ -75,7 +75,7 @@
                         <textarea class="form-control" name="isi_surat" rows="10"><?= $isi_surat ?></textarea>
                      </div>
 
-                     <button type="submit" class="btn btn-primary">Simpan & Cetak</button>
+                     <button type="submit" class="btn btn-primary">Ajukan Surat</button>
                      <a href="<?= base_url('sekretaris/surat') ?>" class="btn btn-secondary">Kembali</a>
                   </form>
                </div>
