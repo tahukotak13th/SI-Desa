@@ -20,11 +20,16 @@
          </div>
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('sekretaris/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
-            <li><a href="<?= base_url('sekretaris/penduduk/') ?>"><i class="fas fa-users"></i> <span class="menu-text">Data Penduduk</span></a></li>
-            <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> <span class="menu-text">Kelahiran</span></a></li>
-            <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-skull"></i> <span class="menu-text">Kematian</span></a></li>
-            <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> <span class="menu-text">Perkawinan</span></a></li>
-            <li class="active"><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file-alt"></i> <span class="menu-text">Surat Keterangan</span></a></li>
+            <li class="menu-dropdown">
+               <a href="#"><i class="fas fa-users"></i> <span class="menu-text">Data Kependudukan</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
+               <ul class="submenu" style="list-style: none;">
+                  <li><a href="<?= base_url('sekretaris/penduduk/') ?>"><i class="fas fa-user"></i> Data Penduduk</a></li>
+                  <li><a href="<?= base_url('sekretaris/kelahiran') ?>"><i class="fas fa-baby"></i> Kelahiran</a></li>
+                  <li><a href="<?= base_url('sekretaris/kematian') ?>"><i class="fas fa-skull"></i> Kematian</a></li>
+                  <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> Perkawinan</a></li>
+               </ul>
+            </li>
+            <li class="active"><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file-alt"></i> <span class="menu-text">Surat-surat Keterangan</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
       </div>
@@ -182,6 +187,21 @@
          }
 
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
+      });
+
+      // Toggle Submenu
+      document.querySelectorAll('.menu-dropdown > a').forEach(item => {
+         item.addEventListener('click', function(e) {
+            if (window.innerWidth >= 992) {
+               e.preventDefault();
+               const submenu = this.nextElementSibling;
+               const dropdownIcon = this.querySelector('.dropdown-icon');
+
+               submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+               dropdownIcon.classList.toggle('fa-chevron-down');
+               dropdownIcon.classList.toggle('fa-chevron-up');
+            }
+         });
       });
    </script>
 

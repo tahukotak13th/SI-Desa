@@ -34,17 +34,17 @@
             </li>
 
             <!-- Layanan Administrasi Menu -->
-            <li class="menu-dropdown">
+            <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> <span class="menu-text">Surat-surat Keterangan</span></a></li>
+            <!-- <li class="menu-dropdown">
                <a href="#"><i class="fas fa-file-alt"></i> <span class="menu-text">Layanan Administrasi</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
                <ul class="submenu" style="list-style: none;">
-                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> Surat-surat Keterangan</a></li>
                   <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Domisili</a></li>
                   <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Tidak Mampu</a></li>
                   <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Penghasilan</a></li>
                   <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Kematian</a></li>
                   <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Status Pekerjaan</a></li>
                </ul>
-            </li>
+            </li> -->
 
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
@@ -197,12 +197,12 @@
                            <a href="<?= base_url('sekretaris/penduduk/tambah') ?>" class="btn btn-primary">
                               <i class="fas fa-user-plus"></i> Tambah Penduduk
                            </a>
-                           <a href="<?= base_url('sekretaris/surat/domisili/create') ?>" class="btn btn-success">
+                           <!-- <a href="<?= base_url('sekretaris/surat/domisili/create') ?>" class="btn btn-success">
                               <i class="fas fa-file-alt"></i> Buat SK Domisili
                            </a>
                            <a href="<?= base_url('sekretaris/surat/tidak_mampu/buat') ?>" class="btn btn-info">
                               <i class="fas fa-file-alt"></i> Buat SK Tidak Mampu
-                           </a>
+                           </a> -->
                            <a href="<?= base_url('sekretaris/kelahiran/tambah') ?>" class="btn btn-warning">
                               <i class="fas fa-baby"></i> Catat Kelahiran
                            </a>

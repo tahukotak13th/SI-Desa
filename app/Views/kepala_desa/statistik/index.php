@@ -63,7 +63,7 @@
                            </ul>
                         </div>
                         <select class="form-select" id="tahun-select">
-                           <?php foreach ($years as $y): ?>
+                           <?php if ($type != 'penduduk') foreach ($years as $y): ?>
                               <option value="<?= $y ?>" <?= $y == $year ? 'selected' : '' ?>><?= $y ?></option>
                            <?php endforeach; ?>
                         </select>
@@ -307,6 +307,16 @@
                   data: <?= json_encode(array_column($statistik['pendidikan'], 'jumlah')) ?>,
                   backgroundColor: 'rgba(54, 162, 235, 0.7)'
                }]
+            },
+            options: {
+               scales: {
+                  y: {
+                     beginAtZero: true,
+                     ticks: {
+                        precision: 0 // Untuk memastikan hanya menampilkan bilangan bulat
+                     }
+                  }
+               }
             }
          });
 
@@ -333,8 +343,31 @@
                   label: 'Jumlah Penduduk',
                   data: <?= json_encode(array_column($statistik['usia'], 'jumlah')) ?>,
                   borderColor: '#4BC0C0',
-                  fill: true
+                  fill: true,
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)' // Warna fill yang lebih transparan
                }]
+            },
+            options: {
+               scales: {
+                  y: {
+                     beginAtZero: true,
+                     ticks: {
+                        precision: 0, // Hanya menampilkan bilangan bulat
+                        stepSize: 1 // Interval langkah 1
+                     }
+                  },
+                  x: {
+                     title: {
+                        display: true,
+                     }
+                  }
+               },
+               plugins: {
+                  legend: {
+                     display: true,
+                     position: 'top' // Posisi legend
+                  }
+               }
             }
          });
 
