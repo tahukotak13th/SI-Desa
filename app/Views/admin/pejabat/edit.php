@@ -83,7 +83,7 @@
                               value="<?= date('Y-m-d', strtotime($pejabat['periode_mulai'])) ?>" required>
                         </div>
                         <div class="col-md-6">
-                           <label for="periode_selesai" class="form-label">Periode Selesai (Opsional)</label>
+                           <label for="periode_selesai" class="form-label">Periode Selesai</label>
                            <input type="date" class="form-control" id="periode_selesai" name="periode_selesai"
                               value="<?= $pejabat['periode_selesai'] ? date('Y-m-d', strtotime($pejabat['periode_selesai'])) : '' ?>">
                         </div>

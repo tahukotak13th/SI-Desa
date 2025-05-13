@@ -154,8 +154,20 @@
                                        <td><?= esc($surat['nama_surat']) ?></td>
                                        <td><?= esc($surat['nama_penduduk']) ?></td>
                                        <td>
-                                          <a href="<?= base_url('kepala-desa/surat/approve/' . $surat['id']) ?>" class="btn btn-sm btn-success">Setujui</a>
-                                          <a href="<?= base_url('kepala-desa/surat/reject/' . $surat['id']) ?>" class="btn btn-sm btn-danger">Tolak</a>
+                                          <!-- Ganti link approve dengan form -->
+                                          <form action="<?= base_url('kepala-desa/surat/approve/' . $surat['id']) ?>" method="post" class="d-inline">
+                                             <?= csrf_field() ?>
+                                             <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Setujui surat ini?')">
+                                                <i class="fas fa-check"></i> Setujui
+                                             </button>
+                                          </form>
+
+                                          <!-- Ganti tombol reject dengan link langsung -->
+                                          <a href="<?= base_url(route_to('kepala_desa.surat.reject', $surat['id'])) ?>"
+                                             class="btn btn-sm btn-danger"
+                                             onclick="return confirm('Tolak surat ini?')">
+                                             <i class="fas fa-times"></i> Tolak
+                                          </a>
                                        </td>
                                     </tr>
                                  <?php endforeach; ?>

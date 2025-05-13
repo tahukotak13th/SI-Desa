@@ -133,10 +133,6 @@
                                                    <i class="fas fa-print"></i>
                                                 </a>
                                              <?php elseif ($surat['status'] == 'ditolak'): ?>
-                                                <button class="btn btn-sm btn-danger"
-                                                   title="<?= esc($surat['catatan'] ?? 'Alasan penolakan') ?>">
-                                                   <i class="fas fa-info-circle"></i>
-                                                </button>
                                              <?php else: ?>
                                                 <span class="text-muted">Menunggu approval</span>
                                              <?php endif; ?>

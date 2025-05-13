@@ -23,10 +23,12 @@
          margin-top: 100px;
       }
 
-      .logo-desa {
-         width: 80px;
-         height: 80px;
-         margin-bottom: 20px;
+
+      #logo-desa {
+         height: 100px;
+         width: auto;
+         margin-right: 20px;
+         margin-left: 20px;
       }
    </style>
 </head>
@@ -37,7 +39,9 @@
          <div class="col-md-5">
             <div class="login-container">
                <div class="text-center mb-4">
-                  <img src="<?= base_url('assets/img/logo-desa.png') ?>" alt="Logo Desa" class="logo-desa">
+                  <!-- <img src="<?= base_url('assets/img/logo-desa.png') ?>" alt="Logo Desa" class="logo-desa"> -->
+                  <img id="logo-desa" src="<?= base_url('konohalogo.png') ?>" alt="Logo Desa Konoha">
+
                   <h3>Sistem Informasi Desa</h3>
                   <p class="text-muted">Silakan masuk dengan akun Anda</p>
                </div>
@@ -79,9 +83,9 @@
                   </div>
                </form>
 
-               <div class="text-center mt-3">
+               <!-- <div class="text-center mt-3">
                   <p class="text-muted">© <?= date('Y') ?> Sistem Informasi Desa</p>
-               </div>
+               </div> -->
             </div>
          </div>
       </div>
