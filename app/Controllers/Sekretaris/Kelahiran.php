@@ -84,13 +84,6 @@ class Kelahiran extends BaseController
          'nama_ibu' => $pasangan['nama_istri']
       ];
 
-
-      log_message('debug', 'Data penduduk yang akan disimpan: ' . print_r($pendudukData, true));
-      log_message('debug', 'Data kelahiran yang akan disimpan: ' . print_r($kelahiranData, true));
-
-
-      log_message('debug', 'ID Penduduk yang baru dibuat: ' . $penduduk_id);
-
       $this->kelahiranModel->save($kelahiranData);
 
       return redirect()->to('/sekretaris/kelahiran')

@@ -67,7 +67,7 @@
                            <tr>
                               <th width="50">No</th>
                               <th>Username</th>
-                              <th>Nama Lengkap</th>
+                              <!-- <th>Nama Lengkap</th> -->
                               <th>Email</th>
                               <th>Level</th>
                               <th>Status</th>
@@ -80,7 +80,7 @@
                               <tr>
                                  <td><?= $no++ ?></td>
                                  <td><?= esc($user['username']) ?></td>
-                                 <td><?= esc($user['nama_lengkap']) ?></td>
+                                 <!-- <td><?= esc($user['nama_lengkap']) ?></td> -->
                                  <td><?= esc($user['email']) ?></td>
                                  <td><?= ucfirst($user['level']) ?></td>
                                  <td>
