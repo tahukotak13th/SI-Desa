@@ -76,11 +76,6 @@ class Auth extends BaseController
       return $this->redirectToDashboard();
    }
 
-   /**
-    * Verifikasi password dengan dua metode:
-    * 1. Langsung compare plaintext (untuk migrasi dari sistem lama)
-    * 2. Verifikasi hash (untuk password baru)
-    */
    protected function verifyPassword($inputPassword, $databasePassword)
    {
       // Jika password di database adalah hash (diawali dengan $2y$)

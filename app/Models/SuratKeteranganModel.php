@@ -94,7 +94,6 @@ class SuratKeteranganModel extends Model
       ]);
    }
 
-   // Tambahkan method ini di SuratKeteranganModel
    public function getSuratByStatus($status, $limit = null)
    {
       $builder = $this->select('surat_keterangan.*, jenis_surat.nama_surat, penduduk.nama_lengkap as nama_penduduk')

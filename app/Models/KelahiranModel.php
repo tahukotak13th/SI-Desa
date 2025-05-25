@@ -31,7 +31,7 @@ class KelahiranModel extends Model
       'tempat_lahir' => 'required|min_length[3]|max_length[100]',
       'berat_badan' => 'permit_empty|decimal',
       'panjang_badan' => 'permit_empty|decimal',
-      // nama_ayah dan nama_ibu tidak divalidasi karena akan diisi otomatis
+
    ];
 
    public function getKelahiranWithPenduduk()

@@ -50,15 +50,15 @@ class Kelahiran extends BaseController
       $perkawinan_id = $this->request->getPost('perkawinan_id');
       $pasangan = $this->perkawinanModel->getPerkawinanWithDetail($perkawinan_id);
 
-      // 1. Simpan data penduduk baru (bayi) terlebih dahulu
+      // simpan data penduduk yg lahir
       $pendudukData = [
          'nik' => $this->request->getPost('nik') ?? '',
          'nama_lengkap' => $this->request->getPost('nama_bayi'),
          'tempat_lahir' => $this->request->getPost('tempat_lahir'),
          'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
          'jenis_kelamin' => $this->request->getPost('jenis_kelamin'),
-         'agama' => $this->request->getPost('agama') ?? 'Islam', // Default value
-         'pendidikan_terakhir' => 'Tidak Bersekolah', // Default untuk bayi
+         'agama' => $this->request->getPost('agama') ?? 'Islam',
+         'pendidikan_terakhir' => 'Tidak Bersekolah',
          'status_perkawinan' => 'belum_kawin',
          'pekerjaan' => 'Belum Bekerja',
          'penghasilan' => null,
@@ -69,10 +69,10 @@ class Kelahiran extends BaseController
          'status_hidup' => 1
       ];
 
-      // Simpan dan dapatkan ID penduduk baru
-      $penduduk_id = $this->pendudukModel->insert($pendudukData, true); // Parameter true untuk return ID
+      // save & return ID penduduk yg lahir tsb
+      $penduduk_id = $this->pendudukModel->insert($pendudukData, true);
 
-      // 2. Sekarang simpan data kelahiran dengan penduduk_id yang valid
+      // save data kelahiran dengan penduduk_id, biar sinkron
       $kelahiranData = [
          'penduduk_id' => $penduduk_id,
          'perkawinan_id' => $perkawinan_id,
@@ -84,11 +84,11 @@ class Kelahiran extends BaseController
          'nama_ibu' => $pasangan['nama_istri']
       ];
 
-      // Di dalam method simpan(), sebelum save:
+
       log_message('debug', 'Data penduduk yang akan disimpan: ' . print_r($pendudukData, true));
       log_message('debug', 'Data kelahiran yang akan disimpan: ' . print_r($kelahiranData, true));
 
-      // Setelah save:
+
       log_message('debug', 'ID Penduduk yang baru dibuat: ' . $penduduk_id);
 
       $this->kelahiranModel->save($kelahiranData);
@@ -127,7 +127,6 @@ class Kelahiran extends BaseController
             throw new \RuntimeException('Data kelahiran tidak ditemukan');
          }
 
-         // Validasi input
          if (!$this->validate($this->kelahiranModel->getValidationRules())) {
             throw new \RuntimeException(implode(', ', $this->validator->getErrors()));
          }

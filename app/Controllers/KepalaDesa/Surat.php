@@ -14,7 +14,6 @@ class Surat extends BaseController
       $this->suratModel = new SuratKeteranganModel();
    }
 
-   // Di app/Controllers/KepalaDesa/Surat.php
    public function index()
    {
       $data = [
@@ -29,12 +28,12 @@ class Surat extends BaseController
 
    public function approve($id)
    {
-      // Validasi CSRF
+
       if (!$this->request->is('post')) {
          return redirect()->back()->with('error', 'Invalid request method');
       }
 
-      // Validasi surat
+
       $surat = $this->suratModel->find($id);
       if (!$surat) {
          return redirect()->back()->with('error', 'Surat tidak ditemukan');
@@ -52,7 +51,7 @@ class Surat extends BaseController
 
    public function reject($id)
    {
-      // Validasi surat
+
       $surat = $this->suratModel->find($id);
       if (!$surat) {
          return redirect()->back()->with('error', 'Surat tidak ditemukan');
@@ -63,18 +62,34 @@ class Surat extends BaseController
          'status' => 'ditolak',
          'kepala_desa_id' => session('id'),
          'tanggal_approval' => date('Y-m-d H:i:s'),
-         // 'catatan' => 'Ditolak tanpa catatan' // Default note
       ]);
 
-      // Tambahkan log aktivitas
-      $logData = [
-         'user_id' => session('id'),
-         'aktivitas' => 'Menolak surat',
-         'tabel_terkait' => 'surat_keterangan',
-         'id_entitas' => $id,
-         // 'keterangan' => 'Surat No. ' . $surat['no_surat'] . ' ditolak tanpa catatan'
-      ];
+      // tes log aktivitas
+      // $logData = [
+      //    'user_id' => session('id'),
+      //    'aktivitas' => 'Menolak surat',
+      //    'tabel_terkait' => 'surat_keterangan',
+      //    'id_entitas' => $id,
+      //    // 'keterangan' => 'Surat No. ' . $surat['no_surat'] . ' ditolak tanpa catatan'
+      // ];
 
       return redirect()->to('/kepala-desa/surat')->with('success', 'Surat berhasil ditolak');
+   }
+
+   public function preview($id)
+   {
+      $surat = $this->suratModel->getSuratWithDetail($id);
+
+      if (!$surat) {
+         return $this->response->setJSON([
+            'success' => false,
+            'message' => 'Surat tidak ditemukan'
+         ]);
+      }
+
+      return $this->response->setJSON([
+         'success' => true,
+         'content' => nl2br(esc($surat['isi_surat']))
+      ]);
    }
 }

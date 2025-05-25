@@ -93,7 +93,6 @@ class PendudukModel extends Model
     ")->getResultArray();
    }
 
-   // app/Models/PendudukModel.php
    public function getStatistikJenisKelamin()
    {
       $total = $this->where('status_hidup', 1)->countAllResults();

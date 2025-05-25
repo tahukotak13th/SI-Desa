@@ -60,13 +60,13 @@
                   <form action="<?= base_url('admin/pejabat/store') ?>" method="post">
                      <?= csrf_field() ?>
 
-                     <!-- Input Nama Lengkap (Wajib) -->
+                     <!-- Input Nama Lengkap -->
                      <div class="mb-3">
                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
                      </div>
 
-                     <!-- Input Jabatan (Wajib) -->
+                     <!-- Input Jabatan -->
                      <div class="mb-3">
                         <label for="jabatan" class="form-label">Jabatan</label>
                         <input type="text" class="form-control" id="jabatan" name="jabatan" required>
@@ -111,7 +111,7 @@
          document.getElementById('main-content').classList.toggle('active');
       });
 
-      // Set default tanggal periode mulai ke hari ini
+      // Set default tanggal periode mulai hari ini
       document.addEventListener('DOMContentLoaded', function() {
          const today = new Date().toISOString().split('T')[0];
          document.getElementById('periode_mulai').value = today;

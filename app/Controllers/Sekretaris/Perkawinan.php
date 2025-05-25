@@ -127,13 +127,11 @@ class Perkawinan extends BaseController
             ->with('error', 'Perkawinan hanya boleh antara laki-laki dan perempuan');
       }
 
-      // Validasi form
       if (!$this->validate($this->perkawinanModel->getValidationRules())) {
          return redirect()->back()->withInput()
             ->with('errors', $this->validator->getErrors());
       }
 
-      // Update status perkawinan penduduk lama ke belum kawin
       $this->pendudukModel->update($perkawinan['suami_id'], ['status_perkawinan' => 'belum_kawin']);
       $this->pendudukModel->update($perkawinan['istri_id'], ['status_perkawinan' => 'belum_kawin']);
 

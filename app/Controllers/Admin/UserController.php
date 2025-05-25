@@ -14,7 +14,7 @@ class UserController extends BaseController
       $this->userModel = new UserModel();
    }
 
-   // Tampilkan semua user
+   // ke dashboard
    public function manageUsers()
    {
       $data = [
@@ -23,10 +23,9 @@ class UserController extends BaseController
       ];
 
       return view('admin/users/manage_users', $data);
-      // yg di sini harus sesuai direktori
    }
 
-   // Form tambah user
+   // tambah user
    public function create()
    {
       $data = [
@@ -37,7 +36,7 @@ class UserController extends BaseController
       return view('admin/users/create_user', $data);
    }
 
-   // Simpan user baru
+   // save data user baru
    public function store()
    {
       $rules = [
@@ -61,11 +60,11 @@ class UserController extends BaseController
          'is_active' => 1
       ];
 
-      // Simpan user baru
+
       $this->userModel->save($data);
       $userId = $this->userModel->getInsertID();
 
-      // Tambahkan sebagai pejabat sesuai level
+      // sinkronisasi user ke table pejabat
       $this->tambahkanSebagaiPejabat($userId, $data['level'], $data['nama_lengkap']);
 
       return redirect()->to('/admin/users')->with('message', 'User berhasil ditambahkan dan terdaftar sebagai pejabat');
@@ -75,7 +74,6 @@ class UserController extends BaseController
    {
       $pejabatModel = new \App\Models\PejabatModel();
 
-      // Mapping level ke jabatan
       $jabatanMap = [
          'admin' => 'Administrator Sistem',
          'sekretaris' => 'Sekretaris Desa',
@@ -93,7 +91,7 @@ class UserController extends BaseController
       $pejabatModel->save($dataPejabat);
    }
 
-   // Form edit user
+   // edit user
    public function edit($id)
    {
       $pejabatModel = new \App\Models\PejabatModel();
@@ -132,15 +130,13 @@ class UserController extends BaseController
          'is_active' => $this->request->getPost('is_active') ? 1 : 0
       ];
 
-      // Update password jika diisi
       if ($this->request->getPost('password')) {
          $data['password'] = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
       }
 
-      // Update data user
       $this->userModel->save($data);
 
-      // Update data pejabat terkait
+      // sinkronisasi ke table pejabat
       $this->updatePejabatTerikat($id, $data['level'], $data['nama_lengkap']);
 
       return redirect()->to('/admin/users')->with('message', 'User berhasil diupdate');

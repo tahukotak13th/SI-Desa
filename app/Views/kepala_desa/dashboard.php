@@ -231,7 +231,6 @@
    </div>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-   <!-- Tambahkan Chart.js -->
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script>
       // Pendidikan Chart
@@ -250,26 +249,25 @@
          },
          options: {
             responsive: true,
-            maintainAspectRatio: false, // Tambahkan ini untuk kontrol rasio yang lebih baik
+            maintainAspectRatio: false,
             scales: {
                y: {
                   beginAtZero: true,
                   ticks: {
-                     precision: 0, // Memastikan tidak ada desimal
+                     precision: 0,
                      callback: function(value) {
-                        if (value % 1 === 0) { // Hanya menampilkan jika integer
+                        if (value % 1 === 0) {
                            return value;
                         }
                      }
                   },
-                  // Menyesuaikan step size secara otomatis
                   afterDataLimits: function(scale) {
                      scale.options.ticks.stepSize = Math.max(1, Math.floor((scale.max - scale.min) / 5));
                   }
                },
                x: {
                   grid: {
-                     display: false // Hilangkan grid lines pada sumbu X
+                     display: false
                   }
                }
             },
@@ -286,10 +284,9 @@
       });
 
       // Pekerjaan Chart
-      // Ganti kode pekerjaanChart dengan ini:
       const pekerjaanCtx = document.getElementById('pekerjaanChart').getContext('2d');
       const pekerjaanChart = new Chart(pekerjaanCtx, {
-         type: 'doughnut', // Ganti dari pie ke doughnut untuk tampilan lebih modern
+         type: 'doughnut',
          data: {
             labels: <?= json_encode(array_column($statistik_pekerjaan, 'pekerjaan')) ?>,
             datasets: [{
@@ -314,7 +311,7 @@
                   'rgba(199, 199, 199, 1)'
                ],
                borderWidth: 1,
-               hoverOffset: 15 // Efek hover lebih jelas
+               hoverOffset: 15
             }]
          },
          options: {
@@ -322,14 +319,14 @@
             maintainAspectRatio: false,
             plugins: {
                legend: {
-                  position: 'right', // Pindah legend ke kanan
+                  position: 'right',
                   labels: {
                      boxWidth: 12,
                      padding: 20,
                      font: {
                         size: 12
                      },
-                     usePointStyle: true // Gunakan titik kecil bukan kotak
+                     usePointStyle: true
                   }
                },
                tooltip: {
@@ -343,7 +340,7 @@
                   }
                }
             },
-            cutout: '45%', // Tingkatkan cutout untuk doughnut
+            cutout: '45%',
             animation: {
                animateScale: true,
                animateRotate: true
@@ -361,7 +358,7 @@
          sidebar.classList.toggle('active');
          content.classList.toggle('active');
 
-         // Simpan state di localStorage
+         // Simpan state 
          const isCollapsed = sidebar.classList.contains('active');
          localStorage.setItem('sidebarCollapsed', isCollapsed);
       };
@@ -381,7 +378,7 @@
          });
       });
 
-      // Init state dari localStorage
+      // sidebar
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');
@@ -393,27 +390,9 @@
          }
 
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
-
-         // Set active menu based on current URL
-         const currentUrl = window.location.href;
-         const menuItems = document.querySelectorAll('.sidebar-menu li a');
-
-         menuItems.forEach(item => {
-            if (item.href === currentUrl) {
-               item.parentElement.classList.add('active');
-               // Open parent dropdown if exists
-               const parentDropdown = item.closest('.submenu');
-               if (parentDropdown) {
-                  parentDropdown.style.display = 'block';
-                  parentDropdown.previousElementSibling.querySelector('.dropdown-icon').classList.add('fa-chevron-up');
-                  parentDropdown.previousElementSibling.querySelector('.dropdown-icon').classList.remove('fa-chevron-down');
-                  parentDropdown.parentElement.classList.add('active');
-               }
-            }
-         });
       });
 
-      // Responsive behavior
+      // Responsive sidebar
       window.addEventListener('resize', () => {
          const sidebar = document.getElementById('sidebar');
          const content = document.getElementById('main-content');
@@ -421,7 +400,6 @@
          if (window.innerWidth < 992) {
             sidebar.classList.remove('active');
             content.classList.remove('active');
-            // Hide all submenus on mobile
             document.querySelectorAll('.submenu').forEach(submenu => {
                submenu.style.display = 'none';
             });

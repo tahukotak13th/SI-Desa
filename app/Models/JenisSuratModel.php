@@ -11,7 +11,7 @@ class JenisSuratModel extends Model
    protected $allowedFields = ['kode_surat', 'nama_surat', 'template', 'kebutuhan_data'];
    protected $useTimestamps = false;
 
-   // Template default untuk semua jenis surat
+   // Template SK
    private $defaultTemplates = [
       'SK-DOM' => [
          'template' => "Yang bertanda tangan di bawah ini, Kepala Desa Konoha, dengan ini menerangkan bahwa:\n"

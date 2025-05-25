@@ -39,10 +39,10 @@ class KematianModel extends Model
       $pendudukModel = new \App\Models\PendudukModel();
       $perkawinanModel = new \App\Models\PerkawinanModel();
 
-      // Cari data penduduk yang meninggal
+      // Cari data penduduk yang dah mati
       $penduduk = $pendudukModel->find($penduduk_id);
 
-      // Cek apakah penduduk memiliki status perkawinan 'kawin'
+      // Cek status perkawinan 'kawin'
       if ($penduduk['status_perkawinan'] === 'kawin') {
          // Cari data perkawinan aktif
          $perkawinan = $perkawinanModel->where('status', 'Kawin')

@@ -22,7 +22,7 @@
          <ul class="sidebar-menu">
             <li class="active"><a href="<?= base_url('sekretaris/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
 
-            <!-- Data Kependudukan Menu -->
+            <!-- Menu -->
             <li class="menu-dropdown">
                <a href="#"><i class="fas fa-users"></i> <span class="menu-text">Data Kependudukan</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
                <ul class="submenu" style="list-style: none;">
@@ -32,19 +32,7 @@
                   <li><a href="<?= base_url('sekretaris/perkawinan') ?>"><i class="fas fa-heart"></i> Perkawinan</a></li>
                </ul>
             </li>
-
-            <!-- Layanan Administrasi Menu -->
             <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> <span class="menu-text">Surat-surat Keterangan</span></a></li>
-            <!-- <li class="menu-dropdown">
-               <a href="#"><i class="fas fa-file-alt"></i> <span class="menu-text">Layanan Administrasi</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
-               <ul class="submenu" style="list-style: none;">
-                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Domisili</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Tidak Mampu</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Penghasilan</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Kematian</a></li>
-                  <li><a href="<?= base_url('sekretaris/surat') ?>"><i class="fas fa-file"></i> SK Status Pekerjaan</a></li>
-               </ul>
-            </li> -->
 
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
@@ -197,12 +185,6 @@
                            <a href="<?= base_url('sekretaris/penduduk/tambah') ?>" class="btn btn-primary">
                               <i class="fas fa-user-plus"></i> Tambah Penduduk
                            </a>
-                           <!-- <a href="<?= base_url('sekretaris/surat/domisili/create') ?>" class="btn btn-success">
-                              <i class="fas fa-file-alt"></i> Buat SK Domisili
-                           </a>
-                           <a href="<?= base_url('sekretaris/surat/tidak_mampu/buat') ?>" class="btn btn-info">
-                              <i class="fas fa-file-alt"></i> Buat SK Tidak Mampu
-                           </a> -->
                            <a href="<?= base_url('sekretaris/kelahiran/tambah') ?>" class="btn btn-warning">
                               <i class="fas fa-baby"></i> Catat Kelahiran
                            </a>
@@ -228,7 +210,7 @@
          sidebar.classList.toggle('active');
          content.classList.toggle('active');
 
-         // Simpan state di localStorage
+         // Simpan state 
          const isCollapsed = sidebar.classList.contains('active');
          localStorage.setItem('sidebarCollapsed', isCollapsed);
       };
@@ -248,7 +230,7 @@
          });
       });
 
-      // Init state dari localStorage
+      // Init state 
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');
@@ -260,27 +242,9 @@
          }
 
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
-
-         // Set active menu based on current URL
-         const currentUrl = window.location.href;
-         const menuItems = document.querySelectorAll('.sidebar-menu li a');
-
-         menuItems.forEach(item => {
-            if (item.href === currentUrl) {
-               item.parentElement.classList.add('active');
-               // Open parent dropdown if exists
-               const parentDropdown = item.closest('.submenu');
-               if (parentDropdown) {
-                  parentDropdown.style.display = 'block';
-                  parentDropdown.previousElementSibling.querySelector('.dropdown-icon').classList.add('fa-chevron-up');
-                  parentDropdown.previousElementSibling.querySelector('.dropdown-icon').classList.remove('fa-chevron-down');
-                  parentDropdown.parentElement.classList.add('active');
-               }
-            }
-         });
       });
 
-      // Responsive behavior
+      // Responsive sidebar
       window.addEventListener('resize', () => {
          const sidebar = document.getElementById('sidebar');
          const content = document.getElementById('main-content');
@@ -288,7 +252,6 @@
          if (window.innerWidth < 992) {
             sidebar.classList.remove('active');
             content.classList.remove('active');
-            // Hide all submenus on mobile
             document.querySelectorAll('.submenu').forEach(submenu => {
                submenu.style.display = 'none';
             });

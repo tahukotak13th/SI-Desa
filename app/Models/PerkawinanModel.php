@@ -60,22 +60,11 @@ class PerkawinanModel extends Model
       return ($suami['jenis_kelamin'] === 'L' && $istri['jenis_kelamin'] === 'P');
    }
 
-   // public function getPerkawinanWithDetail($id)
-   // {
-   //    return $this->select('perkawinan.*, 
-   //      suami.nik as nik_suami, suami.nama_lengkap as nama_suami, suami.jenis_kelamin as jk_suami,
-   //      istri.nik as nik_istri, istri.nama_lengkap as nama_istri, istri.jenis_kelamin as jk_istri')
-   //       ->join('penduduk suami', 'suami.id = perkawinan.suami_id')
-   //       ->join('penduduk istri', 'istri.id = perkawinan.istri_id')
-   //       ->where('perkawinan.id', $id)
-   //       ->first();
-   // }
-
    public function updateStatusPenduduk($suami_id, $istri_id, $status_perkawinan)
    {
       $pendudukModel = new \App\Models\PendudukModel();
 
-      // Mapping status dari perkawinan ke penduduk
+      // Mapping status dari perkawinan ke penduduk, biar sesuai nama cols-nya
       $status_mapping = [
          'Kawin' => 'kawin',
          'Cerai' => 'cerai_hidup',
@@ -89,7 +78,6 @@ class PerkawinanModel extends Model
       $pendudukModel->update($istri_id, ['status_perkawinan' => $status]);
    }
 
-   // Tambahkan method ini ke dalam PerkawinanModel
    public function getPasanganAktif()
    {
       return $this->select('perkawinan.id, 

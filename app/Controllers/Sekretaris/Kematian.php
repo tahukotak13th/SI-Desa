@@ -65,14 +65,14 @@ class Kematian extends BaseController
       $kematian = $this->kematianModel->find($id);
 
       if ($kematian) {
-         // Kembalikan status penduduk
+         // balikin status penduduk
          $this->pendudukModel->update($kematian['penduduk_id'], ['status_hidup' => 1]);
 
-         // Cek apakah perlu mengembalikan status perkawinan
+         // status perkawinan kalau mati
          $penduduk = $this->pendudukModel->find($kematian['penduduk_id']);
          $perkawinanModel = new \App\Models\PerkawinanModel();
 
-         // Cari data perkawinan dengan status 'Meninggal' yang melibatkan penduduk ini
+         // Cari data perkawinan dengan status 'Meninggal' dr penduduk_id
          $perkawinan = $perkawinanModel->where('status', 'Meninggal')
             ->groupStart()
             ->where('suami_id', $kematian['penduduk_id'])
@@ -84,7 +84,7 @@ class Kematian extends BaseController
             // Kembalikan status perkawinan ke 'Kawin'
             $perkawinanModel->update($perkawinan['id'], ['status' => 'Kawin']);
 
-            // Kembalikan status perkawinan kedua pasangan
+            // Kembalikan status perkawinan suami & isteri
             $this->pendudukModel->update($perkawinan['suami_id'], ['status_perkawinan' => 'kawin']);
             $this->pendudukModel->update($perkawinan['istri_id'], ['status_perkawinan' => 'kawin']);
          }
@@ -124,7 +124,6 @@ class Kematian extends BaseController
             ->with('error', 'Data kematian tidak ditemukan');
       }
 
-      // Validasi
       if (!$this->validate($this->kematianModel->getValidationRules())) {
          return redirect()->back()->withInput()
             ->with('errors', $this->validator->getErrors());
@@ -132,7 +131,7 @@ class Kematian extends BaseController
 
       $penduduk_id = $this->request->getPost('penduduk_id');
 
-      // Jika penduduk diubah, kembalikan status penduduk lama
+      // Jika penduduk diubah, kembalikan status penduduk ke yg lama
       if ($kematian['penduduk_id'] != $penduduk_id) {
          $this->pendudukModel->update($kematian['penduduk_id'], [
             'status_hidup' => 1,

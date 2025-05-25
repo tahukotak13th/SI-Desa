@@ -41,7 +41,6 @@
          </nav>
 
          <!-- Content -->
-         <!-- Content -->
          <div class="container-fluid">
             <div class="card">
                <div class="card-header">
@@ -95,7 +94,7 @@
                         <textarea class="form-control" id="keterangan" name="keterangan" rows="3"><?= esc($pejabat['keterangan']) ?></textarea>
                      </div>
 
-                     <!-- Info User Terkait (jika ada) -->
+                     <!-- Info User Terkait (klo ada) -->
                      <?php if ($pejabat['user_id']) : ?>
                         <div class="mb-3">
                            <label class="form-label">Terhubung dengan User</label>

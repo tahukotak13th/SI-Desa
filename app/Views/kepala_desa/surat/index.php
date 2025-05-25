@@ -4,10 +4,24 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Data Penduduk - Sistem Informasi Desa</title>
+   <title>Persetujuan Surat - Sistem Informasi Desa</title>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <link rel="stylesheet" href="<?= base_url('assets/css/kadesDashboard.css') ?>">
+   <style>
+      .preview-surat {
+         background-color: #f8f9fa;
+         border: 1px solid #dee2e6;
+         border-radius: 5px;
+         padding: 20px;
+         font-family: 'Times New Roman', Times, serif;
+         white-space: pre-line;
+      }
+
+      .modal-lg {
+         max-width: 90%;
+      }
+   </style>
 </head>
 
 <body>
@@ -20,9 +34,7 @@
          </div>
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('kepala-desa/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
-
             <li class="active"><a href="<?= base_url('kepala-desa/surat') ?>"><i class="fas fa-file-signature"></i> <span class="menu-text">Persetujuan Surat</span></a></li>
-
             <li class="menu-dropdown">
                <a href="#"><i class="fas fa-chart-bar"></i> <span class="menu-text">Statistik</span> <i class="fas fa-chevron-down dropdown-icon"></i></a>
                <ul class="submenu" style="list-style: none;">
@@ -31,7 +43,6 @@
                   <li><a href="<?= base_url('kepala-desa/statistik') ?>?type=kematian"><i class="fas fa-skull"></i> Statistik Kematian</a></li>
                </ul>
             </li>
-
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
       </div>
@@ -43,7 +54,7 @@
             <div class="toggle-sidebar" id="toggle-sidebar">
                <i class="fas fa-bars"></i>
             </div>
-            <h5 class="mb-0">Surat Keterangan</h5>
+            <h5 class="mb-0">Persetujuan Surat Keterangan</h5>
             <div class="user-info">
                <span><?= session('nama_lengkap') ?></span>
                <i class="fas fa-user-circle"></i>
@@ -52,9 +63,9 @@
 
          <!-- Content -->
          <div class="container-fluid p-4">
-            <div class="card">
-               <div class="card-header">
-                  <h5 class="card-title">Daftar Surat Menunggu Persetujuan</h5>
+            <div class="card shadow-sm">
+               <div class="card-header text-dark">
+                  <h5 class="mb-0">Daftar Surat Menunggu Persetujuan</h5>
                </div>
                <div class="card-body">
                   <?php if (session()->getFlashdata('success')): ?>
@@ -64,67 +75,87 @@
                   <?php endif; ?>
 
                   <div class="table-responsive">
-                     <table class="table table-bordered">
-                        <thead>
+                     <table class="table table-bordered table-hover">
+                        <thead class="table-light">
                            <tr>
-                              <th>No</th>
-                              <th>No. Surat</th>
-                              <th>Jenis Surat</th>
-                              <th>Pemohon</th>
-                              <th>Tanggal Pengajuan</th>
-                              <th>Aksi</th>
+                              <th width="5%">No</th>
+                              <th width="15%">No. Surat</th>
+                              <th width="15%">Jenis Surat</th>
+                              <th width="20%">Pemohon</th>
+                              <th width="15%">Tanggal</th>
+                              <th width="30%">Aksi</th>
                            </tr>
                         </thead>
                         <tbody>
-                           <?php $no = 1; ?>
-                           <?php foreach ($surat_menunggu as $surat): ?>
-                              <tr>
-                                 <td><?= $no++ ?></td>
-                                 <td><?= $surat['no_surat'] ?></td>
-                                 <td><?= $surat['nama_surat'] ?></td>
-                                 <td><?= $surat['nama_penduduk'] ?></td>
-                                 <td><?= date('d/m/Y', strtotime($surat['tanggal_pengajuan'])) ?></td>
-                                 <td>
-                                    <!-- Ganti link approve dengan form -->
-                                    <form action="<?= base_url('kepala-desa/surat/approve/' . $surat['id']) ?>" method="post" class="d-inline">
-                                       <?= csrf_field() ?>
-                                       <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Setujui surat ini?')">
-                                          <i class="fas fa-check"></i> Setujui
+                           <?php if (!empty($surat_menunggu)): ?>
+                              <?php foreach ($surat_menunggu as $index => $surat): ?>
+                                 <tr>
+                                    <td><?= $index + 1 ?></td>
+                                    <td><?= esc($surat['no_surat']) ?></td>
+                                    <td><?= esc($surat['nama_surat']) ?></td>
+                                    <td><?= esc($surat['nama_penduduk']) ?></td>
+                                    <td><?= date('d/m/Y', strtotime($surat['tanggal_pengajuan'])) ?></td>
+                                    <td>
+                                       <!-- Tombol Preview -->
+                                       <button class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                          data-bs-target="#previewModal<?= $surat['id'] ?>">
+                                          <i class="fas fa-eye"></i> Preview
                                        </button>
-                                    </form>
 
-                                    <!-- Ganti tombol reject dengan link langsung -->
-                                    <a href="<?= base_url(route_to('kepala_desa.surat.reject', $surat['id'])) ?>"
-                                       class="btn btn-sm btn-danger"
-                                       onclick="return confirm('Tolak surat ini?')">
-                                       <i class="fas fa-times"></i> Tolak
-                                    </a>
-                                 </td>
+                                       <!-- Form Approve -->
+                                       <form action="<?= base_url('kepala-desa/surat/approve/' . $surat['id']) ?>"
+                                          method="post" class="d-inline">
+                                          <?= csrf_field() ?>
+                                          <button type="submit" class="btn btn-sm btn-success"
+                                             onclick="return confirm('Setujui surat ini?')">
+                                             <i class="fas fa-check"></i> Setujui
+                                          </button>
+                                       </form>
+
+                                       <!-- Tombol Reject dengan Modal -->
+                                       <a href="<?= base_url(route_to('kepala_desa.surat.reject', $surat['id'])) ?>"
+                                          class="btn btn-sm btn-danger"
+                                          onclick="return confirm('Tolak surat ini?')">
+                                          <i class="fas fa-times"></i> Tolak
+                                       </a>
+
+                                       <!-- Modal Preview -->
+                                       <div class="modal fade" id="previewModal<?= $surat['id'] ?>" tabindex="-1" aria-hidden="true">
+                                          <div class="modal-dialog modal-lg">
+                                             <div class="modal-content">
+                                                <div class="modal-header bg-primary text-white">
+                                                   <h5 class="modal-title">Preview Surat: <?= esc($surat['no_surat']) ?></h5>
+                                                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                   <div class="preview-surat">
+                                                      <?= nl2br(esc($surat['isi_surat'])) ?>
+                                                   </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              <?php endforeach; ?>
+                           <?php else: ?>
+                              <tr>
+                                 <td colspan="6" class="text-center text-muted">Tidak ada surat yang menunggu persetujuan</td>
                               </tr>
-                           <?php endforeach; ?>
+                           <?php endif; ?>
                         </tbody>
                      </table>
                   </div>
                </div>
             </div>
-
-
          </div>
       </div>
    </div>
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-   <script>
-      // Confirm sebelum reject
-      document.querySelectorAll('.btn-reject').forEach(btn => {
-         btn.addEventListener('click', function(e) {
-            if (!confirm('Anda yakin ingin menolak surat ini?')) {
-               e.preventDefault();
-            }
-         });
-      });
-   </script>
    <script>
       // Toggle Sidebar
       const toggleSidebar = () => {
@@ -194,7 +225,6 @@
          if (window.innerWidth < 992) {
             sidebar.classList.remove('active');
             content.classList.remove('active');
-            // Hide all submenus on mobile
             document.querySelectorAll('.submenu').forEach(submenu => {
                submenu.style.display = 'none';
             });
@@ -208,6 +238,12 @@
                content.classList.remove('active');
             }
          }
+      });
+
+      // Inisialisasi tooltip
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function(tooltipTriggerEl) {
+         return new bootstrap.Tooltip(tooltipTriggerEl);
       });
    </script>
 </body>

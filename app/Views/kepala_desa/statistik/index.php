@@ -288,7 +288,7 @@
 
    <script>
       const bulanLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'];
-      // Tahun select change handler
+      // Tahun select
       document.getElementById('tahun-select').addEventListener('change', function() {
          const year = this.value;
          const url = new URL(window.location.href);
@@ -313,7 +313,7 @@
                   y: {
                      beginAtZero: true,
                      ticks: {
-                        precision: 0 // Untuk memastikan hanya menampilkan bilangan bulat
+                        precision: 0 // bilangan bulat
                      }
                   }
                }
@@ -344,7 +344,7 @@
                   data: <?= json_encode(array_column($statistik['usia'], 'jumlah')) ?>,
                   borderColor: '#4BC0C0',
                   fill: true,
-                  backgroundColor: 'rgba(75, 192, 192, 0.2)' // Warna fill yang lebih transparan
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)'
                }]
             },
             options: {
@@ -352,8 +352,8 @@
                   y: {
                      beginAtZero: true,
                      ticks: {
-                        precision: 0, // Hanya menampilkan bilangan bulat
-                        stepSize: 1 // Interval langkah 1
+                        precision: 0,
+                        stepSize: 1
                      }
                   },
                   x: {
@@ -365,7 +365,7 @@
                plugins: {
                   legend: {
                      display: true,
-                     position: 'top' // Posisi legend
+                     position: 'top'
                   }
                }
             }
@@ -418,15 +418,12 @@
          });
 
       <?php elseif ($type == 'kelahiran'): ?>
-         // Kelahiran Chart
-
-         // Data kelahiran
          const kelahiranData = Array(12).fill(0);
          <?php foreach ($statistik['bulanan'] as $item): ?>
             kelahiranData[<?= $item['bulan'] - 1 ?>] = <?= $item['jumlah'] ?>;
          <?php endforeach; ?>
 
-         // Warna gradient untuk chart
+         // Warna chart
          const ctx = document.getElementById('kelahiranChart').getContext('2d');
          const gradient = ctx.createLinearGradient(0, 0, 0, 300);
          gradient.addColorStop(0, 'rgba(75, 192, 192, 0.8)');
@@ -445,14 +442,12 @@
                   borderWidth: 1,
                   borderRadius: 6,
                   hoverBackgroundColor: 'rgba(75, 192, 192, 1)',
-                  // Tambahkan ini untuk perbaikan hover
                   barPercentage: 1,
                   categoryPercentage: 1
                }]
             },
             options: {
                responsive: true,
-               // Tambahkan ini untuk layout yang lebih baik
                layout: {
                   padding: {
                      top: 10,
@@ -471,9 +466,7 @@
                            return ` ${context.parsed.y} kelahiran`;
                         }
                      },
-                     // Perbaikan posisi tooltip
                      position: 'nearest',
-                     // Style tooltip
                      backgroundColor: 'rgba(0,0,0,0.8)',
                      titleFont: {
                         size: 14,
@@ -674,7 +667,7 @@
          sidebar.classList.toggle('active');
          content.classList.toggle('active');
 
-         // Simpan state di localStorage
+         // Simpan state
          const isCollapsed = sidebar.classList.contains('active');
          localStorage.setItem('sidebarCollapsed', isCollapsed);
       };
@@ -694,7 +687,7 @@
          });
       });
 
-      // Init state dari localStorage
+      // sidebar
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');
@@ -706,27 +699,9 @@
          }
 
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
-
-         // Set active menu based on current URL
-         const currentUrl = window.location.href;
-         const menuItems = document.querySelectorAll('.sidebar-menu li a');
-
-         menuItems.forEach(item => {
-            if (item.href === currentUrl) {
-               item.parentElement.classList.add('active');
-               // Open parent dropdown if exists
-               const parentDropdown = item.closest('.submenu');
-               if (parentDropdown) {
-                  parentDropdown.style.display = 'block';
-                  parentDropdown.previousElementSibling.querySelector('.dropdown-icon').classList.add('fa-chevron-up');
-                  parentDropdown.previousElementSibling.querySelector('.dropdown-icon').classList.remove('fa-chevron-down');
-                  parentDropdown.parentElement.classList.add('active');
-               }
-            }
-         });
       });
 
-      // Responsive behavior
+      // Responsive sidebar
       window.addEventListener('resize', () => {
          const sidebar = document.getElementById('sidebar');
          const content = document.getElementById('main-content');
@@ -734,7 +709,6 @@
          if (window.innerWidth < 992) {
             sidebar.classList.remove('active');
             content.classList.remove('active');
-            // Hide all submenus on mobile
             document.querySelectorAll('.submenu').forEach(submenu => {
                submenu.style.display = 'none';
             });

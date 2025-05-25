@@ -26,7 +26,7 @@
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li class="active"><a href="<?= base_url('admin/manage_users') ?>"><i class="fas fa-users"></i> <span class="menu-text">Manajemen User</span></a></li>
-            <li><a href="<?= base_url('admin/pejabat/index') ?>"><i class="fas fa-user-tie"></i> <span class="menu-text">Pejabat Desa</span></a></li>
+            <li><a href="<?= base_url('admin/manage_pejabat') ?>"><i class="fas fa-user-tie"></i> <span class="menu-text">Pejabat & Staf Desa</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
       </div>
@@ -116,62 +116,52 @@
                </div>
             </div>
          </div>
+      </div>
+   </div>
 
 
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-         <script>
-            // Toggle Sidebar
-            document.getElementById('toggle-sidebar').addEventListener('click', function() {
-               document.getElementById('sidebar').classList.toggle('active');
-               document.getElementById('main-content').classList.toggle('active');
-            });
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+      // Toggle Sidebar
+      document.getElementById('toggle-sidebar').addEventListener('click', function() {
+         document.getElementById('sidebar').classList.toggle('active');
+         document.getElementById('main-content').classList.toggle('active');
+      });
 
-            // Init state dari localStorage
-            document.addEventListener('DOMContentLoaded', () => {
-               const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-               const sidebar = document.getElementById('sidebar');
-               const content = document.getElementById('main-content');
+      // cek state sidebar
+      document.addEventListener('DOMContentLoaded', () => {
+         const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+         const sidebar = document.getElementById('sidebar');
+         const content = document.getElementById('main-content');
 
-               if (isCollapsed && window.innerWidth >= 992) {
-                  sidebar.classList.add('active');
-                  content.classList.add('active');
-               }
+         if (isCollapsed && window.innerWidth >= 992) {
+            sidebar.classList.add('active');
+            content.classList.add('active');
+         }
 
-               document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
-            });
+         document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
+      });
 
-            // Responsive behavior
-            window.addEventListener('resize', () => {
-               const sidebar = document.getElementById('sidebar');
-               const content = document.getElementById('main-content');
+      // Responsive sidebar
+      window.addEventListener('resize', () => {
+         const sidebar = document.getElementById('sidebar');
+         const content = document.getElementById('main-content');
 
-               if (window.innerWidth < 992) {
-                  sidebar.classList.remove('active');
-                  content.classList.remove('active');
-               } else {
-                  const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
-                  if (isCollapsed) {
-                     sidebar.classList.add('active');
-                     content.classList.add('active');
-                  } else {
-                     sidebar.classList.remove('active');
-                     content.classList.remove('active');
-                  }
-               }
-            });
-
-            // Set active menu based on current URL
-            document.addEventListener('DOMContentLoaded', function() {
-               const currentUrl = window.location.href;
-               const menuItems = document.querySelectorAll('.sidebar-menu li a');
-
-               menuItems.forEach(item => {
-                  if (item.href === currentUrl) {
-                     item.parentElement.classList.add('active');
-                  }
-               });
-            });
-         </script>
+         if (window.innerWidth < 992) {
+            sidebar.classList.remove('active');
+            content.classList.remove('active');
+         } else {
+            const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
+            if (isCollapsed) {
+               sidebar.classList.add('active');
+               content.classList.add('active');
+            } else {
+               sidebar.classList.remove('active');
+               content.classList.remove('active');
+            }
+         }
+      });
+   </script>
 </body>
 
 </html>

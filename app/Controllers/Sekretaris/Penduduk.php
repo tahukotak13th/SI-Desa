@@ -15,7 +15,6 @@ class Penduduk extends BaseController
       helper('form');
    }
 
-   // Menampilkan semua data
    public function index()
    {
       $data = [
@@ -25,7 +24,7 @@ class Penduduk extends BaseController
       return view('sekretaris/penduduk/index', $data);
    }
 
-   // Form tambah data
+
    public function tambah()
    {
       $data = [
@@ -35,10 +34,10 @@ class Penduduk extends BaseController
       return view('sekretaris/penduduk/tambah', $data);
    }
 
-   // Proses simpan data
+
    public function simpan()
    {
-      // Validasi input
+
       if (!$this->validate($this->pendudukModel->getValidationRules())) {
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
@@ -65,7 +64,7 @@ class Penduduk extends BaseController
       return redirect()->to('/sekretaris/penduduk')->with('success', 'Data penduduk berhasil ditambahkan');
    }
 
-   // Form edit data
+
    public function edit($id)
    {
       $data = [
@@ -76,24 +75,24 @@ class Penduduk extends BaseController
       return view('sekretaris/penduduk/edit', $data);
    }
 
-   // Proses update data
+
    public function update($id)
    {
       $currentData = $this->pendudukModel->find($id);
       $newNik = $this->request->getPost('nik');
 
-      // Get base validation rules
+
       $rules = $this->pendudukModel->getValidationRules();
 
-      // Only add NIK validation if NIK is being changed
+      // cek NIK kalo update NIK
       if ($newNik !== $currentData['nik']) {
          $rules['nik'] = 'required|numeric|exact_length[16]|is_unique[penduduk.nik,id,' . $id . ']';
       } else {
-         // Remove NIK validation if not changed
+         // biarin klo nik ga di-update
          unset($rules['nik']);
       }
 
-      // Validate all fields
+
       if (!$this->validate($rules)) {
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
@@ -121,7 +120,7 @@ class Penduduk extends BaseController
       return redirect()->to('/sekretaris/penduduk')->with('success', 'Data penduduk berhasil diperbarui');
    }
 
-   // Hapus data
+
    public function hapus($id)
    {
       $this->pendudukModel->delete($id);

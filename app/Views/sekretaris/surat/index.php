@@ -58,7 +58,6 @@
                <div class="card-header py-3">
                   <h6 class="m-0 font-weight-bold text-primary"><?= $title ?></h6>
                </div>
-               <!-- Di dalam card-body, ganti isinya dengan ini: -->
                <div class="card-body">
                   <!-- Tab Navigation -->
                   <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
@@ -166,12 +165,12 @@
          sidebar.classList.toggle('active');
          content.classList.toggle('active');
 
-         // Save state to localStorage
+         // Save state 
          const isCollapsed = sidebar.classList.contains('active');
          localStorage.setItem('sidebarCollapsed', isCollapsed);
       };
 
-      // Initialize state from localStorage
+      // Initialize state 
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');

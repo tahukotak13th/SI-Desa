@@ -110,12 +110,12 @@
          sidebar.classList.toggle('active');
          content.classList.toggle('active');
 
-         // Save state to localStorage
+         // Save state
          const isCollapsed = sidebar.classList.contains('active');
          localStorage.setItem('sidebarCollapsed', isCollapsed);
       };
 
-      // Initialize state from localStorage
+      // Initialize state 
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');

@@ -68,7 +68,7 @@ class Statistik extends BaseController
 
    private function getStatistikKematian($year)
    {
-      // Data bulanan
+      // query data bulanan
       $bulananQuery = $this->kematianModel
          ->select("MONTH(tanggal_meninggal) as bulan, COUNT(*) as jumlah")
          ->where("YEAR(tanggal_meninggal)", $year)
@@ -76,7 +76,6 @@ class Statistik extends BaseController
          ->orderBy("bulan")
          ->findAll();
 
-      // Format data untuk semua bulan
       $bulanan = [];
       for ($i = 1; $i <= 12; $i++) {
          $bulanan[$i] = ['bulan' => $i, 'jumlah' => 0];
@@ -86,7 +85,7 @@ class Statistik extends BaseController
          $bulanan[$item['bulan']] = $item;
       }
 
-      // Data penyebab
+      // data penyebab kematian
       $penyebab = $this->kematianModel
          ->select("penyebab, COUNT(*) as jumlah")
          ->where("YEAR(tanggal_meninggal)", $year)
@@ -100,7 +99,7 @@ class Statistik extends BaseController
       }
 
       return [
-         'bulanan' => array_values($bulanan), // Pastikan array sequential
+         'bulanan' => array_values($bulanan),
          'penyebab' => $penyebab,
          'total' => array_sum(array_column($bulananQuery, 'jumlah'))
       ];

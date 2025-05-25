@@ -46,7 +46,7 @@ class Sekretaris extends BaseController
       return view('sekretaris/dashboard', $data);
    }
 
-   // ==================== DATA PENDUDUK ====================
+
    public function penduduk()
    {
       $data = [
@@ -167,7 +167,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/penduduk')->with('success', 'Data penduduk berhasil dihapus');
    }
 
-   // ==================== KELAHIRAN ====================
+
    public function kelahiran()
    {
       $data = [
@@ -218,7 +218,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/kelahiran')->with('success', 'Data kelahiran berhasil dihapus');
    }
 
-   // ==================== KEMATIAN ====================
+
    public function kematian()
    {
       $data = [
@@ -249,10 +249,10 @@ class Sekretaris extends BaseController
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
 
-      // Update status hidup penduduk
+      // Update status_hidup penduduk
       $this->pendudukModel->save([
          'id' => $this->request->getVar('penduduk_id'),
-         'status_hidup' => 0
+         'status_hidup' => 0 // 0 = mati
       ]);
 
       $this->kematianModel->save([
@@ -279,7 +279,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/kematian')->with('success', 'Data kematian berhasil dihapus');
    }
 
-   // ==================== PERKAWINAN ====================
+
    public function perkawinan()
    {
       $data = [
@@ -351,7 +351,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/perkawinan')->with('success', 'Data perkawinan berhasil dihapus');
    }
 
-   // ==================== SURAT KETERANGAN ====================
+
    public function surat($jenis = null)
    {
       $data = [
@@ -393,7 +393,7 @@ class Sekretaris extends BaseController
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
 
-      // Generate nomor surat
+
       $noSurat = $this->generateNomorSurat($jenisSurat->kode_surat);
 
       $data = [
@@ -427,7 +427,7 @@ class Sekretaris extends BaseController
       return view('sekretaris/surat/cetak', $data);
    }
 
-   // Helper methods
+
    private function generateNomorSurat($kodeSurat)
    {
       $prefix = $kodeSurat . '/' . date('Y') . '/';
