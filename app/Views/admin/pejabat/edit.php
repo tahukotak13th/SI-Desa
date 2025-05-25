@@ -41,7 +41,6 @@
          </nav>
 
          <!-- Content -->
-         <!-- Content -->
          <div class="container-fluid">
             <div class="card">
                <div class="card-header">
@@ -83,7 +82,7 @@
                               value="<?= date('Y-m-d', strtotime($pejabat['periode_mulai'])) ?>" required>
                         </div>
                         <div class="col-md-6">
-                           <label for="periode_selesai" class="form-label">Periode Selesai (Opsional)</label>
+                           <label for="periode_selesai" class="form-label">Periode Selesai</label>
                            <input type="date" class="form-control" id="periode_selesai" name="periode_selesai"
                               value="<?= $pejabat['periode_selesai'] ? date('Y-m-d', strtotime($pejabat['periode_selesai'])) : '' ?>">
                         </div>
@@ -95,7 +94,7 @@
                         <textarea class="form-control" id="keterangan" name="keterangan" rows="3"><?= esc($pejabat['keterangan']) ?></textarea>
                      </div>
 
-                     <!-- Info User Terkait (jika ada) -->
+                     <!-- Info User Terkait (klo ada) -->
                      <?php if ($pejabat['user_id']) : ?>
                         <div class="mb-3">
                            <label class="form-label">Terhubung dengan User</label>

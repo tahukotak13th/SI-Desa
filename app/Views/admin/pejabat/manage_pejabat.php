@@ -38,7 +38,6 @@
       <!-- Main Content -->
       <div class="main-content" id="main-content">
          <!-- Header -->
-         <!-- Header -->
          <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
             <div class="container-fluid">
                <button class="toggle-sidebar btn btn-sm me-2" id="toggle-sidebar">

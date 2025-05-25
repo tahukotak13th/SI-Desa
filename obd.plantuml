@@ -1,0 +1,252 @@
+@startuml aa
+
+' ==================== ADMIN MODULE ====================
+package "Admin Module" {
+    class Auth {
+        -UserModel $userModel
+        +login() Response
+        +attemptLogin() Redirect
+        +logout() Redirect
+        #verifyPassword(string $input, string $stored) bool
+        -redirectToDashboard() Redirect
+    }
+
+    class AdminDashboard {
+        -UserModel $userModel
+        -PejabatModel $pejabatModel
+        +index() Response
+    }
+
+    class UserController {
+        -UserModel $userModel
+        +manageUsers() Response
+        +create() Response
+        +store() Redirect
+        +edit(int $id) Response
+        +update(int $id) Redirect
+        +delete(int $id) Redirect
+        -tambahkanSebagaiPejabat(int $userId, string $level, string $nama) void
+        -updatePejabatTerikat(int $userId, string $level, string $nama) void
+    }
+
+    class PejabatController {
+        -PejabatModel $pejabatModel
+        -UserModel $userModel
+        +managePejabat() Response
+        +create() Response
+        +store() Redirect
+        +edit(int $id) Response
+        +update(int $id) Redirect
+        +delete(int $id) Redirect
+    }
+
+    class UserModel {
+        +where(string $field, $value) UserModel
+        +first() array|null
+        +find(int $id) array|null
+        +save(array $data) bool
+        +delete(int $id) bool
+        +countAll() int
+    }
+
+    class PejabatModel {
+        +where(string $field, $value) PejabatModel
+        +first() array|null
+        +find(int $id) array|null
+        +save(array $data) bool
+        +delete(int $id) bool
+        +countAll() int
+    }
+
+    Auth --> UserModel
+    AdminDashboard --> UserModel
+    AdminDashboard --> PejabatModel
+    UserController --> UserModel
+    PejabatController --> PejabatModel
+    PejabatController --> UserModel
+}
+
+' ==================== SEKRETARIS MODULE ====================
+package "Sekretaris Module" {
+    class SekretarisDashboard {
+        -PendudukModel $pendudukModel
+        -SuratKeteranganModel $suratModel
+        -KelahiranModel $kelahiranModel
+        -KematianModel $kematianModel
+        -PerkawinanModel $perkawinanModel
+        +index() Response
+        -getPeristiwaTerbaru() array
+    }
+
+    class PendudukController {
+        -PendudukModel $pendudukModel
+        +index() Response
+        +tambah() Response
+        +simpan() Redirect
+        +edit(int $id) Response
+        +update(int $id) Redirect
+        +hapus(int $id) Redirect
+    }
+
+    class KelahiranController {
+        -KelahiranModel $kelahiranModel
+        -PendudukModel $pendudukModel
+        -PerkawinanModel $perkawinanModel
+        +index() Response
+        +tambah() Response
+        +simpan() Redirect
+        +edit(int $id) Response
+        +update(int $id) Redirect
+        +hapus(int $id) Redirect
+    }
+
+    class KematianController {
+        -KematianModel $kematianModel
+        -PendudukModel $pendudukModel
+        +index() Response
+        +tambah() Response
+        +simpan() Redirect
+        +edit(int $id) Response
+        +update(int $id) Redirect
+        +hapus(int $id) Redirect
+    }
+
+    class PerkawinanController {
+        -PerkawinanModel $perkawinanModel
+        -PendudukModel $pendudukModel
+        +index() Response
+        +tambah() Response
+        +simpan() Redirect
+        +edit(int $id) Response
+        +update(int $id) Redirect
+        +hapus(int $id) Redirect
+        #validateGenderPair(int $maleId, int $femaleId) bool
+    }
+
+    class SuratController {
+        -PendudukModel $pendudukModel
+        -SuratKeteranganModel $suratModel
+        -JenisSuratModel $jenisSuratModel
+        -KematianModel $kematianModel
+        +index() Response
+        +jenis(string $kode) Response
+        +buat() Response
+        +pilihPenduduk() Response
+        +simpan() Redirect
+        +listSurat() Response
+        +cetak(int $id) Response
+        -generateNomorSurat(string $kode) string
+        -generateIsiSurat(string $template, array $data) string
+        -terbilang(int $angka) string
+    }
+
+    class PendudukModel {
+        +where(string $field, $value) PendudukModel
+        +find(int $id) array|null
+        +save(array $data) bool
+        +delete(int $id) bool
+        +countAll() int
+        +getStatistikPendidikan() array
+        +getStatistikPekerjaan() array
+        +getStatistikJenisKelamin() array
+    }
+
+    class KelahiranModel {
+        +where(string $field, $value) KelahiranModel
+        +find(int $id) array|null
+        +save(array $data) bool
+        +delete(int $id) bool
+        +getKelahiranWithPenduduk() array
+    }
+
+    class KematianModel {
+        +where(string $field, $value) KematianModel
+        +find(int $id) array|null
+        +save(array $data) bool
+        +delete(int $id) bool
+        +updateStatusPenduduk(int $id) void
+        +getKematianWithPenduduk() array
+    }
+
+    class PerkawinanModel {
+        +where(string $field, $value) PerkawinanModel
+        +find(int $id) array|null
+        +save(array $data) bool
+        +delete(int $id) bool
+        +getPasanganAktif() array
+        +updateStatusPenduduk(int $maleId, int $femaleId, string $status) void
+    }
+
+    class SuratKeteranganModel {
+        +where(string $field, $value) SuratKeteranganModel
+        +find(int $id) array|null
+        +save(array $data) bool
+        +update(int $id, array $data) bool
+        +delete(int $id) bool
+        +getSuratByStatus(string $status, int $limit) array
+        +getSuratTerbaru() array
+    }
+
+    class JenisSuratModel {
+        +where(string $field, $value) JenisSuratModel
+        +find(int $id) array|null
+        +getTemplateByKode(string $kode) array
+    }
+
+    SekretarisDashboard --> PendudukModel
+    SekretarisDashboard --> SuratKeteranganModel
+    SekretarisDashboard --> KelahiranModel
+    SekretarisDashboard --> KematianModel
+    SekretarisDashboard --> PerkawinanModel
+    PendudukController --> PendudukModel
+    KelahiranController --> KelahiranModel
+    KelahiranController --> PendudukModel
+    KelahiranController --> PerkawinanModel
+    KematianController --> KematianModel
+    KematianController --> PendudukModel
+    PerkawinanController --> PerkawinanModel
+    PerkawinanController --> PendudukModel
+    SuratController --> PendudukModel
+    SuratController --> SuratKeteranganModel
+    SuratController --> JenisSuratModel
+    SuratController --> KematianModel
+}
+
+' ==================== KEPALA DESA MODULE ====================
+package "Kepala Desa Module" {
+    class KepalaDesaDashboard {
+        -PendudukModel $pendudukModel
+        -SuratKeteranganModel $suratModel
+        -KelahiranModel $kelahiranModel
+        -KematianModel $kematianModel
+        +index() Response
+    }
+
+    class Statistik {
+        -PendudukModel $pendudukModel
+        -KelahiranModel $kelahiranModel
+        -KematianModel $kematianModel
+        +index() Response
+        -getStatistikPenduduk(int $year) array
+        -getStatistikKelahiran(int $year) array
+        -getStatistikKematian(int $year) array
+    }
+
+    class SuratKepalaDesa {
+        -SuratKeteranganModel $suratModel
+        +index() Response
+        +approve(int $id) Redirect
+        +reject(int $id) Redirect
+    }
+
+    KepalaDesaDashboard --> PendudukModel
+    KepalaDesaDashboard --> SuratKeteranganModel
+    KepalaDesaDashboard --> KelahiranModel
+    KepalaDesaDashboard --> KematianModel
+    Statistik --> PendudukModel
+    Statistik --> KelahiranModel
+    Statistik --> KematianModel
+    SuratKepalaDesa --> SuratKeteranganModel
+}
+
+@enduml

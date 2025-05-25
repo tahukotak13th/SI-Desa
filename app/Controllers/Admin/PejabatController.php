@@ -17,7 +17,7 @@ class PejabatController extends BaseController
       $this->userModel = new UserModel();
    }
 
-   // Tampilkan semua pejabat
+   // ke dashboard
    public function managePejabat()
    {
       $data = [
@@ -28,7 +28,7 @@ class PejabatController extends BaseController
       return view('admin/pejabat/manage_pejabat', $data);
    }
 
-   // Form tambah pejabat
+   // tambah pejabat
    public function create()
    {
       $data = [
@@ -40,7 +40,7 @@ class PejabatController extends BaseController
       return view('admin/pejabat/create', $data);
    }
 
-   // Simpan pejabat baru
+   // save data pejabat baru
    public function store()
    {
       $rules = [
@@ -67,7 +67,7 @@ class PejabatController extends BaseController
       return redirect()->to('/admin/pejabat')->with('message', 'Pejabat berhasil ditambahkan');
    }
 
-   // Form edit pejabat
+   // edit pejabat
    public function edit($id)
    {
       $pejabatModel = new PejabatModel();

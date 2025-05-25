@@ -60,30 +60,17 @@
                   <form action="<?= base_url('admin/pejabat/store') ?>" method="post">
                      <?= csrf_field() ?>
 
-                     <!-- Input Nama Lengkap (Wajib) -->
+                     <!-- Input Nama Lengkap -->
                      <div class="mb-3">
                         <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" required>
                      </div>
 
-                     <!-- Input Jabatan (Wajib) -->
+                     <!-- Input Jabatan -->
                      <div class="mb-3">
                         <label for="jabatan" class="form-label">Jabatan</label>
                         <input type="text" class="form-control" id="jabatan" name="jabatan" required>
                      </div>
-
-                     <!-- Input User ID (Opsional) -->
-                     <!-- <div class="mb-3">
-                        <label for="user_id" class="form-label">Hubungkan dengan User (Opsional)</label>
-                        <select class="form-select" id="user_id" name="user_id">
-                           <option value="">Pilih User (Jika Ada)</option>
-                           <?php foreach ($users as $user) : ?>
-                              <option value="<?= $user['id'] ?>">
-                                 <?= esc($user['nama_lengkap']) ?> (<?= esc($user['username']) ?>)
-                              </option>
-                           <?php endforeach; ?>
-                        </select>
-                     </div> -->
 
                      <!-- Periode -->
                      <div class="row mb-3">
@@ -124,7 +111,7 @@
          document.getElementById('main-content').classList.toggle('active');
       });
 
-      // Set default tanggal periode mulai ke hari ini
+      // Set default tanggal periode mulai hari ini
       document.addEventListener('DOMContentLoaded', function() {
          const today = new Date().toISOString().split('T')[0];
          document.getElementById('periode_mulai').value = today;

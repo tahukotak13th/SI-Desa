@@ -23,7 +23,6 @@ class Sekretaris extends BaseController
    public function __construct()
    {
       $this->pendudukModel = new PendudukModel();
-      $this->pendidikanModel = new PendidikanModel();
       $this->kelahiranModel = new KelahiranModel();
       $this->kematianModel = new KematianModel();
       $this->perkawinanModel = new PerkawinanModel();
@@ -47,7 +46,7 @@ class Sekretaris extends BaseController
       return view('sekretaris/dashboard', $data);
    }
 
-   // ==================== DATA PENDUDUK ====================
+
    public function penduduk()
    {
       $data = [
@@ -168,54 +167,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/penduduk')->with('success', 'Data penduduk berhasil dihapus');
    }
 
-   // ==================== PENDIDIKAN ====================
-   public function pendidikan($pendudukId)
-   {
-      $data = [
-         'title' => 'Data Pendidikan',
-         'pendidikan' => $this->pendidikanModel->where('penduduk_id', $pendudukId)->findAll(),
-         'penduduk' => $this->pendudukModel->find($pendudukId)
-      ];
-      return view('sekretaris/pendidikan/index', $data);
-   }
 
-   public function tambahPendidikan($pendudukId)
-   {
-      $data = [
-         'title' => 'Tambah Data Pendidikan',
-         'penduduk' => $this->pendudukModel->find($pendudukId),
-         'validation' => \Config\Services::validation()
-      ];
-      return view('sekretaris/pendidikan/tambah', $data);
-   }
-
-   public function simpanPendidikan($pendudukId)
-   {
-      if (!$this->validate([
-         'tingkat_pendidikan' => 'required',
-         'nama_instansi' => 'required',
-         'tahun_lulus' => 'required|numeric|min_length[4]|max_length[4]'
-      ])) {
-         return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-      }
-
-      $this->pendidikanModel->save([
-         'penduduk_id' => $pendudukId,
-         'tingkat_pendidikan' => $this->request->getVar('tingkat_pendidikan'),
-         'nama_instansi' => $this->request->getVar('nama_instansi'),
-         'tahun_lulus' => $this->request->getVar('tahun_lulus')
-      ]);
-
-      return redirect()->to("/sekretaris/pendidikan/$pendudukId")->with('success', 'Data pendidikan berhasil ditambahkan');
-   }
-
-   public function hapusPendidikan($pendudukId, $id)
-   {
-      $this->pendidikanModel->delete($id);
-      return redirect()->to("/sekretaris/pendidikan/$pendudukId")->with('success', 'Data pendidikan berhasil dihapus');
-   }
-
-   // ==================== KELAHIRAN ====================
    public function kelahiran()
    {
       $data = [
@@ -266,7 +218,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/kelahiran')->with('success', 'Data kelahiran berhasil dihapus');
    }
 
-   // ==================== KEMATIAN ====================
+
    public function kematian()
    {
       $data = [
@@ -297,10 +249,10 @@ class Sekretaris extends BaseController
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
 
-      // Update status hidup penduduk
+      // Update status_hidup penduduk
       $this->pendudukModel->save([
          'id' => $this->request->getVar('penduduk_id'),
-         'status_hidup' => 0
+         'status_hidup' => 0 // 0 = mati
       ]);
 
       $this->kematianModel->save([
@@ -327,7 +279,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/kematian')->with('success', 'Data kematian berhasil dihapus');
    }
 
-   // ==================== PERKAWINAN ====================
+
    public function perkawinan()
    {
       $data = [
@@ -399,7 +351,7 @@ class Sekretaris extends BaseController
       return redirect()->to('/sekretaris/perkawinan')->with('success', 'Data perkawinan berhasil dihapus');
    }
 
-   // ==================== SURAT KETERANGAN ====================
+
    public function surat($jenis = null)
    {
       $data = [
@@ -441,7 +393,7 @@ class Sekretaris extends BaseController
          return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
       }
 
-      // Generate nomor surat
+
       $noSurat = $this->generateNomorSurat($jenisSurat->kode_surat);
 
       $data = [
@@ -475,7 +427,7 @@ class Sekretaris extends BaseController
       return view('sekretaris/surat/cetak', $data);
    }
 
-   // Helper methods
+
    private function generateNomorSurat($kodeSurat)
    {
       $prefix = $kodeSurat . '/' . date('Y') . '/';

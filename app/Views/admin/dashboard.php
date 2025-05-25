@@ -116,12 +116,12 @@
          sidebar.classList.toggle('active');
          content.classList.toggle('active');
 
-         // Simpan state di localStorage
+         // Simpan state
          const isCollapsed = sidebar.classList.contains('active');
          localStorage.setItem('sidebarCollapsed', isCollapsed);
       };
 
-      // Init state dari localStorage
+      // state sidebar
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');
@@ -135,7 +135,7 @@
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
       });
 
-      // Responsive behavior
+      // Responsive sidebar
       window.addEventListener('resize', () => {
          const sidebar = document.getElementById('sidebar');
          const content = document.getElementById('main-content');
@@ -153,18 +153,6 @@
                content.classList.remove('active');
             }
          }
-      });
-
-      // Set active menu based on current URL
-      document.addEventListener('DOMContentLoaded', function() {
-         const currentUrl = window.location.href;
-         const menuItems = document.querySelectorAll('.sidebar-menu li a');
-
-         menuItems.forEach(item => {
-            if (item.href === currentUrl) {
-               item.parentElement.classList.add('active');
-            }
-         });
       });
    </script>
 </body>

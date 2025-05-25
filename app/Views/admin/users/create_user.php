@@ -27,7 +27,7 @@
          <ul class="sidebar-menu">
             <li><a href="<?= base_url('admin/dashboard') ?>"><i class="fas fa-tachometer-alt"></i> <span class="menu-text">Dashboard</span></a></li>
             <li class="active"><a href="<?= base_url('admin/manage_users') ?>"><i class="fas fa-users"></i> <span class="menu-text">Manajemen User</span></a></li>
-            <li><a href="<?= base_url('admin/pejabat/index') ?>"><i class="fas fa-user-tie"></i> <span class="menu-text">Pejabat Desa</span></a></li>
+            <li><a href="<?= base_url('admin/manage_pejabat') ?>"><i class="fas fa-user-tie"></i> <span class="menu-text">Pejabat & Staf Desa</span></a></li>
             <li><a href="<?= base_url('logout') ?>"><i class="fas fa-sign-out-alt"></i> <span class="menu-text">Logout</span></a></li>
          </ul>
       </div>
@@ -113,7 +113,7 @@
          document.getElementById('main-content').classList.toggle('active');
       });
 
-      // Init state dari localStorage
+      // cek state sidebar
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');
@@ -127,7 +127,7 @@
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
       });
 
-      // Responsive behavior
+      // Responsive sidebar
       window.addEventListener('resize', () => {
          const sidebar = document.getElementById('sidebar');
          const content = document.getElementById('main-content');
@@ -145,18 +145,6 @@
                content.classList.remove('active');
             }
          }
-      });
-
-      // Set active menu based on current URL
-      document.addEventListener('DOMContentLoaded', function() {
-         const currentUrl = window.location.href;
-         const menuItems = document.querySelectorAll('.sidebar-menu li a');
-
-         menuItems.forEach(item => {
-            if (item.href === currentUrl) {
-               item.parentElement.classList.add('active');
-            }
-         });
       });
    </script>
 </body>
