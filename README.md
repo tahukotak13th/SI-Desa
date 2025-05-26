@@ -23,6 +23,7 @@ https://localhost/
 
 ### Kepala Desa
 - Dashboard Khusus Kepala Desa
+- Preview, Approve, dan Reject SK
 - Halaman statistik data penduduk
 - Halaman statistik data kematian
 - Halaman statistik data kelahiran
