@@ -60,7 +60,7 @@ class PejabatController extends BaseController
          'periode_mulai' => $this->request->getPost('periode_mulai'),
          'periode_selesai' => $this->request->getPost('periode_selesai'),
          'keterangan' => $this->request->getPost('keterangan'),
-         'user_id' => $this->request->getPost('user_id') // Tetap ada tapi opsional
+         'user_id' => $this->request->getPost('user_id')
       ];
 
       $this->pejabatModel->save($data);

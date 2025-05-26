@@ -64,15 +64,6 @@ class Surat extends BaseController
          'tanggal_approval' => date('Y-m-d H:i:s'),
       ]);
 
-      // tes log aktivitas
-      // $logData = [
-      //    'user_id' => session('id'),
-      //    'aktivitas' => 'Menolak surat',
-      //    'tabel_terkait' => 'surat_keterangan',
-      //    'id_entitas' => $id,
-      //    // 'keterangan' => 'Surat No. ' . $surat['no_surat'] . ' ditolak tanpa catatan'
-      // ];
-
       return redirect()->to('/kepala-desa/surat')->with('success', 'Surat berhasil ditolak');
    }
 
@@ -80,12 +71,12 @@ class Surat extends BaseController
    {
       $surat = $this->suratModel->getSuratWithDetail($id);
 
-      if (!$surat) {
-         return $this->response->setJSON([
-            'success' => false,
-            'message' => 'Surat tidak ditemukan'
-         ]);
-      }
+      // if (!$surat) {
+      //    return $this->response->setJSON([
+      //       'success' => false,
+      //       'message' => 'Surat tidak ditemukan'
+      //    ]);
+      // }
 
       return $this->response->setJSON([
          'success' => true,

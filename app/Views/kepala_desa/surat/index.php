@@ -185,7 +185,7 @@
          });
       });
 
-      // Init state dari localStorage
+      // Init state
       document.addEventListener('DOMContentLoaded', () => {
          const isCollapsed = localStorage.getItem('sidebarCollapsed') === 'true';
          const sidebar = document.getElementById('sidebar');
@@ -198,14 +198,12 @@
 
          document.getElementById('toggle-sidebar').addEventListener('click', toggleSidebar);
 
-         // Set active menu based on current URL
          const currentUrl = window.location.href;
          const menuItems = document.querySelectorAll('.sidebar-menu li a');
 
          menuItems.forEach(item => {
             if (item.href === currentUrl) {
                item.parentElement.classList.add('active');
-               // Open parent dropdown if exists
                const parentDropdown = item.closest('.submenu');
                if (parentDropdown) {
                   parentDropdown.style.display = 'block';
@@ -238,12 +236,6 @@
                content.classList.remove('active');
             }
          }
-      });
-
-      // Inisialisasi tooltip
-      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      tooltipTriggerList.map(function(tooltipTriggerEl) {
-         return new bootstrap.Tooltip(tooltipTriggerEl);
       });
    </script>
 </body>

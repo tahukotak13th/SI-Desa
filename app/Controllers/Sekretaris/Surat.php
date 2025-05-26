@@ -57,8 +57,6 @@ class Surat extends BaseController
       return view('sekretaris/surat/pilih_penduduk', $data);
    }
 
-   // Di Controller Surat.php
-
    public function buat()
    {
       $jenisKode = $this->request->getGet('jenis');
@@ -80,7 +78,7 @@ class Surat extends BaseController
       // Konversi ke array jika berupa object
       $pendudukArray = is_object($penduduk) ? $penduduk->toArray() : $penduduk;
 
-      // Ambil data tambahan khusus kematian jika ada
+      // Ambil data kematian jika ada
       $dataKematian = [];
       $kematianData = $this->kematianModel->where('penduduk_id', $pendudukId)->first();
       $dataKematian = is_object($kematianData) ? $kematianData->toArray() : ($kematianData ?? []);
@@ -89,7 +87,7 @@ class Surat extends BaseController
       // Gabungkan data
       $mergedData = array_merge($pendudukArray, $dataKematian);
 
-      // Dapatkan template dan data yang dibutuhkan
+      // get template
       $jenisSurat = $this->jenisSuratModel->where('kode_surat', $jenisKode)->first();
       if (!$jenisSurat) {
          return redirect()->to('/sekretaris/surat')
@@ -114,7 +112,6 @@ class Surat extends BaseController
 
    private function generateIsiSurat($template, $data)
    {
-      // Format tanggal Indonesia
       $bulanIndo = [
          '01' => 'Januari',
          '02' => 'Februari',
@@ -130,9 +127,9 @@ class Surat extends BaseController
          '12' => 'Desember'
       ];
 
-      // Default replacements untuk semua surat
+      // replacements data utk surat
       $replacements = [
-         // Data dasar penduduk
+         // Data penduduk
          '{{nama}}' => $data['nama_lengkap'] ?? '[Nama tidak tersedia]',
          '{{nik}}' => $data['nik'] ?? '[NIK tidak tersedia]',
          '{{tempat_lahir}}' => $data['tempat_lahir'] ?? '[Tempat lahir tidak tersedia]',
@@ -144,7 +141,6 @@ class Surat extends BaseController
          '{{dusun}}' => $data['dusun'] ?? '-',
          '{{pekerjaan}}' => $data['pekerjaan'] ?? '-',
 
-         // Data tambahan umum
          '{{penghasilan}}' => isset($data['penghasilan']) ? number_format($data['penghasilan'], 0, ',', '.') : '0',
          '{{terbilang}}' => isset($data['penghasilan']) ? $this->terbilang($data['penghasilan']) : 'nol rupiah',
          '{{nama_desa}}' => 'Konoha',
@@ -152,7 +148,6 @@ class Surat extends BaseController
          '{{kabupaten}}' => 'Konoha',
          '{{tanggal_surat}}' => date('d') . ' ' . $bulanIndo[date('m')] . ' ' . date('Y'),
 
-         // Data khusus kematian
          '{{tanggal_meninggal}}' => isset($data['tanggal_meninggal']) ?
             date('d-m-Y', strtotime($data['tanggal_meninggal'])) : '[Tanggal tidak tersedia]',
          '{{penyebab}}' => $data['penyebab'] ?? '[Penyebab tidak tersedia]',
@@ -224,7 +219,7 @@ class Surat extends BaseController
          return redirect()->to('/sekretaris/surat')->with('error', 'Jenis surat tidak valid');
       }
 
-      // Query berbeda untuk SK-MATI
+      // Query SK-MATI
       if ($jenisKode == 'SK-MATI') {
          $penduduk = $this->pendudukModel
             ->select('penduduk.*, kematian.tanggal_meninggal')

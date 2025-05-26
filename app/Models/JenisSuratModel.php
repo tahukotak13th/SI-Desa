@@ -99,8 +99,7 @@ class JenisSuratModel extends Model
 
       return [
          'template' => $jenis['template'],
-         'kebutuhan_data' => json_decode($jenis['kebutuhan_data'], true)
-            ?? $this->defaultTemplates[$kode]['kebutuhan_data']
+         'kebutuhan_data' => $this->defaultTemplates[$kode]['kebutuhan_data']
             ?? []
       ];
    }
